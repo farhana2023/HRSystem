@@ -1,4 +1,9 @@
-<template>
+
+
+
+
+
+  <template>
 
   <HrNoFrame v-if="noFrame"></HrNoFrame>
   <HrFrame v-else></HrFrame>

@@ -69,39 +69,27 @@
       <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
         <!-- Profile Edit Form -->
-        <form>
 
-          <div class="row mb-3">
-            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">First Name</label>
-            <div class="col-md-8 col-lg-9">
-              <input name="fullName" type="text" class="form-control" id="fullName" value="">
+
+          <div>
+            <form @submit.prevent="saveEmployee">
+              <input v-model="name" placeholder="Name" />
+              <input type="file" ref="imageInput" @change="handleImageUpload" />
+              <input type="file" ref="documentInput" @change="handleDocumentUpload" />
+             <button type="submit">Save</button>
+            </form>
+
+            <div>
+              <h2>Employee List</h2>
+              <ul>
+                <li v-for="employee in employees" :key="employee.id">
+                  {{ employee.name }} - {{ employee.image }}
+               </li>
+              </ul>
             </div>
           </div>
 
-          <div class="row mb-3">
-            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Middle Name</label>
-            <div class="col-md-8 col-lg-9">
-              <input name="fullName" type="text" class="form-control" id="fullName" value="">
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
-            <div class="col-md-8 col-lg-9">
-              <input name="fullName" type="text" class="form-control" id="fullName" value="">
-            </div>
-          </div>
-
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary">Save  Personal</button>
-          </div>
-        </form>
-        
-        
-        
-        
-        <!-- End Profile Edit Form -->
-
+    
       </div>
 
 
@@ -145,22 +133,62 @@
 
 </div>
 </template>
-
 <script>
-
+import { useEmployeeStore } from '../stores/Employee';
 import { usePersonalStore } from '../stores/Personal';
-    export default {
 
-      setup() {
-      const personalstore = usePersonalStore();
-      return { personalstore };
-    }
-  }
+export default {
 
-    
-    
+  setup() {
+    const personalstore = usePersonalStore();
+    const employeeStore = useEmployeeStore();
+
+    // Load employees' data from local storage when component is created
+
+
+    return { personalstore, employeeStore };
+  },
+  
+  data() {
+    return {
+      name: '',
+      imageFile: null,
+      documentFile: null,
+    };
+  },
+
+  methods: {
+    saveEmployee() {
+      const employee = {
+        id: Date.now(),
+        name: this.name,
+        image: this.imageFile,
+        document: this.documentFile,
+      };
+      this.employeeStore.addEmployee(employee);
+      this.employeeStore.persistEmployees(); // Persist the data after adding
+      this.clearForm();
+    },
+    handleImageUpload(event) {
+      this.imageFile = event.target.files[0];
+    },
+    handleDocumentUpload(event) {
+      this.documentFile = event.target.files[0];
+    },
+    clearForm() {
+      this.name = '';
+      this.imageFile = null;
+      this.documentFile = null;
+      this.$refs.imageInput.value = '';
+      this.$refs.documentInput.value = '';
+    },
+  },
+
+ 
+};
 </script>
 
-<style  scoped>
-
+<style scoped>
+/* ... your style rules ... */
 </style>
+

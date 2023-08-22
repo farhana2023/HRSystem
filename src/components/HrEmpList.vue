@@ -1,12 +1,10 @@
 <template>
  <div class="card">
     <div class="card-body">
-      <h5 class="card-title">List of the Employee</h5>
+    
 
               <!-- Bordered Table -->
-       
-           
-    <table  class="table table-bordered">
+        <table  class="table table-bordered">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -17,10 +15,7 @@
             </tr>
             </thead>
               <tbody>
-                <tr  v-for="lstEmp in  empstore.emplist">
-
-                    <HrEmpList: lstEmp="lstEmp"/>
-
+                <tr>
                     <td>{{ lstEmp.EmpID }} </td>
                     <td>{{ lstEmp.FullName }} </td>
                     <td>{{ lstEmp.Position }}</td>
@@ -30,7 +25,7 @@
            
             
                 </tbody>
-              </table> 
+              </table>
               <!-- End Bordered Table -->
 
         
@@ -40,20 +35,11 @@
 </template>
 
 <script>
-// HrEmpList from '@/components/HrEmpList.vue'
-
-import { useEmpStore } from '../stores/ListEmp';
-
     export default {
-    //  components: { HrEmpList },
-      setup() {
-      const empstore = useEmpStore();
-      return { empstore };
+        props:['lstEmp']
     }
-  }
-
 </script>
 
-<style scoped>
+<style  scoped>
 
 </style>

@@ -13,11 +13,8 @@ import { useUserStore } from '../stores/user';
 
 import PersonalView from '../views/PersonalView.vue';
 import EmployeeListView from '../views/EmployeeListView.vue';
-
-
-
-
-
+import EmployeesView from '../views/EmployeesView.vue';
+import EditEmployee from '../views/EditEmployee.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -64,6 +61,15 @@ const router = createRouter({
         auth:false,
       }
     },
+
+    {
+      path: '/Employees',
+      name: 'employees',
+      component: EmployeesView,
+      meta:{
+        auth:false,
+      }
+    },
     {
       path: '/Payroll',
       name: 'payroll',
@@ -91,6 +97,16 @@ const router = createRouter({
         auth:true,
       }
     },
+    {
+      path: '/EditEmployee',
+      name: 'editEmployee',
+      component: EditEmployee,
+      meta:{
+        auth:true,
+      }
+    },
+
+    
   ]
 });
 

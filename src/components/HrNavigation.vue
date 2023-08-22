@@ -24,6 +24,13 @@
       </li>
       <!-- End Profile Page Nav -->
 
+      <li class="nav-item">
+        <RouterLink class="nav-link collapsed" to="/employees">
+          <i class="bi bi-person"></i>
+          <span>Employees</span>
+        </RouterLink>
+      </li>
+      <!-- End Profile Page Nav -->
       <li  class="nav-item">
         <a
           class="nav-link collapsed"
@@ -42,9 +49,10 @@
             </RouterLink>
           </li>
           <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Edit Employee</span>
-            </a>
+            <RouterLink class="nav-link collapsed" to="/editEmployee">
+              <i class="bi bi-circle"></i>
+              <span>Edit Employee</span>
+            </RouterLink>
           </li>
           <li>
 
@@ -54,6 +62,8 @@
             </RouterLink>
           
           </li>
+
+        
         </ul>
       </li>
       <!-- End Forms Nav -->
