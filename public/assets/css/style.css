@@ -1,10 +1,4 @@
-/**
-* Template Name: NiceAdmin
-* Updated: Jul 27 2023 with Bootstrap v5.3.1
-* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
 
 /*--------------------------------------------------------------
 # General
@@ -15,17 +9,17 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #f4fafc;
+  background: #f6f9ff;
   color: #444444;
 }
 
 a {
-  color: #4154f1;
+  color: #0a0a0a;
   text-decoration: none;
 }
 
 a:hover {
-  color: #717ff5;
+  color: #0b0b0b;
   text-decoration: none;
 }
 
@@ -77,7 +71,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #4154f1;
+  background: #080808;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -91,7 +85,7 @@ h6 {
 }
 
 .back-to-top:hover {
-  background: #6776f4;
+  background: #0c0c0c;
   color: #fff;
 }
 
@@ -294,7 +288,7 @@ h6 {
 
 .accordion-flush .accordion-button:not(.collapsed) {
   box-shadow: none;
-  color: #4154f1;
+  color: #0e0e0f;
 }
 
 .accordion-flush .accordion-body {
@@ -342,13 +336,13 @@ h6 {
 
 .nav-tabs-bordered .nav-link:hover,
 .nav-tabs-bordered .nav-link:focus {
-  color: #4154f1;
+  color: #101010;
 }
 
 .nav-tabs-bordered .nav-link.active {
   background-color: #fff;
-  color: #4154f1;
-  border-bottom: 2px solid #4154f1;
+  color: #0a0a0a;
+  border-bottom: 2px solid #0e0e0e;
 }
 
 /*--------------------------------------------------------------
@@ -380,8 +374,8 @@ h6 {
   transition: all 0.5s;
   z-index: 997;
   height: 60px;
-  box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
+  box-shadow: 0px 2px 20px rgba(237, 239, 240, 0.1);
+  background-color: #41dafd;
   padding-left: 20px;
   /* Toggle Sidebar Button */
   /* Search Bar */
@@ -609,8 +603,8 @@ h6 {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
-  box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #1074d8;
+  box-shadow: 0px 0px 20px rgba(4, 39, 100, 0.1);
+  background-color: #fff;
   /*  background-color:#ffffff; */
 
 }
@@ -687,7 +681,8 @@ h6 {
   font-size: 15px;
   font-weight: 600;
  /* color: #4154f1;*/ 
- background-color: #1478f4;
+ background-color: #f4f6f7;
+
   transition: 0.3;
   background: #dde2ee;
   padding: 10px 15px;
@@ -703,7 +698,8 @@ h6 {
 
 .sidebar-nav .nav-link.collapsed {
   color: #012970;
-  background: #1074d8;
+  background-color: #fff;
+
 }
 
 .sidebar-nav .nav-link.collapsed i {
@@ -712,7 +708,7 @@ h6 {
 
 .sidebar-nav .nav-link:hover {
   color: black;
-  background: #f5f3f9;
+  background: #c2c1c3;
 
  
 }
