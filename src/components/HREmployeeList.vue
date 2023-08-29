@@ -2,7 +2,7 @@
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">List of the Employee</h5>
-        <p>Add <code>.table-bordered</code> for borders on all sides of the table and cells.</p>
+       
         <!-- Bordered Table -->
         <table class="table table-bordered">
                 <thead>
@@ -10,8 +10,9 @@
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Position</th>
-                    <th scope="col">Age</th>
+                    
                     <th scope="col">Start Date</th>
+                    <th scope="col">Department</th>
                   </tr>
                 </thead>
 
@@ -20,11 +21,12 @@
                 <tbody>
                     <tr v-for="employee in employees" :key="employee.EmpID">
                     <th scope="row">{{ employee.EmpID  }}</th>
-                
-                    <td>{{ employee.preferredFullName }}</td>
+
+                    <td><RouterLink :to="{name:'employeeDetails', params: { EmpID:employee.EmpID}}">{{ employee.preferredFullName }}</RouterLink></td>
                     <td>{{ employee.jobTitleName }}</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
+                    <td>{{ employee.joiningDate }}</td>
+                    <td>{{ employee.department }}</td>
+        
                   </tr>
                 
                 </tbody>
@@ -39,6 +41,8 @@
    </template>
 
 <script>
+
+import { RouterLink } from 'vue-router'
 export default {
   name: 'HREmployeeList',
   props: {

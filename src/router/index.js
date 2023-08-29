@@ -14,6 +14,7 @@ import { useUserStore } from '../stores/user';
 import PersonalView from '../views/PersonalView.vue';
 import EmployeeListView from '../views/EmployeeListView.vue';
 import EmployeesView from '../views/EmployeesView.vue';
+import EmployeeDetailsView from '../views/EmployeeDetailsView.vue';
 import EditEmployee from '../views/EditEmployee.vue';
 
 const router = createRouter({
@@ -62,14 +63,27 @@ const router = createRouter({
       }
     },
 
+
+    {
+  
+      path: '/employee/:EmpID/detail',
+      name: 'employeeDetails',
+      component: EmployeeDetailsView,
+      meta:{
+        auth:true,
+          }
+    },
+
     {
       path: '/Employees',
       name: 'employees',
       component: EmployeesView,
       meta:{
-        auth:false,
-      }
+        auth:true,
+          }
     },
+
+ 
     {
       path: '/Payroll',
       name: 'payroll',
