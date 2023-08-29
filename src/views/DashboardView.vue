@@ -1,4 +1,6 @@
-<template>HR Dashboard View</template>
+<template>  
+Dashboard
+</template>
 
 <script>
 export default {

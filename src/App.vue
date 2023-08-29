@@ -1,8 +1,5 @@
 
 
-
-
-
   <template>
 
   <HrNoFrame v-if="noFrame"></HrNoFrame>

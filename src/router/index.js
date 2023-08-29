@@ -4,13 +4,9 @@ import HomeView from '../views/HomeView.vue';
 import AboutView from '../views/AboutView.vue';
 import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue';
-
 import DashboardView  from '../views/DashboardView.vue';
-
 import PayrollView  from '../views/PayrollView.vue';
-
 import { useUserStore } from '../stores/user';
-
 import PersonalView from '../views/PersonalView.vue';
 import EmployeeListView from '../views/EmployeeListView.vue';
 import EmployeesView from '../views/EmployeesView.vue';

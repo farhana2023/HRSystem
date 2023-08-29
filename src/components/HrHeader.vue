@@ -229,14 +229,14 @@
         <!-- End Profile Nav -->
 
         <li v-if="!isLogin" class="nav-item dropdown pe-3">
-          <button  @click="OnLoginClicked()" type="button" class="btn btn-primary btn-sm">
+          <button  @click="OnLoginClicked()" type="button" class="btn btn-info btn-sm">
             <i class="bi bi-box-arrow-in-right"></i>
           </button>
 
           <!-- End Profile Dropdown Items -->
         </li>
         <li v-if="!isLogin" class="nav-item dropdown pe-3">
-          <button  @click="OnRegisterClicked()" type="button" class="btn btn-primary btn-sm">
+          <button  @click="OnRegisterClicked()" type="button" class="btn btn-info btn-sm">
             <i class="bi bi-card-list"></i>
           </button>
 
