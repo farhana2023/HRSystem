@@ -44,7 +44,7 @@
                     </div>
                   </div>
                   <div class="col-12">
-                    <button class="btn btn-info w-100" type="submit" @click.prevent="onLoginClicked()">Login</button>
+                    <button   class="btn btn-secondary w-100 " type="submit" @click.prevent="onLoginClicked()">Login</button>
                   </div>
                   <div class="col-12">
                     <p class="small mb-0">Don't have account? <a href="#" @click="onDontHaveAccountClicked">Create an account</a></p>

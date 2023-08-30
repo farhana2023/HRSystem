@@ -56,7 +56,7 @@
                     </div>
                   </div>
                   <div class="col-12">
-                    <button class="btn btn-info w-100" type="submit">Create Account</button>
+                    <button class="btn btn-secondary w-100" type="submit">Create Account</button>
                   </div>
                   <div class="col-12">
                     <p class="small mb-0">Already have an account? <a href="#" @click="onHaveAccountClicked()">Log in</a></p>
