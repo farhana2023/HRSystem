@@ -13,6 +13,8 @@ import EmployeesView from '../views/EmployeesView.vue';
 import EmployeeDetailsView from '../views/EmployeeDetailsView.vue';
 import EditEmployee from '../views/EditEmployee.vue';
 
+import EmpParentCreateProfileView from '../views/EmpParentCreateProfileView.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -93,6 +95,15 @@ const router = createRouter({
       path: '/Personal',
       name: 'personal',
       component: PersonalView,
+      meta:{
+        auth:true,
+      }
+    },
+
+    {
+      path: '/empPersonalProfile',
+      name: 'empPersonalProfile',
+      component:EmpParentCreateProfileView,
       meta:{
         auth:true,
       }

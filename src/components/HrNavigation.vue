@@ -63,6 +63,15 @@
           
           </li>
 
+          <li>
+
+            <RouterLink class="nav-link collapsed" to="/empPersonalProfile">
+              <i class="bi bi-circle"></i>
+              <span>Create Employee</span>
+            </RouterLink>
+
+          </li>
+
         
         </ul>
       </li>

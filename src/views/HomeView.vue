@@ -28,7 +28,7 @@
           <div class="card-body">
             <h5 class="card-title">Employee</h5>
             <p class="card-text">
-              Creating an employee involves adding a new member to your organization's workforce
+              Creating an employee involves adding a new member to organization's workforce
               within the Integrated Employee Management and Project Collaboration System. This
               process allows to establish an official record for the employee, encompassing both
               personal and professional information.
