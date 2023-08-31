@@ -3,8 +3,8 @@
   <HrNavigation></HrNavigation>
   <main id="main" class="main">
     <HrBreadcrumb></HrBreadcrumb>
-    {{ $route.fullPath }}
-    is Login: {{ isloginPage }}
+<!-- {{ $route.fullPath }}  -->
+    <!-- is Login: {{ isloginPage }}  -->
 
     <RouterView />
   </main>

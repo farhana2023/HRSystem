@@ -1,65 +1,79 @@
 <template>
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-8">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Employee Profile</h5>
-
-              <!-- Default Accordion -->
-              <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" fdprocessedid="g9lqeq">
-                        <strong> Personal Information</strong> 
-                    </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
-                    <div class="accordion-body">
-                     <HrEmpChildPersonal></HrEmpChildPersonal>
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" fdprocessedid="bixyv8">
-                        <strong> Additional Information</strong> 
-                    </button>
-                  </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
-                    <div class="accordion-body">
-                        <HrEmpChildAdditionl></HrEmpChildAdditionl>
-                    </div>
-                  </div>
-                </div>
-       
-              </div><!-- End Default Accordion Example -->
-
-            </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header">Employee Profile</div>
+          <div class="card-body">
+            <h5 class="card-title">Personal Information</h5>
+            <HrEmpChildPersonal @EmployeeProfile="saveEmpPersonalToFirebase"></HrEmpChildPersonal>
           </div>
 
+          <div class="card-footer">
+            <div v-if="dataSaved" class="alert alert-success mt-3"><Strong>Data saved successfully!</Strong></div>
+          </div>
         </div>
-
-    
       </div>
-    </section>
-
+    </div>
+  </section>
 </template>
 
 <script>
-import HrEmpChildPersonal from '@/components/HrEmpChildPersonal.vue'; 
-import HrEmpChildAdditionl from '@/components/HrEmpChildAdditionl.vue'; 
+import HrEmpChildPersonal from '@/components/HrEmpChildPersonal.vue'
 
-    export default {
-       name: 'EmpParentCreateProfileView' ,
-       components:{
-        HrEmpChildPersonal,
-        HrEmpChildAdditionl
-       }
+import db from '../firebase/db'
+
+import { collection, addDoc } from 'firebase/firestore'
+
+export default {
+  name: 'EmpParentCreateProfileView',
+  components: {
+    HrEmpChildPersonal
+  },
+  data() {
+    return {
+      dataSaved: false
     }
+  },
+
+  methods: {
+    async saveEmpPersonalToFirebase(empPersonalData) {
+      const colRef = collection(db, 'EmployeeProfile')
+      const dataObj = empPersonalData
+
+      try {
+        const docRef = await addDoc(colRef, dataObj)
+        console.log('User data saved to Firebase')
+
+        // Show success message and reset the flag after a delay
+        this.dataSaved = true
+        setTimeout(() => {
+          this.dataSaved = false
+        }, 3000) // Display success message for 3 seconds
+
+        console.log('Document was created with ID', docRef.id)
+      } catch (error) {
+        console.error('Error saving user data:', error)
+      }
+    }
+  }
+
+  // methods: {
+  //   async saveEmpPersonalToFirebase(empPersonalData) {
+  //     const colRef = collection(db, 'EmployeeProfile')
+  //     const dataObj = empPersonalData
+  //     const docRef = await addDoc(colRef, dataObj)
+  //       .then(() => {
+  //         console.log('User data saved to Firebase')
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error saving user data:', error)
+  //       })
+
+  //     console.log('Document was create with ID', docRef.uid)
+  //   }
+  // }
+}
 </script>
 
-<style  scoped>
-
-</style>
+<style scoped></style>
