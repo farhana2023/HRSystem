@@ -218,7 +218,7 @@ import { usePersonalStore } from '../stores/Personal';
 import db from '../firebase/db';
 import { doc ,setDoc } from 'firebase/firestore'
 
-// { doc, getDoc } from 'firebase/firestore';
+
 import { collection ,addDoc } from 'firebase/firestore';
 export default {
 
