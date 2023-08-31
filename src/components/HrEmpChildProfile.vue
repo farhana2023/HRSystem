@@ -141,7 +141,7 @@
 
 <script>
 export default {
-  name: 'HrEmpChildPersonal',
+  name: 'HrEmpChildProfile',
   data() {
     return {
       fullName: '',

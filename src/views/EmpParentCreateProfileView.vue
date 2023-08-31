@@ -6,7 +6,7 @@
           <div class="card-header">Employee Profile</div>
           <div class="card-body">
             <h5 class="card-title">Personal Information</h5>
-            <HrEmpChildPersonal @EmployeeProfile="saveEmpPersonalToFirebase"></HrEmpChildPersonal>
+            <HrEmpChildProfile @EmployeeProfile="saveEmpPersonalToFirebase"></HrEmpChildProfile>
           </div>
 
           <div class="card-footer">
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import HrEmpChildPersonal from '@/components/HrEmpChildPersonal.vue'
+import HrEmpChildProfile from '@/components/HrEmpChildProfile.vue'
 
 import db from '../firebase/db'
 
@@ -28,7 +28,7 @@ import { collection, addDoc } from 'firebase/firestore'
 export default {
   name: 'EmpParentCreateProfileView',
   components: {
-    HrEmpChildPersonal
+    HrEmpChildProfile
   },
   data() {
     return {
