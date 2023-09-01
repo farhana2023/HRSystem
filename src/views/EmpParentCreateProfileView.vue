@@ -27,7 +27,8 @@ import { collection, addDoc } from 'firebase/firestore'
 
 export default {
   name: 'EmpParentCreateProfileView',
-  components: {
+  components: 
+  {
     HrEmpChildProfile
   },
   data() {

@@ -8,11 +8,12 @@ import DashboardView  from '../views/DashboardView.vue';
 import PayrollView  from '../views/PayrollView.vue';
 import { useUserStore } from '../stores/user';
 import PersonalView from '../views/PersonalView.vue';
-import EmployeeListView from '../views/EmployeeListView.vue';
+
 import EmployeesView from '../views/EmployeesView.vue';
 import EmployeeDetailsView from '../views/EmployeeDetailsView.vue';
 import EditEmployee from '../views/EditEmployee.vue';
 
+import EmployeeListView from '../views/EmpParentListView.vue';
 import EmpParentCreateProfileView from '../views/EmpParentCreateProfileView.vue';
 
 const router = createRouter({

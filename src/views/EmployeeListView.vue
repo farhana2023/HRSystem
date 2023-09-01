@@ -21,7 +21,7 @@
 
                     <HrEmpList: lstEmp="lstEmp"/>
 
-                    <td>{{ lstEmp.EmpID }} </td>
+                    <td>{{ lstEmp.FullName }} </td>
                     <td>{{ lstEmp.FullName }} </td>
                     <td>{{ lstEmp.Position }}</td>
                     <td>{{ lstEmp.Startdate }}</td>

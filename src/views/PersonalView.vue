@@ -216,7 +216,7 @@ import { useEmployeeStore } from '../stores/Employee';
 import { usePersonalStore } from '../stores/Personal';
 
 import db from '../firebase/db';
-import { doc ,setDoc } from 'firebase/firestore'
+//import { doc ,setDoc } from 'firebase/firestore'
 
 
 import { collection ,addDoc } from 'firebase/firestore';
