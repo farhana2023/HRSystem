@@ -3,12 +3,6 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore} from 'firebase/firestore';
 
 
-
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCRpuprUQz0ZkvtPXW0OBN3eDIkzIdF1WU",
   authDomain: "meetingmaster-3faa8.firebaseapp.com",
@@ -20,9 +14,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 
- const firebaseappApp  = initializeApp(firebaseConfig);
- const db = getFirestore(firebaseappApp);
- const auth = getAuth(firebaseappApp);
+ export const firebaseApp  = initializeApp(firebaseConfig);
+ const db = getFirestore(firebaseApp);
+ const auth = getAuth(firebaseApp);
+
  
  onAuthStateChanged(auth,user =>{
   if(user!==null){

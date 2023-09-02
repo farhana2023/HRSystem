@@ -25,6 +25,7 @@ const router = createRouter({
       component: HomeView,
       meta:{
         auth:false,
+        frame:false,
       }
     },
 
@@ -34,6 +35,7 @@ const router = createRouter({
       component: AboutView,
       meta:{
         auth:true,
+        frame: true,
       }
     },
     {
@@ -42,6 +44,7 @@ const router = createRouter({
       component: LoginView,
       meta:{
         auth:false,
+        frame: false,
       }
     },
     {
@@ -50,6 +53,7 @@ const router = createRouter({
       component: RegisterView,
       meta:{
         auth:false,
+        frame: false,
       }
     },
 
@@ -59,6 +63,7 @@ const router = createRouter({
       component: DashboardView,
       meta:{
         auth:false,
+        frame: false,
       }
     },
 
@@ -70,6 +75,7 @@ const router = createRouter({
       component: EmployeeDetailsView,
       meta:{
         auth:true,
+        frame: true,
           }
     },
 
@@ -79,6 +85,7 @@ const router = createRouter({
       component: EmployeesView,
       meta:{
         auth:true,
+        frame: true,
           }
     },
 
@@ -88,7 +95,8 @@ const router = createRouter({
       name: 'payroll',
       component: PayrollView,
       meta:{
-        auth:true,
+        auth:false,
+        frame: false,
       }
     },
 
@@ -98,6 +106,7 @@ const router = createRouter({
       component: PersonalView,
       meta:{
         auth:true,
+        frame: true,
       }
     },
 
@@ -107,6 +116,7 @@ const router = createRouter({
       component:EmpParentCreateProfileView,
       meta:{
         auth:true,
+        frame: true,
       }
     },
 
@@ -117,6 +127,7 @@ const router = createRouter({
       component: EmployeeListView,
       meta:{
         auth:true,
+        frame: true,
       }
     },
     {
@@ -125,6 +136,7 @@ const router = createRouter({
       component: EditEmployee,
       meta:{
         auth:true,
+        frame: true,
       }
     },
 
@@ -139,7 +151,6 @@ router.beforeEach(async (to) => {
   if(to.meta.auth && !userStore.isAuthenticated) {
     return { name: 'login' };
   }
-
 
 });
 

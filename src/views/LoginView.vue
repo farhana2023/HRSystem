@@ -70,16 +70,15 @@
     name: 'LoginView',
     data() {
       return {
-        userName: 'farha.islam.1310@gmail.com',
-        password: 'password'
+        userName: 'farha.islam.1310@gmail.com'
+        // userName: 'farha.islam.1310@gmail.com',
+        // password: 'password'
       };
     },
     methods: {
-      onLoginClicked() {
-        console.log("U:",this.userName);
-        console.log("P:",this.password);
-        const success = this.userStore.loginUser(this.userName, this.password);
-        console.log('success:',success);
+      async onLoginClicked() {
+        const success = await this.userStore.login(this.userName, this.password);
+        console.log('login:', success);
         
         if(success) {
           this.$router.push({name: 'home'});
