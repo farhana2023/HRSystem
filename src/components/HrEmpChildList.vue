@@ -35,22 +35,26 @@
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
+                      <!-- <th scope="col">#</th> -->
                       <th scope="col">Name</th>
                       <th scope="col">Email</th>
-                      <th scope="col">Start Date</th>
                       <th scope="col">Degisnation</th>
+                      <th scope="col">Start Date</th>
                       <th scope="col">Deparment</th>
                       <th scope="col">UserRole</th>
+                      <th scope="col">Edit</th>
+                      <th scope="col">Delete</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="(employee, index) in filteredEmployee" :key="index">
-                      <td>{{ employee.id }}</td>
-                      <td>{{ employee.data.fullName }}</td>
-                      <td>{{ employee.data.email }}</td>
-                      <td>{{ employee.data.joiningDate }}</td>
+                      <!-- <th scope="row">{{ employee.id  }}</th> -->
+
+                      <td class="linkEmp"><RouterLink :to="{ name:'employeeProfileDetails', params: {empId: employee.id}}">{{ employee.data.fullName }}</RouterLink></td>
+                      <td >{{ employee.data.email }}</td>
                       <td>{{ employee.data.designation }}</td>
+               
+                      <td>{{ employee.data.joiningDate }}</td>
                       <td>{{ employee.data.department }}</td>
                       <td>{{ employee.data.userRole }}</td>
                       <td style="width: 40px" class="text-center">
@@ -67,7 +71,7 @@
                         <button
                           @click.prevent="DeleteEmp(index)"
                           type="button"
-                          class="btn btn-secondary btn-sm"
+                          class="btn btn-danger btn-sm"
                         >
                           <i class="bi bi-trash3"></i>
                         </button>
@@ -93,6 +97,12 @@
 
 
 <script>
+
+import {  deleteEmpData } from '../services/empData';
+
+// import { getAuth, deleteUser  } from 'firebase/auth';
+// const auth = getAuth();
+
 export default {
   name: 'HrEmpChildList',
   props: ['lstEmployees'],
@@ -100,6 +110,7 @@ export default {
   data() {
     return {
       search: ''
+      
     }
   },
   computed: {
@@ -128,9 +139,45 @@ export default {
         return fullNameMatch || emailMatch || designationMatch || departmentMatch || userRoleMatch
       })
     }
-  }
-}
+  },
+
+  methods: {
+    async DeleteEmp(index) {
+      const employeeToDelete = this.lstEmployees[index];
+
+      const confirmDelete = window.confirm('Are you sure you want to permanently delete this employee?');
+
+      if (confirmDelete) {
+       // const CurrentUserID = employeeToDelete.data.uid;
+   
+        try {
+
+          //await deleteUser(CurrentUserID);
+
+          // Delete the employee data
+          await deleteEmpData(employeeToDelete);
+          this.lstEmployees.splice(index, 1);
+
+          
+        } catch (error) {
+          console.error('Error deleting employee:', error);
+        }
+      } else {
+        // User canceled deletion
+        // No action needed if the user cancels; the employee won't be deleted.
+      }
+    },
+  },
+};
 </script>
 
+
+
+
 <style  scoped>
+
+.linkEmp {
+
+  color: blue;
+}
 </style>
