@@ -8,13 +8,7 @@
         </RouterLink>
       </li>
       <!-- End Home Nav -->
-
-      <li v-if="isLogin" class="nav-item">
-        <RouterLink class="nav-link collapsed" to="/dashboard">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </RouterLink>
-      </li>
+   
       <!-- End Dashboard Nav -->
       <li class="nav-item">
         <RouterLink class="nav-link collapsed" to="/profile">
@@ -24,12 +18,6 @@
       </li>
       <!-- End Profile Page Nav -->
 
-      <li class="nav-item">
-        <RouterLink class="nav-link collapsed" to="/employees">
-          <i class="bi bi-person"></i>
-          <span>Employees</span>
-        </RouterLink>
-      </li>
       <!-- End Profile Page Nav -->
       <li  class="nav-item">
         <a
@@ -42,18 +30,17 @@
           ><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+         
           <li>
-            <RouterLink class="nav-link collapsed" to="/personal">
-              <i class="bi bi-circle"></i>
-              <span>Personal</span>
+
+            <RouterLink class="nav-link collapsed" to="/empCreateAccount">
+            <i class="bi bi-circle"></i>
+            <span>Create Employee Account</span>
             </RouterLink>
+
           </li>
-          <li>
-            <RouterLink class="nav-link collapsed" to="/editEmployee">
-              <i class="bi bi-circle"></i>
-              <span>Edit Employee</span>
-            </RouterLink>
-          </li>
+         
+  
           <li>
 
             <RouterLink class="nav-link collapsed" to="/employeeList">
@@ -63,16 +50,8 @@
           
           </li>
 
-          <li>
 
-            <RouterLink class="nav-link collapsed" to="/empPersonalProfile">
-              <i class="bi bi-circle"></i>
-              <span>Create Employee</span>
-            </RouterLink>
-
-          </li>
-
-        
+  
         </ul>
       </li>
       <!-- End Forms Nav -->

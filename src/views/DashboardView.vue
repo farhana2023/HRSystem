@@ -4,6 +4,11 @@ Dashboard
 
 <script>
 export default {
-  name: 'DashboardView'
+  name: 'DashboardView',
+
+  mounted(){
+            console.log("getUserID:", this.$route.params.id)
+        }
+
 }
 </script>

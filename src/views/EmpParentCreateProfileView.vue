@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      dataSaved: false
+      dataSaved: false,
     }
   },
 
@@ -58,22 +58,6 @@ export default {
       }
     }
   }
-
-  // methods: {
-  //   async saveEmpPersonalToFirebase(empPersonalData) {
-  //     const colRef = collection(db, 'EmployeeProfile')
-  //     const dataObj = empPersonalData
-  //     const docRef = await addDoc(colRef, dataObj)
-  //       .then(() => {
-  //         console.log('User data saved to Firebase')
-  //       })
-  //       .catch((error) => {
-  //         console.error('Error saving user data:', error)
-  //       })
-
-  //     console.log('Document was create with ID', docRef.uid)
-  //   }
-  // }
 }
 </script>
 

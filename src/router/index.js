@@ -16,6 +16,11 @@ import EditEmployee from '../views/EditEmployee.vue';
 import EmployeeListView from '../views/EmpParentListView.vue';
 import EmpParentCreateProfileView from '../views/EmpParentCreateProfileView.vue';
 
+import EmpCreateAccountView from '../views/EmpCreateAccountView.vue';
+import EmpCreateProfileView from '../views/EmpCreateProfileView.vue';
+
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -58,70 +63,6 @@ const router = createRouter({
     },
 
     {
-      path: '/Dashboard',
-      name: 'dashboard',
-      component: DashboardView,
-      meta:{
-        auth:false,
-        frame: false,
-      }
-    },
-
-
-    {
-  
-      path: '/employee/:EmpID/detail',
-      name: 'employeeDetails',
-      component: EmployeeDetailsView,
-      meta:{
-        auth:true,
-        frame: true,
-          }
-    },
-
-    {
-      path: '/Employees',
-      name: 'employees',
-      component: EmployeesView,
-      meta:{
-        auth:true,
-        frame: true,
-          }
-    },
-
- 
-    {
-      path: '/Payroll',
-      name: 'payroll',
-      component: PayrollView,
-      meta:{
-        auth:false,
-        frame: false,
-      }
-    },
-
-    {
-      path: '/Personal',
-      name: 'personal',
-      component: PersonalView,
-      meta:{
-        auth:true,
-        frame: true,
-      }
-    },
-
-    {
-      path: '/empPersonalProfile',
-      name: 'empPersonalProfile',
-      component:EmpParentCreateProfileView,
-      meta:{
-        auth:true,
-        frame: true,
-      }
-    },
-
-
-    {
       path: '/EmployeeList',
       name: 'employeeList',
       component: EmployeeListView,
@@ -130,16 +71,26 @@ const router = createRouter({
         frame: true,
       }
     },
+  
     {
-      path: '/EditEmployee',
-      name: 'editEmployee',
-      component: EditEmployee,
+      path: '/empCreateAccount',
+      name: 'empCreateAccount',
+      component: EmpCreateAccountView,
       meta:{
         auth:true,
         frame: true,
       }
     },
 
+    {
+      path: '/EmpCreateProfile',
+      name: 'emp-Create-Profile',
+      component: EmpCreateProfileView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
     
   ]
 });
