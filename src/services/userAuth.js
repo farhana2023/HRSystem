@@ -3,8 +3,11 @@ import {
     createUserWithEmailAndPassword, 
     signOut, 
     signInWithEmailAndPassword,
-    updateProfile, 
+    updateProfile
+
 } from "firebase/auth";
+
+
 
 export async function registerUser(email, password) {
     const auth = getAuth();
@@ -27,6 +30,12 @@ export async function loginUser(email, password) {
 export async function logoutUser() {
     const auth = getAuth();
     await signOut(auth);
+}
+
+
+export async function deleteUser(user) {
+    const auth = getAuth();
+    await deleteUser(user); // Use the renamed local function
 }
 
 export async function updateUserProfile(user) {

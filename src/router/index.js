@@ -10,7 +10,7 @@ import { useUserStore } from '../stores/user';
 import PersonalView from '../views/PersonalView.vue';
 
 import EmployeesView from '../views/EmployeesView.vue';
-import EmployeeDetailsView from '../views/EmployeeDetailsView.vue';
+
 import EditEmployee from '../views/EditEmployee.vue';
 
 import EmployeeListView from '../views/EmpParentListView.vue';
@@ -18,7 +18,7 @@ import EmpParentCreateProfileView from '../views/EmpParentCreateProfileView.vue'
 
 import EmpCreateAccountView from '../views/EmpCreateAccountView.vue';
 import EmpCreateProfileView from '../views/EmpCreateProfileView.vue';
-
+import EmployeeProfileDetailsView    from '../views/EmployeeProfileDetailsView.vue';
 
 
 const router = createRouter({
@@ -61,17 +61,7 @@ const router = createRouter({
         frame: false,
       }
     },
-
-    {
-      path: '/EmployeeList',
-      name: 'employeeList',
-      component: EmployeeListView,
-      meta:{
-        auth:true,
-        frame: true,
-      }
-    },
-  
+    
     {
       path: '/empCreateAccount',
       name: 'empCreateAccount',
@@ -91,7 +81,27 @@ const router = createRouter({
         frame: true,
       }
     },
-    
+
+    {
+      path: '/employeeList/:empId/detail',
+      name: 'employeeProfileDetails',
+      component: EmployeeProfileDetailsView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
+    {
+      path: '/EmployeeList',
+      name: 'employeeList',
+      component: EmployeeListView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
   ]
 });
 
