@@ -98,7 +98,7 @@
 
 <script>
 
-import {  deleteEmpData } from '../services/empData';
+import { deleteEmpData } from '../services/empData';
 
 // import { getAuth, deleteUser  } from 'firebase/auth';
 // const auth = getAuth();

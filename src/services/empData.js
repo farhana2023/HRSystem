@@ -2,20 +2,19 @@ import { useFirestore, useCollection, useDocument } from 'vuefire';
 import { collection, doc, addDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 
+export function getEmpData(id) {
+    const db = useFirestore();
+    const empRef = doc(db,'EmployeeProfile', id);
+    const emp = useDocument(empRef);
+    return emp;
+}
+
+
 export function getAllEmp() {
     const db = useFirestore();
     const emps = useCollection(collection(db, 'EmployeeProfile'));
     return emps ;
 }
-
-
-export function getEmpData(id) {
-    const db = useFirestore();
-    const empRef = doc(db,'EmployeeProfile', id);
-    const emp = useDocument(heroRef);
-    return emp;
-}
-
 
 export async function addEmpData(emp)  {
     const db = useFirestore();

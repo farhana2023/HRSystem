@@ -1,29 +1,13 @@
-import { 
-    loginUser, 
-    logoutUser, 
-    registerUser, 
-    updateUserProfile,
-  } from '../services/userAuth';
-  
-  import { addEmpData, updateEmpData, getEmpData, deleteEmpData } from '../services/empData';
+// empStore.js
+import { defineStore } from 'pinia';
 
-  export const useEmpStore = defineStore('Emp', {
-    state() {
-      return {
-          
-         
-      }
+export const useEmpStore = defineStore('emp', {
+  state: () => ({
+    employeeData: null,
+  }),
+  actions: {
+    setEmployeeData(data) {
+      this.employeeData = data;
     },
-    getters: {
-      getHero() {
-     
-      }
-    },
-    actions: {
-      async getEmpDetails(empId) {
-      
-       
-        
-      }
-    },
-  });
+  },
+});

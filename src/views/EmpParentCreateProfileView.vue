@@ -21,6 +21,8 @@
 <script>
 import HrEmpChildProfile from '@/components/HrEmpChildProfile.vue'
 
+
+
 import db from '../firebase/db'
 
 import { collection, addDoc } from 'firebase/firestore'

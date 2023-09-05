@@ -1,9 +1,8 @@
-<template>
+<!-- <template>
  <div class="card">
     <div class="card-body">
       <h5 class="card-title">List of the Employee</h5>
 
-              <!-- Bordered Table -->
        
            
     <table  class="table table-bordered">
@@ -31,7 +30,7 @@
             
                 </tbody>
               </table> 
-              <!-- End Bordered Table -->
+
 
         
 
@@ -56,4 +55,4 @@ import { useEmpStore } from '../stores/ListEmp';
 
 <style scoped>
 
-</style>
+</style> -->
