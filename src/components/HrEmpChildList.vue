@@ -156,7 +156,8 @@ export default {
 
           // Delete the employee data
           await deleteEmpData(employeeToDelete);
-          this.lstEmployees.splice(index, 1);
+          employeeToDelete.splice(index,1);
+         // this.lstEmployees.splice(index, 1);
 
           
         } catch (error) {
