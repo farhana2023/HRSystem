@@ -22,15 +22,8 @@
 </template>
 
 
-
-
-
-
-
-
-
 <script>
-import { ref, computed } from 'vue';
+// import { ref, computed } from 'vue';
 import { doc, getDoc } from "firebase/firestore";
 import db from '../firebase/db';
 import HrEmpMainProfileCard from '../components/HrEmpMainProfileCard.vue';
@@ -55,6 +48,7 @@ export default {
     if (docSnap.exists()) {
       console.log('EmpData', docSnap.data());
       this.employeeData = docSnap.data();
+      useEmpStore().setEmployeeData(docSnap.data());
     } else {
       console.log('No data found');
     }
