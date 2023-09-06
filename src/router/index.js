@@ -20,6 +20,11 @@ import EmpCreateAccountView from '../views/EmpCreateAccountView.vue';
 import EmpCreateProfileView from '../views/EmpCreateProfileView.vue';
 import EmployeeProfileDetailsView    from '../views/EmployeeProfileDetailsView.vue';
 
+import EmpEditPersonalDataView from '../views/EmpDetailsView/EmpEditPersonalDataView.vue';
+import EmpAdditionalDataView from '../views/EmpDetailsView/EmpAdditionalDataView.vue';
+import EmpChangePasswordView from '../views/EmpDetailsView/EmpChangePasswordView.vue';
+import EmpTeamDataView from '../views/EmpDetailsView/EmpTeamDataView.vue';
+import EmpOverView from '../views/EmpDetailsView/EmpOverView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,15 +39,15 @@ const router = createRouter({
       }
     },
 
-    {
-      path: '/profile',
-      name: 'profile',
-      component: AboutView,
-      meta:{
-        auth:true,
-        frame: true,
-      }
-    },
+    // {
+    //   path: '/profile',
+    //   name: 'profile',
+    //   component: AboutView,
+    //   meta:{
+    //     auth:true,
+    //     frame: true,
+    //   }
+    // },
     {
       path: '/login',
       name: 'login',
@@ -89,7 +94,36 @@ const router = createRouter({
       meta:{
         auth:true,
         frame: true,
-      }
+      },
+
+      children: [
+
+        {
+          path: 'EmpOverView',
+          name: 'emp_OverView',
+          component: EmpOverView,
+        },
+        {
+          path: 'EmpEditPersonalData',
+          name: 'emp_EditPersonalData',
+          component: EmpEditPersonalDataView,
+        },
+        {
+          path: 'EmpAdditionalData',
+          name: 'emp_AdditionalData',
+          component: EmpAdditionalDataView,
+        },
+        {
+          path: 'EmpChangePassword',
+          name: 'emp_ChangePasswordView',
+          component: EmpChangePasswordView,
+        },
+        {
+          path: 'EmpTeamData',
+          name: 'emp_TeamDataView',
+          component: EmpTeamDataView,
+        },
+      ],
     },
 
     {
