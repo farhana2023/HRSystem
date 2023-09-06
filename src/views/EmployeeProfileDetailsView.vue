@@ -13,106 +13,133 @@
   <section class="section profile">
     <div class="row">
       <div class="col-xl-4">
-        <HrEmpMainProfileCard/>
-        <p>Full Name: {{ fullName }}</p>
-        <p>Designation: {{ designation }}</p>
+        <HrEmpMainProfileCard />
+        <!-- <p>Full Name: {{ fullName }}</p>
+        <p>Designation: {{ designation }}</p> -->
+      </div>
+      <div class="col-xl-8">
+        <div class="card">
+          <div class="card-body pt-3">
+            <!-- Bordered Tabs -->
+            <ul class="nav nav-tabs nav-tabs-bordered">
+
+              <li class="nav-item">
+                <button
+                  class="nav-link active"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-overview"
+                  @click.prevent="overviewClicked()"
+                >
+                  OverView 
+                </button>
+              </li>
+    
+
+              <li class="nav-item">
+                <button
+                  class="nav-link"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-additional"
+                  @click.prevent="AdditionalClicked()"
+                >
+                  Edit Additional Particulars
+                </button>
+              </li>
+
+<!--       
+              <li class="nav-item">
+                <button
+                  class="nav-link"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-change-password"
+                  @click.prevent="passwordClicked()"
+                >
+                 Change Password
+                </button>
+              </li> -->
+            </ul>
+            <div class="tab-content pt-2">
+              <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                <RouterView />
+              </div>
+
+            
+              <div class="tab-pane fade pt-3" id="profile-additional">
+                <RouterView />
+              </div>
+
+              <!-- <div class="tab-pane fade pt-3" id="profile-change-password">
+                <RouterView />
+              </div> -->
+            </div>
+            <!-- End Bordered Tabs -->
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
-
 <script>
 // import { ref, computed } from 'vue';
-import { doc, getDoc } from "firebase/firestore";
-import db from '../firebase/db';
-import HrEmpMainProfileCard from '../components/HrEmpMainProfileCard.vue';
-import { useEmpStore } from '../stores/empStore'; 
+import { doc, getDoc } from 'firebase/firestore'
+import db from '../firebase/db'
+import HrEmpMainProfileCard from '../components/HrEmpMainProfileCard.vue'
+import { useEmpStore } from '../stores/empStore'
 
 export default {
   name: 'EmployeeProfileDetailsView',
   data() {
     return {
       empID: null,
-      employeeData: null,
-    };
-  },
-  components: {
-    HrEmpMainProfileCard,
-  },
-  async mounted() {
-    this.empID = this.$route.params.empId;
-    console.log('Employee ID:', this.empID);
-
-    const docSnap = await getDoc(doc(db, 'EmployeeProfile', this.empID));
-    if (docSnap.exists()) {
-      console.log('EmpData', docSnap.data());
-      this.employeeData = docSnap.data();
-      useEmpStore().setEmployeeData(docSnap.data());
-    } else {
-      console.log('No data found');
+      employeeData: null
     }
   },
+  components: {
+    HrEmpMainProfileCard
+  },
+  async mounted() {
+    this.empID = this.$route.params.empId
+    console.log('Employee ID:', this.empID)
+
+    const docSnap = await getDoc(doc(db, 'EmployeeProfile', this.empID))
+    if (docSnap.exists()) {
+      console.log('EmpData', docSnap.data())
+      this.employeeData = docSnap.data()
+      useEmpStore().setEmployeeData(docSnap.data())
+      useEmpStore().setEmpID(this.empID);
+    } else {
+      console.log('No data found')
+    }
+  },
+
+
+
+  methods: {
+          overviewClicked() {
+            this.$router.push({name: 'emp_OverView', params: {id: this.empID}});
+          },
+    
+          AdditionalClicked() {
+            this.$router.push({name: 'emp_AdditionalData', params: {id: this.empID}});
+          }
+          // passwordClicked() {
+          //   this.$router.push({name: 'emp_ChangePasswordView', params: {id: this.empID}});
+          // }
+         
+        },
   computed: {
     fullName() {
-      return this.employeeData ? this.employeeData.fullName : '';
+      return this.employeeData ? this.employeeData.fullName : ''
     },
 
     designation() {
-      return this.employeeData ? this.employeeData.designation : '';
-    },
-  },
-};
+      return this.employeeData ? this.employeeData.designation : ''
+    }
+  }
+}
 </script>
 
 
 
-<!-- <script>
-import { computed } from 'vue'; // Import computed
-import HrEmpMainProfileCard from '../components/HrEmpMainProfileCard.vue';
-import { getEmpData } from '../services/empData';
-import { useEmpStore } from '../stores/empStore'; 
-
-export default {
-  name: 'EmployeeProfileDetailsView',
-  data() {
-    return {
-      empID: null,
-      employeeData: null,
-    };
-  },
-  components: {
-    HrEmpMainProfileCard,
-  },
-  async mounted() {
-    this.empID = this.$route.params.empId;
-    console.log('Employee ID:', this.empID);
-
-    try {
-      const docSnap = await getEmpData(this.empID);
-      if (docSnap.exists()) {
-        console.log('EmpData', docSnap.data());
-        this.employeeData = docSnap.data();
-        useEmpStore().setEmployeeData(docSnap.data());
-      } else {
-        console.log('No data found');
-      }
-    } catch (error) {
-      console.error('Error fetching employee data:', error);
-    }
-  },
-  computed: {
-    fullName() {
-      return this.employeeData ? this.employeeData.fullName : '';
-    },
-
-    designation() {
-      return this.employeeData ? this.employeeData.designation : '';
-    },
-  },
-};
-</script> -->
-
 <style scoped></style>
-
-

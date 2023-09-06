@@ -10,12 +10,12 @@
       <!-- End Home Nav -->
    
       <!-- End Dashboard Nav -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <RouterLink class="nav-link collapsed" to="/profile">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </RouterLink>
-      </li>
+      </li> -->
       <!-- End Profile Page Nav -->
 
       <!-- End Profile Page Nav -->

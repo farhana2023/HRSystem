@@ -144,6 +144,7 @@ export default {
   name: 'HrEmpChildProfile',
   data() {
     return {
+      
       fullName: '',
       about: '',
       address: '',

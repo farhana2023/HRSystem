@@ -5,7 +5,7 @@
   
     <h2> {{ employeeData ? employeeData.fullName : 'Loading...' }}</h2>
     <h3> {{ employeeData ? employeeData.designation : 'Loading...' }}</h3>
-
+ <h3> {{ employeeData ? employeeData.id : 'Loading...' }}</h3>
       <!-- <div class="social-links mt-2">
         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>

@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <h2>Change password</h2>
     </div>
 </template>
 
@@ -8,7 +8,7 @@
     export default {
         name:'EmpChangePasswordView'
     }
-</script>
+ </script>
 
 <style  scoped>
 
