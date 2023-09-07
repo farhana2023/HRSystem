@@ -50,6 +50,14 @@ export const useUserStore = defineStore('user', {
         return 'Anonymous';
       }
     },
+
+    userRole() {
+      if(this.user) {
+        return `${this.user.userRole}`;
+      } else {
+        return '';
+      }
+    },
     designation() {
       if(this.user) {
         return `${this.user.designation}`;

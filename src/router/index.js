@@ -41,15 +41,15 @@ const router = createRouter({
       }
     },
 
-    // {
-    //   path: '/profile',
-    //   name: 'profile',
-    //   component: AboutView,
-    //   meta:{
-    //     auth:true,
-    //     frame: true,
-    //   }
-    // },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: AboutView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
     {
       path: '/login',
       name: 'login',

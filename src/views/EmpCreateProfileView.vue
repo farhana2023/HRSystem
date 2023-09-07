@@ -349,7 +349,7 @@ export default {
           this.dataSaved = false
         }, 3000) // Display success message for 3 seconds
 
-        console.log('Document was created with ID', docRef.id)
+        // console.log('Document was created with ID', docRef.id)
         this.$router.push({name: 'employeeList'});
 
       } catch (error) {

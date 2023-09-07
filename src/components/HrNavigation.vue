@@ -10,37 +10,35 @@
       <!-- End Home Nav -->
    
       <!-- End Dashboard Nav -->
-      <!-- <li class="nav-item">
-        <RouterLink class="nav-link collapsed" to="/profile">
+      <li class="nav-item">
+        <RouterLink  class="nav-link collapsed" to="/profile">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </RouterLink>
-      </li> -->
-      <!-- End Profile Page Nav -->
+      </li> 
 
-      <!-- End Profile Page Nav -->
-      <li  class="nav-item">
+
+   
+      <li v-if="isAdmin" class="nav-item">
         <a
           class="nav-link collapsed"
           data-bs-target="#forms-nav"
           data-bs-toggle="collapse"
           href="#"
         >
-          <i class="bi bi-journal-text"></i><span>Empoyee</span
+          <i class="bi bi-journal-text"></i><span>Admin</span
           ><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
          
           <li>
-
-            <RouterLink class="nav-link collapsed" to="/empCreateAccount">
+            <RouterLink  class="nav-link collapsed" to="/empCreateAccount"> 
             <i class="bi bi-circle"></i>
             <span>Create Employee Account</span>
             </RouterLink>
 
           </li>
-         
-  
+        
           <li>
 
             <RouterLink class="nav-link collapsed" to="/employeeList">
@@ -96,8 +94,17 @@
 import { RouterLink } from 'vue-router'
 import { useUserStore } from '../stores/user'
 
+
 export default {
   name: 'HrNavigation',
+
+  data() {
+  return {
+    isAdmin: false,
+    isEmployee: false,
+    isTeamLeader: false
+  };
+},
   components: {
     RouterLink
   },
@@ -105,8 +112,20 @@ export default {
     isLogin() {
   
       return this.userStore.isAuthenticated
-    }
-  },  setup(){
+    },
+
+    userRole(){
+              return this.userStore.userRole;
+            }
+
+  }, 
+  mounted() {
+  const role = this.userRole;
+  this.isAdmin = role === 'Admin';
+  this.isEmployee = role === 'Employee';
+  this.isTeamLeader = role === 'TeamLeader';
+},
+   setup(){
 const userStore=useUserStore();
 return { userStore };
   }
