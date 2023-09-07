@@ -1,5 +1,5 @@
 import { useFirestore, useCollection, useDocument } from 'vuefire';
-import { collection, doc, addDoc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, setDoc, addDoc, updateDoc, deleteDoc } from 'firebase/firestore'
 
 
 
@@ -9,9 +9,6 @@ import { collection, doc, addDoc, updateDoc, deleteDoc } from 'firebase/firestor
 //     await updateDoc(empRef, emp);
 // }
 
-
-
-
 export async function updateEmpData(emp,id)  {
     const db = useFirestore();
     const empRef = doc(db,'EmployeeProfile', id);
@@ -19,11 +16,23 @@ export async function updateEmpData(emp,id)  {
         joiningDate: emp.joiningDate,
         designation: emp.designation,
         department: emp.department,
-        userRole: emp.userRole
-        // salary: emp.salary,
+        userRole: emp.userRole,
+        salary: emp.salary
        
     });
 }
+
+export async function getEmpUserData(id) {
+    const db = useFirestore();
+    const empUserRef = doc(db, 'EmployeeProfile', id);
+    const docSnap = await getDoc(empUserRef);
+    const empUser = docSnap.data();
+    return empUser
+}
+
+
+
+
 
 export function getEmpData(id) {
     const db = useFirestore();

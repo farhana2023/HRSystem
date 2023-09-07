@@ -51,13 +51,13 @@
         </div>
       </div>
 
-      <!-- <div class="row mb-3">
+      <div class="row mb-3">
           <label for="Email" class="col-md-4 col-lg-3 col-form-label">Salary</label>
           <div class="col-md-8 col-lg-9">
             <input type="number" class="form-control" v-model="salary" />
           </div>
         </div>
-   -->
+
 
       <div class="text-center">
         <button @click.prevent="updateEmployeeData" type="submit" class="btn btn-secondary">
@@ -86,7 +86,8 @@ export default {
   name: 'EmpAdditionalDataView',
   data() {
     return {
-      empID: null
+      empID: null,
+      EmpAdminData:null
 
       // joiningDate: '',
       // selecteddesignation: '',
@@ -155,7 +156,7 @@ export default {
     const selectedDesignation = ref('')
     const selectedDepartment = ref('')
     const selectedRole = ref('')
-   // const salary = ref(0)
+    const salary = ref(0)
     const message = ref('')
     const errorMessage = ref('')
 
@@ -171,8 +172,8 @@ export default {
         //   designation: this.designationOptions.value[selectedDesignation.value],
         designation: selectedDesignation.value,
         department: selectedDepartment.value,
-        userRole: selectedRole.value
-        //   salary: salary.value,
+        userRole: selectedRole.value,
+       salary: salary.value,
       }
 
       try {
@@ -192,7 +193,7 @@ export default {
         selectedDesignation.value = newVal.designation
         selectedDepartment.value = newVal.department
         selectedRole.value = newVal.userRole
-        //   salary.value = newVal.salary;
+        salary.value = newVal.salary;
       }
     })
 
@@ -201,7 +202,7 @@ export default {
       selectedDesignation,
       selectedDepartment,
       selectedRole,
-      // salary,
+      salary,
       updateEmployeeData,
       message,
       errorMessage

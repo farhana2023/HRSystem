@@ -6,6 +6,9 @@ import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import DashboardView  from '../views/DashboardView.vue';
 import PayrollView  from '../views/PayrollView.vue';
+
+import EmpParentCreateProfileView from '../views/EmpParentCreateProfileView.vue';
+
 import { useUserStore } from '../stores/user';
 import PersonalView from '../views/PersonalView.vue';
 
@@ -14,7 +17,6 @@ import EmployeesView from '../views/EmployeesView.vue';
 import EditEmployee from '../views/EditEmployee.vue';
 
 import EmployeeListView from '../views/EmpParentListView.vue';
-import EmpParentCreateProfileView from '../views/EmpParentCreateProfileView.vue';
 
 import EmpCreateAccountView from '../views/EmpCreateAccountView.vue';
 import EmpCreateProfileView from '../views/EmpCreateProfileView.vue';

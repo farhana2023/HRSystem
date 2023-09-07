@@ -119,6 +119,13 @@
       </div>
 
       <div class="row mb-3">
+          <label for="Email" class="col-md-4 col-lg-3 col-form-label">Salary</label>
+          <div class="col-md-8 col-lg-9">
+            <input type="number" class="form-control" v-model="salary" />
+          </div>
+        </div>
+
+      <div class="row mb-3">
         <label for="company" class="col-md-4 col-lg-3 col-form-label">UserRole</label>
         <div class="col-md-8 col-lg-9">
           <select v-model="selectedRole" class="form-select" aria-label="Default select example">
@@ -155,6 +162,7 @@ export default {
       joiningDate:'',
       selecteddesignation: '',
       selectedDepartment:'',
+      salary:0,
       selectedRole:'',
    
     }
@@ -219,6 +227,7 @@ export default {
         email: this.email,
         gender: this.genderOptions[this.selectedGender],
         joiningDate:this.joiningDate,
+        salary:this.salary,
         designation: this.designationOptions[this.selecteddesignation],
         department: this.departmentOptions[this.selectedDepartment],
         userRole: this.userRoleOptions[this.selectedRole]

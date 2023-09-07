@@ -36,20 +36,6 @@
                   </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label for="displayName" class="col-md-4 col-lg-3 col-form-label"
-                    >User Name</label
-                  >
-                  <div class="col-md-8 col-lg-9">
-                    <input
-                      name="displayName"
-                      type="text"
-                      class="form-control"
-                      id="displayName"
-                      v-model="displayName"
-                    />
-                  </div>
-                </div>
 
                 <div class="row mb-3">
                   <label for="displayName" class="col-md-4 col-lg-3 col-form-label"
@@ -69,6 +55,21 @@
                       class="form-control"
                       id="fullName"
                       v-model="fullName"
+                    />
+                  </div>
+                </div>
+                
+                <div class="row mb-3">
+                  <label for="displayName" class="col-md-4 col-lg-3 col-form-label"
+                    >User Name</label
+                  >
+                  <div class="col-md-8 col-lg-9">
+                    <input
+                      name="displayName"
+                      type="text"
+                      class="form-control"
+                      id="displayName"
+                      v-model="displayName"
                     />
                   </div>
                 </div>
@@ -142,6 +143,13 @@
                   <label for="Email" class="col-md-4 col-lg-3 col-form-label">Joining Date</label>
                   <div class="col-md-8 col-lg-9">
                     <input type="date" class="form-control" v-model="joiningDate" />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="Email" class="col-md-4 col-lg-3 col-form-label">Salary</label>
+                  <div class="col-md-8 col-lg-9">
+                  <input type="number" class="form-control" v-model="salary" />
                   </div>
                 </div>
 
@@ -227,7 +235,8 @@
 <script>
 
 import db from '../firebase/db'
-import { collection, addDoc } from 'firebase/firestore'
+
+import { collection, doc, getDoc, setDoc, addDoc,  } from 'firebase/firestore'
 
 export default {
   name: 'EmpCreateProfileView',
@@ -243,6 +252,7 @@ export default {
       phone: '',
       selectedGender: '',
       joiningDate:'',
+      salary:0,
       selecteddesignation: '',
       selectedDepartment:'',
       selectedRole:'',
@@ -300,7 +310,8 @@ export default {
   },
 
   mounted() {
-    console.log('getUserID:', this.$route.query.id)
+    const getuserID=this.$route.query.id;
+    console.log('getUserID:', getuserID)
     console.log('getemail:', this.$route.query.email)
   },
   methods: {
@@ -316,16 +327,20 @@ export default {
         email: this.$route.query.email,
         gender: this.genderOptions[this.selectedGender],
         joiningDate:this.joiningDate,
+        salary:this.salary,
         designation: this.designationOptions[this.selecteddesignation],
         department: this.departmentOptions[this.selectedDepartment],
         userRole: this.userRoleOptions[this.selectedRole]
       }
-      
-      const  colRef = collection(db, 'EmployeeProfile')
+     const getEmpUserID=this.$route.query.id;
+      console.log('foruserID:' ,getEmpUserID);
+      const  colRef = doc(db, 'EmployeeProfile',getEmpUserID)
       const dataObj = empPersonalData
 
       try {
-        const docRef = await addDoc(colRef, dataObj)
+
+   // await setDoc(userRef, user);
+        const docRef = await setDoc(colRef, dataObj)
         console.log('User data saved to Firebase')
 
         // Show success message and reset the flag after a delay

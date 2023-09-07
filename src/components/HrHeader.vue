@@ -176,12 +176,13 @@
           >
             <img src="assets/img/farha.jpg" alt="Profile" class="rounded-circle" />
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ fullName }}</span> </a
+
           ><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>{{ fullName}}</h6>
-              <span>{{ occupation }}r</span>
+              <span>{{ designation }}</span>
             </li>
             <li>
               <hr class="dropdown-divider" />
@@ -217,12 +218,13 @@
               <hr class="dropdown-divider" />
             </li>
 
+            
             <li>
-              <a @click.prevent="onLogoutClicked()"  class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
+                <a class="dropdown-item d-flex align-items-center" href="#" @click.prevent="onLogoutClicked()">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Sign Out</span>
+                </a>
+                </li>
           </ul>
           <!-- End Profile Dropdown Items -->
         </li>
@@ -264,8 +266,8 @@ export default {
             fullName(){
               return this.userStore.fullName;
             },
-            occupation(){
-              return this.userStore.title;
+            designation(){
+              return this.userStore.designation;
             }
         },
   methods:{
@@ -279,11 +281,10 @@ export default {
 
     },
 
-onLogoutClicked(){
-
-  this.userStore.loginUser();
-  this.$router.push({name:'login'});
-}
+    onLogoutClicked() {
+                this.userStore.logoutUser();
+                this.$router.push({name:'login'});
+            }
 
   },
   setup(){
