@@ -3,13 +3,31 @@ import { collection, doc, getDoc, setDoc, addDoc, updateDoc, deleteDoc } from 'f
 
 
 
+export async function updateEmpPersonalData(emp,id)  {
+    const db = useFirestore();
+    const empRef = doc(db,'EmployeeProfile', id);
+    await updateDoc(empRef, {
+        fullName: emp.fullName,
+        about: emp.about,
+        displayName: emp.displayName,
+        phone: emp.phone,
+        address: emp.address,
+        dateOfBirth: emp.dateOfBirth,
+        country: emp.country,
+        gender: emp.gender
+       
+    });
+}
+
+
+
 // export async function updateEmpData(emp)  {
 //     const db = useFirestore();
 //     const empRef = doc(db,'EmployeeProfile', emp.id);
 //     await updateDoc(empRef, emp);
 // }
 
-export async function updateEmpData(emp,id)  {
+export async function updateEmpAdditionalData(emp,id)  {
     const db = useFirestore();
     const empRef = doc(db,'EmployeeProfile', id);
     await updateDoc(empRef, {
@@ -21,6 +39,10 @@ export async function updateEmpData(emp,id)  {
        
     });
 }
+
+
+
+
 
 export async function getEmpUserData(id) {
     const db = useFirestore();

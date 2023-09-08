@@ -86,6 +86,13 @@
                     ></textarea>
                   </div>
                 </div>
+
+                <div class="row mb-3">
+                  <label for="Email" class="col-md-4 col-lg-3 col-form-label">Date of Birth</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input type="date" class="form-control" v-model="dateOfBirth" />
+                  </div>
+                </div>
                 <div class="row mb-3">
                   <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                   <div class="col-md-8 col-lg-9">
@@ -247,6 +254,7 @@ export default {
       fullName: '',
       displayName:'',
       about: '',
+      dateOfBirth:'',
       address: '',
       country: '',
       phone: '',
@@ -321,6 +329,7 @@ export default {
         fullName: this.fullName,
         displayName: this.displayName,
         about: this.about,
+        dateOfBirth:this.dateOfBirth,
         address: this.address,
         country: this.country,
         phone: this.phone,

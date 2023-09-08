@@ -28,6 +28,10 @@ import EmpChangePasswordView from '../views/EmpDetailsView/EmpChangePasswordView
 import EmpTeamDataView from '../views/EmpDetailsView/EmpTeamDataView.vue';
 import EmpOverView from '../views/EmpDetailsView/EmpOverView.vue';
 
+import EmpIndOverView from '../views/EmpPersonalProfileView/EmpIndOverView.vue';
+import EmpIndEditPersonalView from '../views/EmpPersonalProfileView/EmpIndEditPersonalView.vue';
+import EmpIndChangePasswordView from '../views/EmpPersonalProfileView/EmpIndChangePasswordView.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -48,7 +52,30 @@ const router = createRouter({
       meta:{
         auth:true,
         frame: true,
-      }
+      },
+
+      children: [
+
+        {
+          path: 'EmpIndOverView',
+          name: 'emp_IndOverView',
+          component: EmpIndOverView,
+        },
+
+        {
+          path: 'EmpIndEditPersonal',
+          name: 'emp_IndEditPersonal',
+          component: EmpIndEditPersonalView,
+        },
+     
+        {
+          path: 'EmpIndChangePassword',
+          name: 'emp_IndChangePassword',
+          component: EmpIndChangePasswordView,
+        }
+   
+      ],
+
     },
     {
       path: '/login',

@@ -1,21 +1,9 @@
-<!-- <template>
-  <section class="section profile">
-    <div class="row">
-      <div class="col-xl-4">
-        <HrEmpMainProfileCard :empID="empID" />
-        {{ employeeData.data.fullName }}
-      </div>
-    </div>
-  </section>
-</template> -->
 
 <template>
   <section class="section profile">
     <div class="row">
       <div class="col-xl-4">
         <HrEmpMainProfileCard />
-        <!-- <p>Full Name: {{ fullName }}</p>
-        <p>Designation: {{ designation }}</p> -->
       </div>
       <div class="col-xl-8">
         <div class="card">

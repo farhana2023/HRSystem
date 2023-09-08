@@ -39,7 +39,9 @@ export const useUserStore = defineStore('user', {
         if(!this.user) {
           return false;
         }
-        return this.user.id.length > 0;
+        return this.user && this.user.id && this.user.id.length > 0;
+
+        // return this.user.id.length > 0;
         //return this.user.isAuthenticated && this.user.email;
     },
 
@@ -48,6 +50,21 @@ export const useUserStore = defineStore('user', {
         return `${this.user.fullName}`;
       } else {
         return 'Anonymous';
+      }
+    },
+
+    userId() {
+      if(this.user) {
+        return `${this.user.userId}`;
+      } else {
+        return '';
+      }
+    },
+    gender() {
+      if(this.user) {
+        return `${this.user.gender}`;
+      } else {
+        return '';
       }
     },
 
@@ -65,6 +82,82 @@ export const useUserStore = defineStore('user', {
         return '';
       }
     },
+    joiningDate() {
+      if(this.user) {
+        return `${this.user.joiningDate}`;
+      } else {
+        return '';
+      }
+    },
+
+    about() {
+      if(this.user) {
+        return `${this.user.about}`;
+      } else {
+        return '';
+      }
+    },
+    email() {
+      if(this.user) {
+        return `${this.user.email}`;
+      } else {
+        return '';
+      }
+    },
+    phone() {
+      if(this.user) {
+        return `${this.user.phone}`;
+      } else {
+        return '';
+      }
+    },
+    address() {
+      if(this.user) {
+        return `${this.user.address}`;
+      } else {
+        return '';
+      }
+    },
+
+    department() {
+      if(this.user) {
+        return `${this.user.department}`;
+      } else {
+        return '';
+      }
+    },
+
+    salary() {
+      if(this.user) {
+        return `${this.user.salary}`;
+      } else {
+        return '';
+      }
+    },
+
+    
+    country() {
+      if(this.user) {
+        return `${this.user.country}`;
+      } else {
+        return '';
+      }
+    },
+
+    displayName() {
+      if(this.user) {
+        return `${this.user.displayName}`;
+      } else {
+        return '';
+      }
+    },
+    dateOfBirth() {
+      if(this.user) {
+        return `${this.user.dateOfBirth}`;
+      } else {
+        return '';
+      }
+    }
   },
   actions: {
     async login(email, password) {

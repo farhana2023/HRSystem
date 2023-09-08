@@ -80,7 +80,7 @@
 <script>
 import { computed, ref, watch } from 'vue'
 import { useEmpStore } from '@/stores/empStore'
-import { updateEmpData } from '@/services/empData'
+import { updateEmpAdditionalData } from '@/services/empData'
 
 export default {
   name: 'EmpAdditionalDataView',
@@ -177,7 +177,7 @@ export default {
       }
 
       try {
-        await updateEmpData(empData, employeeID.value)
+        await updateEmpAdditionalData(empData, employeeID.value)
         message.value = 'Employee data updated successfully'
         errorMessage.value = ''
       } catch (error) {

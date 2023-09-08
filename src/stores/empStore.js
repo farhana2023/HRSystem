@@ -1,7 +1,7 @@
 // empStore.js
 import { defineStore } from 'pinia';
 
-import { updateEmpData  } from '../services/empData'; 
+import { updateEmpAdditionalData  } from '../services/empData'; 
 
 export const useEmpStore = defineStore('emp', {
   state: () => ({
