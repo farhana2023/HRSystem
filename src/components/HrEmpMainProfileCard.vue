@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
       <img
-        :src="employeeData ? employeeData.image : ''"
+        :src="employeeData ? employeeData.imageUrl : ''"
         width="120"
         alt="Profile"
         class="rounded-circle"

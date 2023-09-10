@@ -1,5 +1,36 @@
 import { useFirestore, useCollection, useDocument } from 'vuefire';
+
 import { collection, doc, getDoc, setDoc, addDoc, updateDoc, deleteDoc } from 'firebase/firestore'
+
+import { uploadEmpImage } from '../services/fireFileBucket';
+
+
+
+export async function uploadProfileImage(file,id) {
+        
+    const imageFilePath = `${ id }_${file.name}`;
+    const url = await uploadEmpImage(imageFilePath, file);
+
+    if(!url || url.length == 0) {
+      return null;
+    }
+    // this.emp.image.url = url;
+
+   // await upsertEmp(this.emp);
+
+    return url;
+  }
+
+
+
+//   export async  function resetHeroImage() {
+//     const apiHero = await getApiHeroDetails(this.emp.id);
+//     this.emp.image.url = apiHero.image.url;
+
+//     await upsertHero(this.emp);
+    
+//     return this.emp.image.url;
+//   }
 
 
 
@@ -14,11 +45,11 @@ export async function updateEmpPersonalData(emp,id)  {
         address: emp.address,
         dateOfBirth: emp.dateOfBirth,
         country: emp.country,
-        gender: emp.gender
+        gender: emp.gender,
+        imageUrl:emp.imageUrl
        
     });
 }
-
 
 
 // export async function updateEmpData(emp)  {
@@ -39,8 +70,6 @@ export async function updateEmpAdditionalData(emp,id)  {
        
     });
 }
-
-
 
 
 
@@ -81,4 +110,29 @@ export async function deleteEmpData(emp)  {
     const db = useFirestore();
     const empRef = doc(db,'EmployeeProfile', emp.id);
     await deleteDoc(empRef);
+}
+
+
+export async function setEmpData(emp) {
+    const db = useFirestore();
+    const empRef = doc(db, 'EmployeeProfile', emp.id);
+    return await setDoc(empRef, emp);
+}
+
+export async function updateEmpData(emp)  {
+    const db = useFirestore();
+    const empRef = doc(db, 'EmployeeProfile', emp.id);
+    await updateDoc(empRef, emp);
+}
+
+
+export async function getAllEmpData(id) {
+    const db = useFirestore();
+    const empRef = doc(db, 'EmployeeProfile', id);
+    const empSnap = await getDoc(empRef);
+    if (empSnap.exists()) {
+        return empSnap.data();
+    }
+
+    return null;
 }

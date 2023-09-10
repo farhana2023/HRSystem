@@ -174,7 +174,11 @@
             href="#"
             data-bs-toggle="dropdown"
           >
-            <img src="assets/img/farha.jpg" alt="Profile" class="rounded-circle" />
+            <!-- <img src="imageUrl" alt="Profile" class="rounded-circle" /> -->
+            <!-- <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> -->
+
+            <img :src="imageUrl || ''" class="rounded-circle"  alt="Profile">
+
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ fullName }}</span> </a
 
           ><!-- End Profile Iamge Icon -->
@@ -268,6 +272,10 @@ export default {
             },
             designation(){
               return this.userStore.designation;
+            },
+
+            imageUrl(){
+              return this.userStore.imageUrl;
             }
         },
   methods:{

@@ -4,10 +4,15 @@ import {
     signOut, 
     signInWithEmailAndPassword,
     updateProfile
-
+ 
 } from "firebase/auth";
 
+export async function updateUserPassword(user,password) {
+    const auth = getAuth();
+    await updatePassword(auth.currentUser,password);
 
+    return true;
+}
 
 export async function registerUser(email, password) {
     const auth = getAuth();
@@ -45,6 +50,13 @@ export async function updateUserProfile(user) {
             photoURL: 'assets/default_image.jpg',
             phoneNumber: user.phone
     });
+
+    return true;
+}
+
+export async function updateUserPassword(user,password) {
+    const auth = getAuth();
+    await updatePassword(auth.currentUser,password);
 
     return true;
 }

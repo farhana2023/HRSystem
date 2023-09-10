@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia'
+import {getAllEmpData,setEmpData,updateEmpData } from '../services/empData'; 
+import { uploadEmpImage } from '../services/fireFileBucket';
 
 import { 
   loginUser, 
@@ -24,6 +26,17 @@ import {
 //   email: 'farha.islam.1310@gmail.com',
 //   validUntil: ''
 // };
+
+async function upsertEmployee(emp) {
+
+  const fireEmpData = await getAllEmpData(emp.id);
+
+  if(!fireEmpData) {
+    await setEmpData(emp);
+  } else {
+    await updateEmpData(emp)
+  }
+}
 
 export const useUserStore = defineStore('user', {
   state() {
@@ -151,6 +164,13 @@ export const useUserStore = defineStore('user', {
         return '';
       }
     },
+    imageUrl() {
+      if(this.user) {
+        return `${this.user.imageUrl}`;
+      } else {
+        return '';
+      }
+    },
     dateOfBirth() {
       if(this.user) {
         return `${this.user.dateOfBirth}`;
@@ -209,5 +229,30 @@ export const useUserStore = defineStore('user', {
     await logoutUser();
     this.user = null;
   },
+  async getEmpDetails(id) {
+
+    const empData = await getAllEmpData(id);
+    
+    if(empData) {
+      this.user= empData;
+      return this.user;
+    }     
+  
+  }, 
+
+  async uploadProfileImage(file,id) {
+    const imageFilePath = `${ id }_${file.name}`;
+    // const imageFilePath = `${this.userId}_${file.name}`;
+    const url = await uploadEmpImage(imageFilePath, file);
+
+    if(!url || url.length == 0) {
+      return null;
+    }
+    
+    this.user.photoUrl = url;
+    await upsertEmp(this.user);
+    return url;
+  },
+
 },
 });

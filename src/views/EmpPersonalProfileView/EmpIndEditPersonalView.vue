@@ -1,15 +1,17 @@
 <template>
   <form>
     <div class="row mb-3">
-      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-      <div class="col-md-8 col-lg-9">
-        <img src="assets/img/profile-img.jpg" alt="Profile">
-        <div class="pt-2">
-          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
-        </div>
-      </div>
-    </div>
+
+      <div class="row mb-3">
+            <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+            <div class="col-md-8 col-lg-9">
+            <img :src="imageUrl" width="120" alt="Profile" class="img-thumbnail">
+            <div class="pt-2">
+                <a href="#" class="btn btn-primary btn-sm" title="Upload Hero Image" @click.prevent="uploadClicked()"><i class="bi bi-upload"></i></a>
+                <a href="#" class="btn btn-danger btn-sm" title="Remove Hero Image" @click.prevent="removeClicked()"><i class="bi bi-trash"></i></a>
+            </div>
+            </div>
+        </div></div>
 
     <div class="row mb-3">
       <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
@@ -87,7 +89,8 @@
 <script>
 
 import { useUserStore } from '@/stores/user';
-import { updateEmpPersonalData, getEmpUserData } from '@/services/empData'
+import { updateEmpPersonalData, getEmpUserData, uploadProfileImage } from '@/services/empData'
+import { useFileDialog } from '@vueuse/core'
 
 
 
@@ -109,7 +112,9 @@ export default {
       selectedGender: '',
       dataSaved: false,
       message: '',
-      errorMessage: ''
+      errorMessage: '',
+      imageUrl:''
+      
     }
 
   },
@@ -118,13 +123,20 @@ export default {
   computed: {
     empData() {
       return useUserStore.user;
-    }
+    },
+    // currentImageUrl() {
+    //   return  useUserStore.user.image.url;
+    //         }
+
+    
   },
 
 
   setup() {
     const empPersonalStore = useUserStore();
-    return { empPersonalStore };
+
+    const { open, onChange } = useFileDialog();
+    return { empPersonalStore ,open,onChange};
 
   },
 
@@ -141,11 +153,40 @@ export default {
     this.gender = this.empPersonalStore.gender;
     this.country = this.empPersonalStore.country;
     this.userId = this.empPersonalStore.userId;
+    this.imageUrl = this.empPersonalStore.imageUrl;
+
+    this.onChange((files) => {
+        this.uploadImage(files[0]);
+    });
+
   },
 
 
   methods: {
+
+
+
+ uploadClicked() {
+    this.open({ accept: 'image/*', multiple: false });
+  },
+  async removeClicked() {
+   // const url = await this.heroStore.resetHeroImage();
+  //  this.imageUrl = url;
+  },
+
+  // async uploadImage(image) {
+  //       this.imageUrl = await this.user.uploadProfileImage(image,this.userId);
+  //           },
+  async uploadImage(image) {
+    console.log('image',image);
+    console.log('image',this.userId);
+    this.imageUrl = await uploadProfileImage(image,this.userId);
+
+    console.log(' this.imageUrl', this.imageUrl);
+  },
+
     async updatePersonalchanges() {
+
 
       const empData = {
         gender: this.gender,
@@ -158,16 +199,24 @@ export default {
         country: this.country,
         dateOfBirth: this.dateOfBirth,
         userId: this.userId,
+        imageUrl :this.imageUrl
+
+        
       }
       console.log('empdata', empData);
+
+      
 
       try {
         await updateEmpPersonalData(empData, this.userId);
         const updatedUserData = await getEmpUserData(this.userId);
-        useUserStore().user = updatedUserData; // Update the user property with the retrieved data
+        useUserStore().user = updatedUserData;
+
+        
 
         this.message = 'Employee data updated successfully';
         this.errorMessage = '';
+
       } catch (error) {
         console.error('Error updating employee data:', error);
         this.message = '';

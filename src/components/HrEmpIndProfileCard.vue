@@ -1,12 +1,9 @@
 <template>
     <div class="card">
       <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-        <img
-          :src="empPersonalStore ? empPersonalStore.image : ''"
-          width="120"
-          alt="Profile"
-          class="rounded-circle"
-        />
+        <img :src="empPersonalStore ? empPersonalStore.imageUrl : ''"
+        
+        width="120" alt="Profile" class="img-thumbnail">
   
         <h2>{{ empPersonalStore ? empPersonalStore.fullName : 'Loading...' }}</h2>
         <h3>{{ empPersonalStore ? empPersonalStore.designation : 'Loading...' }}</h3>
