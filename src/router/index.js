@@ -4,8 +4,7 @@ import HomeView from '../views/HomeView.vue';
 import AboutView from '../views/AboutView.vue';
 import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue';
-import DashboardView  from '../views/DashboardView.vue';
-import PayrollView  from '../views/PayrollView.vue';
+
 
 import EmpParentCreateProfileView from '../views/EmpParentCreateProfileView.vue';
 
@@ -31,6 +30,9 @@ import EmpOverView from '../views/EmpDetailsView/EmpOverView.vue';
 import EmpIndOverView from '../views/EmpPersonalProfileView/EmpIndOverView.vue';
 import EmpIndEditPersonalView from '../views/EmpPersonalProfileView/EmpIndEditPersonalView.vue';
 import EmpIndChangePasswordView from '../views/EmpPersonalProfileView/EmpIndChangePasswordView.vue';
+
+import EmpListForSendMessageView from '../views/EmpSendMessage/EmpListForSendMessageView.vue';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -77,6 +79,18 @@ const router = createRouter({
       ],
 
     },
+
+
+    {
+      path: '/empListForSendMessage',
+      name: 'emp_ListForSendMessageView',
+      component: EmpListForSendMessageView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
     {
       path: '/login',
       name: 'login',

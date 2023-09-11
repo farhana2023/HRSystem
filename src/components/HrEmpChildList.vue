@@ -42,7 +42,7 @@
                       <th scope="col">Start Date</th>
                       <th scope="col">Deparment</th>
                       <th scope="col">UserRole</th>
-                      <th scope="col">Edit</th>
+                      <!-- <th scope="col">Edit</th> -->
                       <th scope="col">Delete</th>
                     </tr>
                   </thead>
@@ -50,14 +50,19 @@
                     <tr v-for="(employee, index) in filteredEmployee" :key="index">
                       <!-- <th scope="row">{{ employee.id  }}</th> -->
 
-                      <td class="linkEmp"><RouterLink :to="{ name:'employeeProfileDetails', params: {empId: employee.id}}">{{ employee.data.fullName }}</RouterLink></td>
+                      <td class="linkEmp"><RouterLink :to="{ name:'employeeProfileDetails', params: {empId: employee.id}}">
+                        
+                        <!-- {{ employee.data.fullName }} -->
+                        <span class="blue-text">{{ employee.data.fullName }}</span>
+                      
+                      </RouterLink></td>
                       <td >{{ employee.data.email }}</td>
                       <td>{{ employee.data.designation }}</td>
                
                       <td>{{ employee.data.joiningDate }}</td>
                       <td>{{ employee.data.department }}</td>
                       <td>{{ employee.data.userRole }}</td>
-                      <td style="width: 40px" class="text-center">
+                      <!-- <td style="width: 40px" class="text-center">
                         <button
                           @click.prevent="editEmp(index)"
                           type="button"
@@ -65,7 +70,7 @@
                         >
                           <i class="bi bi-pen"></i>
                         </button>
-                      </td>
+                      </td>  -->
 
                       <td class="text-center" style="width: 40px">
                         <button
@@ -175,10 +180,8 @@ export default {
 
 
 
-<style  scoped>
-
-.linkEmp {
-
+<style scoped>
+.linkEmp .blue-text {
   color: blue;
 }
 </style>
