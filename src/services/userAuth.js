@@ -54,9 +54,9 @@ export async function updateUserProfile(user) {
     return true;
 }
 
-export async function updateUserPassword(user,password) {
-    const auth = getAuth();
-    await updatePassword(auth.currentUser,password);
+// export async function updateUserPassword(user,password) {
+//     const auth = getAuth();
+//     await updatePassword(auth.currentUser,password);
 
-    return true;
-}
+//     return true;
+// }

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import {getAllEmpData,setEmpData,updateEmpData } from '../services/empData'; 
+import {getIndEmpData,setEmpData,updateEmpData } from '../services/empData'; 
 import { uploadEmpImage } from '../services/fireFileBucket';
 
 import { 
@@ -29,7 +29,7 @@ import {
 
 async function upsertEmployee(emp) {
 
-  const fireEmpData = await getAllEmpData(emp.id);
+  const fireEmpData = await getIndEmpData(emp.id);
 
   if(!fireEmpData) {
     await setEmpData(emp);
@@ -231,7 +231,7 @@ export const useUserStore = defineStore('user', {
   },
   async getEmpDetails(id) {
 
-    const empData = await getAllEmpData(id);
+    const empData = await getIndEmpData(id);
     
     if(empData) {
       this.user= empData;

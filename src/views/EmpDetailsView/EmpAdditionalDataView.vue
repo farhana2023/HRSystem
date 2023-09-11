@@ -77,6 +77,117 @@
   </section>
 </template>
 
+<!-- 
+<script>
+import { computed, ref, watchEffect } from 'vue'
+import { useEmpStore } from '@/stores/empStore'
+import { updateEmpAdditionalData } from '@/services/empData'
+export default {
+  name: 'EmpAdditionalDataView',
+
+
+  data() {
+    return {
+
+      empID: '',
+      email: '',
+      joiningDate:'',
+      selectedRole: '',
+      selectedDepartment: '',
+      selectedDesignation:'',
+      salary:0,
+      dataSaved: false,
+      message: '',
+      errorMessage: '',
+
+    }
+
+  },
+
+  designationOptions() {
+      return {
+        'Junior Developer': 'Junior Developer',
+        'Technical Support Specialist': 'Technical Support Specialist',
+        'QA Tester': 'QA Tester',
+        'Developer / Programmer': 'Developer / Programmer',
+        'Network Engineer': 'Network Engineer',
+        'Database Administrator':'Database Administrator' ,
+        'IT Support Engineer': 'IT Support Engineer',
+        'DevOps Engineer': 'DevOps Engineer',
+        'Senior Developer / Senior Programmer': 'Senior Developer / Senior Programmer',
+        'Systems Architect': 'Systems Architect'
+      }
+    },
+
+    departmentOptions() {
+      return {
+        'Software Development': 'Software Development',
+        'Quality Assurance (QA)': 'Quality Assurance (QA)',
+        'QA Tester': 'QA Tester',
+        'Product Management': 'Product Management',
+        'Cybersecurity': 'Cybersecurity',
+        'Project Management': 'Project Management',
+        'DevOps': 'DevOps',
+        'Database Administration': 'Database Administration',
+        'Technical Writing / Documentation': 'Technical Writing / Documentation',
+        'Infrastructure Management': 'Infrastructure Management'
+      }
+    },
+
+    userRoleOptions() {
+      return {
+        'Admin': 'Admin',
+        'Team leader': 'Team leader',
+        'Employee': 'Employee'
+      }
+    
+  },
+  computed: {
+    empData() {
+      return useEmpStore;
+
+    
+    }, 
+
+
+  },
+  setup() {
+
+
+  const empStore = useEmpStore();
+
+  console.log('empStore', empStore);
+
+  return  { empStore }  
+
+},
+
+  
+  // setup() {
+  //   const empStore = useEmpStore()
+  //   console.log('empStore',empStore)
+  //   return { empStore };
+
+  // },
+
+  mounted() {
+    // console.log('empIndStoreData:', empPersonalStore);
+    this.joiningDate=this.empData.joiningDate;
+    console.log('joiningDate',  this.joiningDate);
+    // this.joiningDate = this.empStore.joiningDate;
+    // this.salary = this.empStore.salary;
+    // this.selectedDepartment = this.empStore.selectedDepartment;
+    // this.selectedDesignation = this.empStore.selectedDesignation;
+  
+
+  },
+
+
+}
+
+</script> -->
+
+
 <script>
 import { computed, ref, watch } from 'vue'
 import { useEmpStore } from '@/stores/empStore'
@@ -104,45 +215,56 @@ export default {
       }
     },
 
+
     designationOptions() {
       return {
-        1: 'Junior Developer',
-        2: 'Technical Support Specialist',
-        3: 'QA Tester',
-        4: 'Developer / Programmer',
-        5: 'Network Engineer',
-        6: 'Database Administrator',
-        7: 'IT Support Engineer',
-        8: 'DevOps Engineer',
-        9: 'Senior Developer / Senior Programmer',
-        10: 'Systems Architect'
+        'Junior Developer': 'Junior Developer',
+        'Technical Support Specialist': 'Technical Support Specialist',
+        'QA Tester': 'QA Tester',
+        'Developer / Programmer': 'Developer / Programmer',
+        'Network Engineer': 'Network Engineer',
+        'Database Administrator':'Database Administrator' ,
+        'IT Support Engineer': 'IT Support Engineer',
+        'DevOps Engineer': 'DevOps Engineer',
+        'Senior Developer / Senior Programmer': 'Senior Developer / Senior Programmer',
+        'Systems Architect': 'Systems Architect'
       }
     },
 
     departmentOptions() {
       return {
-        1: 'Software Development',
-        2: 'Quality Assurance (QA)',
-        3: 'QA Tester',
-        4: 'Product Management',
-        5: 'Product Management',
-        6: 'Cybersecurity',
-        7: 'Project Management',
-        8: 'DevOps',
-        9: 'Database Administration',
-        10: 'Technical Writing / Documentation',
-        11: 'Infrastructure Management'
+        'Software Development': 'Software Development',
+        'Quality Assurance (QA)': 'Quality Assurance (QA)',
+        'QA Tester': 'QA Tester',
+        'Product Management': 'Product Management',
+        'Cybersecurity': 'Cybersecurity',
+        'Project Management': 'Project Management',
+        'DevOps': 'DevOps',
+        'Database Administration': 'Database Administration',
+        'Technical Writing / Documentation': 'Technical Writing / Documentation',
+        'Infrastructure Management': 'Infrastructure Management'
       }
     },
 
     userRoleOptions() {
       return {
-        1: 'Admin',
-        2: 'Team leader',
-        3: 'Employee'
+        'Admin': 'Admin',
+        'Team leader': 'Team leader',
+        'Employee': 'Employee'
       }
-    }
+    
   },
+
+    // userRoleOptions() {
+    //   return {
+    //     1: 'Admin',
+    //     2: 'Team leader',
+    //     3: 'Employee'
+    //   }
+    // }
+  },
+
+
 
   setup() {
     const empStore = useEmpStore()
@@ -209,7 +331,7 @@ export default {
     }
   }
 }
-</script>
+</script> 
 
 <style scoped>
 .message-container {

@@ -22,17 +22,27 @@ export async function uploadProfileImage(file,id) {
   }
 
 
+  export async  function resetEmpImage() {
+    // const apiHero = await getApiHeroDetails(this.emp.id);
+    // this.emp.image.url = apiHero.image.url;
 
-//   export async  function resetHeroImage() {
-//     const apiHero = await getApiHeroDetails(this.emp.id);
-//     this.emp.image.url = apiHero.image.url;
-
-//     await upsertHero(this.emp);
+    await upsertEmployee(this.emp);
     
-//     return this.emp.image.url;
-//   }
+    return this.emp.image.url;
+  }
 
+  async function upsertEmployee(emp) {
 
+    const fireEmpData = await getIndEmpData(emp.id);
+  
+    if(!fireEmpData) {
+      await setEmpData(emp);
+    } else {
+      await updateEmpData(emp)
+    }
+  }
+
+  
 
 export async function updateEmpPersonalData(emp,id)  {
     const db = useFirestore();
@@ -126,7 +136,7 @@ export async function updateEmpData(emp)  {
 }
 
 
-export async function getAllEmpData(id) {
+export async function getIndEmpData(id) {
     const db = useFirestore();
     const empRef = doc(db, 'EmployeeProfile', id);
     const empSnap = await getDoc(empRef);

@@ -89,7 +89,8 @@
 <script>
 
 import { useUserStore } from '@/stores/user';
-import { updateEmpPersonalData, getEmpUserData, uploadProfileImage } from '@/services/empData'
+import { updateEmpPersonalData, getEmpUserData, uploadProfileImage,resetEmpImage } from '@/services/empData'
+
 import { useFileDialog } from '@vueuse/core'
 
 
@@ -141,6 +142,7 @@ export default {
   },
 
   mounted() {
+    
     // console.log('empIndStoreData:', empPersonalStore);
 
     this.about = this.empPersonalStore.about;
@@ -170,10 +172,11 @@ export default {
     this.open({ accept: 'image/*', multiple: false });
   },
   async removeClicked() {
-   // const url = await this.heroStore.resetHeroImage();
-  //  this.imageUrl = url;
-  },
+                // const url = await resetEmpImage();
+                // this.imageUrl = url;
+            },
 
+            
   // async uploadImage(image) {
   //       this.imageUrl = await this.user.uploadProfileImage(image,this.userId);
   //           },
