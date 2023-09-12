@@ -33,7 +33,7 @@ import EmpIndChangePasswordView from '../views/EmpPersonalProfileView/EmpIndChan
 
 import EmpListForSendMessageView from '../views/EmpSendMessage/EmpListForSendMessageView.vue';
 
-
+import EmpSendMessageView from '../views/EmpSendMessage/EmpSendMessageView.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -91,6 +91,18 @@ const router = createRouter({
       }
     },
 
+
+    
+    {
+      path: '/EmpSendMessage',
+      name: 'emp_SendMessage',
+      component: EmpSendMessageView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
     {
       path: '/login',
       name: 'login',
@@ -119,6 +131,8 @@ const router = createRouter({
         frame: true,
       }
     },
+
+    
 
     {
       path: '/EmpCreateProfile',

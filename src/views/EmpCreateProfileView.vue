@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="row mb-3">
-                  <label for="Email" class="col-md-4 col-lg-3 col-form-label">Date of Birth</label>
+                  <label for="dateofBirth" class="col-md-4 col-lg-3 col-form-label">Date of Birth</label>
                   <div class="col-md-8 col-lg-9">
                     <input type="date" class="form-control" v-model="dateOfBirth" />
                   </div>
@@ -147,14 +147,14 @@
                 </div>
 
                 <div class="row mb-3">
-                  <label for="Email" class="col-md-4 col-lg-3 col-form-label">Joining Date</label>
+                  <label for="joiningDate" class="col-md-4 col-lg-3 col-form-label">Joining Date</label>
                   <div class="col-md-8 col-lg-9">
                     <input type="date" class="form-control" v-model="joiningDate" />
                   </div>
                 </div>
 
                 <div class="row mb-3">
-                  <label for="Email" class="col-md-4 col-lg-3 col-form-label">Salary</label>
+                  <label for="salary" class="col-md-4 col-lg-3 col-form-label">Salary</label>
                   <div class="col-md-8 col-lg-9">
                   <input type="number" class="form-control" v-model="salary" />
                   </div>

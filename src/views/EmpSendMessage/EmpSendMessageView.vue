@@ -1,29 +1,37 @@
 <template>
-  <section>
+
+
+    <section class="section">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header">Send Message</div>
+          <div class="card-body pt-3">
     <form>
-        <div class="row mb-3">
-                  <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+        <div class="row mb-3" >
+                  <label for="sendtoEmail" class="col-md-4 col-lg-3 col-form-label">Send to Email</label>
                   <div class="col-md-8 col-lg-9">
                     <input
                       readonly
-                      name="email"
+                      name="sendtoEmail"
                       type="email"
                       class="form-control readonly-input"
-                      id="email"
-                      v-model="email"
+                      id="sendtoEmail"
+                      v-model="sendtoEmail"
                     />
                   </div>
                 </div>
 
       <div class="row mb-3">
-        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+        <label for="sendtofullName" class="col-md-4 col-lg-3 col-form-label">Send To</label>
         <div class="col-md-8 col-lg-9">
           <input
-            name="fullName"
+          readonly
+            name="sendtofullName"
             type="text"
-            class="form-control"
-            id="fullName"
-            v-model="fullName"
+            id="sendtofullName"
+            class="form-control readonly-input"
+            v-model="sendtofullName"
           />
         </div>
       </div>
@@ -36,7 +44,7 @@
             type="text"
             class="form-control"
             id="fullName"
-            v-model="MsgSubject"
+            v-model="sendtoMsgSubject"
           />
         </div>
       </div>
@@ -49,7 +57,8 @@
             class="form-control"
             id="about"
             style="height: 100px"
-            v-model="Message"
+            v-model="sendtoMsgDetails"
+
           ></textarea>
         </div>
       </div>
@@ -57,20 +66,98 @@
 
       <div class="text-center">
         <button @click.prevent="sendMessage" type="submit" class="btn btn-secondary">
-      Send message
+         Send message
         </button>
       </div>
-    </form>
+
+  
+      <div class="card-footer">
+            <div v-if="dataSaved" class="alert alert-success mt-3">
+              <Strong>Data saved successfully!</Strong>
+            </div>
+          </div>
+
+
+    </form></div></div>
+  </div></div>
   </section>
 </template>
 
-<script>
-    export default {
-        name:'EmpSendMessageView'
 
-        
-    }
+
+<script>
+import { useUserStore } from '@/stores/user';
+import { addSendtoEmp } from '@/services/empData'
+
+export default {
+  name: 'EmpSendMessageView',
+
+  data() {
+    return {
+      sendFrom:[],
+      userId: this.$route.params.id,
+      sendtoEmail: this.$route.query.email,
+      sendtofullName: this.$route.query.fullname, 
+      sendtoMsgSubject: '',
+      sendtoMsgDetails: '',
+      sendFromEmail: '',
+      sendFromUserID: '',
+      Date: '',
+      isMsgRead: false,
+      dataSaved: false,
+      dataError: false,
+      message:''
+    };
+  },
+
+  setup() {
+  const empSendFromStore = useUserStore();
+  console.log('empSendFromStore', empSendFromStore);
+  console.log('empSendFromEmail', empSendFromStore.email);
+  return {empSendFromStore};
+},
+methods: {
+  async sendMessage() {
+    const empSendMsgDetail = {
+      sendtoUserID:this.$route.query.id,
+      sendtoEmail: this.$route.query.email,
+      sendtofullName: this.$route.query.fullname,
+      sendtoMsgSubject: this.sendtoMsgSubject,
+      sendtoMsgDetails: this.sendtoMsgDetails,
+      sendFromEmail: this.empSendFromStore.email, // Access without "this"
+      sendFromUserID: this.empSendFromStore.userId, // Access without "this"
+      Date: new Date(),
+      isMsgRead: false
+    };
+    console.log('empSendMsgDetail', empSendMsgDetail);
+
+    try {
+        await addSendtoEmp(empSendMsgDetail);
+
+         this.dataSaved = true
+        setTimeout(() => {
+          this.dataSaved = false
+        }, 3000) // Display success message for 3 seconds
+
+        // console.log('Document was created with ID', docRef.id)
+        this.$router.push({name: 'emp_ListForSendMessageView'});
+
+
+      } catch (error) {
+        console.error('Error updating employee data:', error);
+        this.message = '';
+        dataError=true;
+        this.errorMessage = 'Error updating employee data. Please try again.';
+      }
+
+  }
+},
+
+
+    
+};
 </script>
+
 
 <style  scoped>
 

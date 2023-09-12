@@ -49,13 +49,13 @@
                     <tbody>
                       <tr v-for="(employee, index) in filteredEmployee" :key="index">
                         <!-- <th scope="row">{{ employee.id  }}</th> -->
-  
-                        <td class="linkEmp"><RouterLink :to="{ name:'employeeProfileDetails', params: {empId: employee.id}}">
+                        <td >{{ employee.data.fullName }}</td>
+                        <!-- <td class="linkEmp"><RouterLink :to="{ name:'employeeProfileDetails', params: {empId: employee.id}}">
                           
-                          <!-- {{ employee.data.fullName }} -->
+                         
                           <span class="blue-text">{{ employee.data.fullName }}</span>
                         
-                        </RouterLink></td>
+                        </RouterLink></td> -->
                         <td >{{ employee.data.email }}</td>
                         <td>{{ employee.data.designation }}</td>
                  
@@ -73,14 +73,14 @@
                         </td>  -->
   
                         <td class="text-center" style="width: 40px">
-                          <button
-                            @click.prevent="SendMessage(index)"
-                            type="button"
-                            class="btn btn-primary btn-sm"
-                          ><i class="bi bi-envelope"></i>
-                      
-                          </button>
-                        </td>
+  <button
+    @click.prevent="SendMessage(employee)"
+    type="button"
+    class="btn btn-primary btn-sm"
+  >
+    <i class="bi bi-envelope"></i> <!-- Envelope icon -->
+  </button>
+</td>
                     
                       </tr>
                     </tbody>
@@ -100,22 +100,14 @@
 
   </template>
 
-
-
-
 <script>
-
-
 export default {
   name: 'HrEmpListForMessage',
   props: ['lstEmployees'],
-
-
   data() {
     return {
-      search: ''
-      
-    }
+      search: '',
+    };
   },
   computed: {
     filteredEmployee: function () {
@@ -142,10 +134,24 @@ export default {
         // Combine the conditions using logical OR (||) to find a match in any field
         return fullNameMatch || emailMatch || designationMatch || departmentMatch || userRoleMatch
       })
-    }
+  },},
+  methods: {
+    SendMessage(employee) {
+      console.log('employee', employee);
+     
+      this.$router.push({
+            name: 'emp_SendMessage',
+            query: {
+              id: employee.id,
+              email: employee.data.email,
+              fullname: employee.data.fullName
+            }
+          })
+    },
   },
 };
 </script>
+
 
 
 

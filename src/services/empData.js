@@ -5,6 +5,12 @@ import { collection, doc, getDoc, setDoc, addDoc, updateDoc, deleteDoc } from 'f
 import { uploadEmpImage } from '../services/fireFileBucket';
 
 
+export async function addSendtoEmp(msgDetails)  {
+    const db = useFirestore();
+    await addDoc(collection(db, 'EmpSendMsgDetail'), msgDetails);
+}
+
+
 
 export async function uploadProfileImage(file,id) {
         
