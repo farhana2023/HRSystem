@@ -26,6 +26,13 @@
         </RouterLink>
       </li> 
    
+
+      <li class="nav-item">
+        <RouterLink  class="nav-link collapsed" to="/EmpPersonalMessage">
+          <i class="bi bi-mailbox"></i>
+          <span>View Message</span>
+        </RouterLink>
+      </li> 
       <li v-if="isAdmin" class="nav-item">
         <a
           class="nav-link collapsed"

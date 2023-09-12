@@ -1,14 +1,32 @@
 import { useFirestore, useCollection, useDocument } from 'vuefire';
 
-import { collection, doc, getDoc, setDoc, addDoc, updateDoc, deleteDoc } from 'firebase/firestore'
+import { collection, query, where, doc, getDoc, getDocs,  setDoc, addDoc, updateDoc, deleteDoc } from 'firebase/firestore'
 
 import { uploadEmpImage } from '../services/fireFileBucket';
 
 
+export async function getAllMsg(empId) {
+  const db = useFirestore();
+  const msgCollection = collection(db, 'EmpSendMsgDetail');
+  const q = query(msgCollection, where('sendtoUserID', '==', empId));
+  const querySnapshot = await getDocs(q);
+
+  const messages = [];
+  querySnapshot.forEach((doc) => {
+    messages.push(doc.data());
+  });
+
+  return messages;
+}
+
+  
+  
+  
 export async function addSendtoEmp(msgDetails)  {
     const db = useFirestore();
     await addDoc(collection(db, 'EmpSendMsgDetail'), msgDetails);
 }
+
 
 
 
