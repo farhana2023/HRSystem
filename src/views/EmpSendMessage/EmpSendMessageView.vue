@@ -73,7 +73,7 @@
   
       <div class="card-footer">
             <div v-if="dataSaved" class="alert alert-success mt-3">
-              <Strong>Data saved successfully!</Strong>
+              <Strong>Message sent successfully!</Strong>
             </div>
           </div>
 

@@ -32,7 +32,7 @@
 
 <div class="card-footer">
   <div v-if="dataSaved" class="alert alert-success mt-3">
-    <strong>Data saved successfully!</strong>
+    <strong>Password  changed successfully!</strong>
   </div>
 
   <div v-if="dataError" class="alert alert-danger mt-3">
@@ -111,15 +111,15 @@ export default {
       this.error = 'Passwords must match';
       this.message =    this.error ; 
       this.dataError = true;
-      return message
-      alert('Passwords must match');
+      // return message
+      // alert('Passwords must match');
     }
   }
   else{
     this.error = 'Passwords must match';
       this.message =    this.error ; 
       this.dataError = true;
-      return message
+      // return message
   }
 },
 
