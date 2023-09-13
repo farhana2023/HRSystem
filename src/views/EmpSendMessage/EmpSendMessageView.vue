@@ -119,14 +119,18 @@ export default {
 methods: {
   async sendMessage() {
     const empSendMsgDetail = {
-      sendtoUserID:this.$route.query.id,
-      sendtoEmail: this.$route.query.email,
-      sendtofullName: this.$route.query.fullname,
-      sendtoMsgSubject: this.sendtoMsgSubject,
-      sendtoMsgDetails: this.sendtoMsgDetails,
+      sendToUserID:this.$route.query.id,
+      sendToEmail: this.$route.query.email,
+      sendToFullName: this.$route.query.fullname,
+
+      sendToMsgSubject: this.sendtoMsgSubject,
+      sendToMsgDetails: this.sendtoMsgDetails,
+
       sendFromEmail: this.empSendFromStore.email, // Access without "this"
-      sendFromUserID: this.empSendFromStore.userId, // Access without "this"
-      Date: new Date(),
+      sendFromUserID: this.empSendFromStore.userId,
+      sendFromFullName:this.empSendFromStore.fullName,
+
+      MsgDate: new Date(),
       isMsgRead: false
     };
     console.log('empSendMsgDetail', empSendMsgDetail);
@@ -137,16 +141,17 @@ methods: {
          this.dataSaved = true
         setTimeout(() => {
           this.dataSaved = false
+          this.$router.push({name: 'emp_ListForSendMessageView'});
         }, 3000) // Display success message for 3 seconds
 
         // console.log('Document was created with ID', docRef.id)
-        this.$router.push({name: 'emp_ListForSendMessageView'});
+      // 
 
 
       } catch (error) {
         console.error('Error updating employee data:', error);
         this.message = '';
-        dataError=true;
+       // dataError=true;
         this.errorMessage = 'Error updating employee data. Please try again.';
       }
 

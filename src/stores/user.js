@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import {getIndEmpData,setEmpData,updateEmpData } from '../services/empData'; 
+import {getIndEmpData,setEmpData,updateEmpData,getAllUnreadMsg } from '../services/empData'; 
 import { uploadEmpImage } from '../services/fireFileBucket';
 
 import { 
@@ -42,6 +42,7 @@ export const useUserStore = defineStore('user', {
   state() {
     return {
         user: null,
+        unreadMessageCount:0,
     }
   },
 
@@ -54,6 +55,11 @@ export const useUserStore = defineStore('user', {
         }
         return this.user && this.user.id && this.user.id.length > 0;
 
+
+        const hasUnreadMessages = state.unreadMessageCount > 0;
+    
+        return hasUnreadMessages; 
+        console.log('hasUnreadMessages',hasUnreadMessages);
         // return this.user.id.length > 0;
         //return this.user.isAuthenticated && this.user.email;
     },
@@ -179,6 +185,9 @@ export const useUserStore = defineStore('user', {
       }
     }
   },
+
+
+  
   actions: {
     async login(email, password) {
         console.log('email', email);
@@ -189,6 +198,12 @@ export const useUserStore = defineStore('user', {
         if(user != null) {
           const userData = await getEmpUserData(user.uid);
           console.log('empUser:',userData);
+
+          const unReadMsg= await getAllUnreadMsg(user.uid)
+          console.log('unReadMsg:',unReadMsg)
+          const unreadMessageCount = unReadMsg.length;
+          console.log('Unread Message Count:', unreadMessageCount);
+
 
           this.user = { 
             id: user.uid, 

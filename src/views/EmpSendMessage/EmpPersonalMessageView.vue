@@ -49,9 +49,9 @@
                       :key="index"
                       :class="{ unread: !message.isMsgRead }"
                     >
-                      <td>{{ message.sendFrom }}</td>
-                      <td>{{ message.sendtoMsgSubject }}</td>
-                      <td>{{ Date(message.Date) }}</td>
+                      <td>{{ message.sendFromFullName }}</td>
+                      <td>{{ message.sendToMsgSubject }}</td>
+                      <td>{{ Date(message.MsgDate) }}</td>
                       <td class="text-center" style="width: 40px">
                         <!-- <button
                           @click.prevent="ViewMsg(message)"
@@ -118,14 +118,21 @@
         </div>
 
         <div class="modal-body">
-          <p><strong>From:</strong> {{ selectedMessage.sendFrom }}</p>
-          <p><strong>Subject:</strong> {{ selectedMessage.sendtoMsgSubject }}</p>
-          <p><strong>Body:</strong> {{ selectedMessage.sendtoMsgDetails }}</p>
+          <p><strong>From:</strong> {{ selectedMessage.sendFromEmail }}</p>
+          <p><strong>Subject:</strong> {{ selectedMessage.sendToMsgSubject }}</p>
+          <p><strong>Body:</strong> {{ selectedMessage.sendToMsgDetails }}</p>
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Reply</button>
+          <button
+            @click.prevent="replyMessage(selectedMessage)"
+            type="button"
+            data-bs-dismiss="modal"
+            class="btn btn-primary"
+          >
+            Reply
+          </button>
         </div>
       </div>
     </div>
@@ -135,7 +142,7 @@
 
 <script>
 import { useUserStore } from '@/stores/user'
-import { getAllMsg } from '@/services/empData'
+import { getAllMsg,deleteMsgData,updateReadMsgData } from '@/services/empData'
 
 export default {
   name: 'EmpPersonalMessageView',
@@ -143,7 +150,9 @@ export default {
     return {
       lstMsg: [],
       selectedMessage: null,
-      isPopupVisible: false
+      isPopupVisible: false,
+      isMsgRead:false,
+
     }
   },
 
@@ -184,11 +193,16 @@ export default {
     async getMsg() {
       const userId = this.empPersonalStore.userId // Assuming you have a userId property in your store
 
-      console.log('userId', userId)
+      console.log('getuserId', userId)
       const Messages = await getAllMsg(userId)
       console.log('Messages', Messages)
       this.lstMsg = Messages // Assuming lstMsg is meant to store the messages
     },
+
+
+      
+
+
 
     async ViewMsg(message) {
       this.isPopupVisible = true
@@ -198,9 +212,62 @@ export default {
 
       console.log('selectedMessage', this.selectedMessage)
       message.isMsgRead=true;
+
+    // const IsReadMsgData=await  updateReadMsgData( this.selectedMessage ,this.selectedMessage.id)
+     try {
+        await updateReadMsgData(this.selectedMessage, this.selectedMessage.id);
+        //const updatedUserData = await getEmpUserData(this.userId);
+
+      } catch (error) {
+        console.error('Error updating employee data:', error);
+       
+      }
+
+
+
+
+    },
+
+    async replyMessage(selectedMessage){
+      console.log('employee', selectedMessage)
+
+        this.$router.push({
+          name: 'emp_SendMessage',
+          query: {
+            id: this.selectedMessage.sendFromUserID,
+            email: this.selectedMessage.sendFromEmail,
+            fullname: this.selectedMessage.sendFromFullName
+          }
+})
+
+    },
+
+    async DeleteMsg(index) {
+  const msgToDelete = this.lstMsg[index];
+
+  const confirmDelete = window.confirm('Are you sure you want to permanently delete this message?');
+
+  if (confirmDelete) {
+    try {
+      await deleteMsgData(msgToDelete);
+      console.log('msgToDelete', msgToDelete);
+
+     
+      this.lstMsg.splice(index, 1);
+
+    } catch (error) {
+      console.error('Error deleting message:', error);
     }
+  } else {
+    // User canceled deletion
+    // No action needed if the user cancels; the message won't be deleted.
   }
-}
+},
+    },
+
+
+  }
+
 </script>
 
 <style scoped>

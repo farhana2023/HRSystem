@@ -4,30 +4,67 @@ import { collection, query, where, doc, getDoc, getDocs,  setDoc, addDoc, update
 
 import { uploadEmpImage } from '../services/fireFileBucket';
 
-
+//////////////////////For Message Start////////////////////////////////////
 export async function getAllMsg(empId) {
   const db = useFirestore();
   const msgCollection = collection(db, 'EmpSendMsgDetail');
-  const q = query(msgCollection, where('sendtoUserID', '==', empId));
+  const q = query(msgCollection, where('sendToUserID', '==', empId));
   const querySnapshot = await getDocs(q);
 
   const messages = [];
   querySnapshot.forEach((doc) => {
-    messages.push(doc.data());
+    messages.push({ id: doc.id, ...doc.data() });
+    // messages.push(doc.data());
+     //messages.push(doc.id());
   });
 
   return messages;
 }
 
-  
-  
-  
-export async function addSendtoEmp(msgDetails)  {
-    const db = useFirestore();
-    await addDoc(collection(db, 'EmpSendMsgDetail'), msgDetails);
+
+
+export async function getAllUnreadMsg(empId) {
+  const db = useFirestore();
+  const msgCollection = collection(db, 'EmpSendMsgDetail');
+  const q = query(
+    msgCollection,
+    where('sendToUserID', '==', empId),
+    where('isMsgRead', '==', false) 
+  );
+  const querySnapshot = await getDocs(q);
+
+  const messages = [];
+  querySnapshot.forEach((doc) => {
+    messages.push({ id: doc.id, ...doc.data() });
+ 
+  });
+
+  return messages;
 }
 
 
+export async function deleteMsgData(msg)  {
+  const db = useFirestore();
+  const msgRef = doc(db,'EmpSendMsgDetail', msg.id);
+  await deleteDoc(msgRef);
+}
+
+export async function addSendtoEmp(msgDetails)  {
+  const db = useFirestore();
+  await addDoc(collection(db, 'EmpSendMsgDetail'), msgDetails);
+}
+
+export async function updateReadMsgData(msg,id)  {
+  const db = useFirestore();
+  const msgRef = doc(db,'EmpSendMsgDetail', id);
+  await updateDoc(msgRef, {
+    isMsgRead: true,
+     
+     
+  });
+}
+
+//////////////////////For Message end////////////////////////////////////
 
 
 export async function uploadProfileImage(file,id) {
@@ -145,6 +182,8 @@ export async function deleteEmpData(emp)  {
     const empRef = doc(db,'EmployeeProfile', emp.id);
     await deleteDoc(empRef);
 }
+
+
 
 
 export async function setEmpData(emp) {

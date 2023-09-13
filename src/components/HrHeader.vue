@@ -29,90 +29,20 @@
         </li>
         <!-- End Search Icon-->
 
-        <li v-if="isLogin" class="nav-item dropdown">
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span> </a
-          ><!-- End Notification Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
-          </ul>
-          <!-- End Notification Dropdown Items -->
-        </li>
-        <!-- End Notification Nav -->
+    
 
         <li v-if="isLogin" class="nav-item dropdown">
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span> </a
+            <span class="badge bg-success badge-number">{{ unreadMessageCount }}</span> </a
           ><!-- End Messages Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            <li class="dropdown-header">  
+              <span>
+  <p>You have {{ unreadMessageCount }} new messages</p>
+</span>
+              <a  @click.prevent='ShowAllMsgs()' href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
               <hr class="dropdown-divider" />
@@ -187,6 +117,7 @@
             <li class="dropdown-header">
               <h6>{{ fullName}}</h6>
               <span>{{ designation }}</span>
+
             </li>
             <li>
               <hr class="dropdown-divider" />
@@ -256,10 +187,13 @@
     </nav>
     <!-- End Icons Navigation -->
   </header>
+
+
   <!-- End Header -->
 </template>
-
+<!-- 
 <script>
+import {getAllUnreadMsg } from '../services/empData'; 
 import { useUserStore } from '../stores/user';
 export default {
   name: 'HrHeader',
@@ -278,7 +212,12 @@ export default {
 
             imageUrl(){
               return this.userStore.imageUrl;
+            },
+            userId(){
+              return this.userStore.userId;
             }
+
+        
         },
   methods:{
 
@@ -305,8 +244,95 @@ export default {
   setup(){
 const userStore=useUserStore();
 return { userStore };
+  },
+
+
+  created(){
+      const unReadMsg= await getAllUnreadMsg(userId)
+          console.log('unReadMsg:',unReadMsg)
+          const unreadMessageCount = unReadMsg.length;
+          console.log('Unread Message Count:', unreadMessageCount);
+          return unreadMessageCount;
+
   }
 }
+
+
+</script> -->
+
+
+<script>
+import { getAllUnreadMsg } from '../services/empData';
+import { useUserStore } from '../stores/user';
+
+export default {
+  name: 'HrHeader',
+
+  data() {
+  return {
+    unreadMessageCount: 0, // Initialize with a default value
+  };
+},
+
+
+  computed: {
+    isLogin() {
+      return this.userStore.isAuthenticated;
+    },
+    fullName() {
+      return this.userStore.fullName;
+    },
+    designation() {
+      return this.userStore.designation;
+    },
+    imageUrl() {
+      return this.userStore.imageUrl;
+    },
+    userId() {
+      return this.userStore.userId;
+    },
+    // unreadMessageCount() {
+    //   return this.unreadMessageCount;
+    // },
+  },
+  methods: {
+    OnLoginClicked() {
+      this.$router.push('/login');
+    },
+    OnRegisterClicked() {
+      this.$router.push({ name: 'register' });
+    },
+    onProfileClicked() {
+      this.$router.push({ name: 'profile' });
+    },
+    onLogoutClicked() {
+      this.userStore.logoutUser();
+      this.$router.push({ name: 'login' });
+    },
+
+    ShowAllMsgs(){
+      this.$router.push({ name: 'emp_PersonalMessage' });
+
+    }
+  },
+  setup() {
+    const userStore = useUserStore();
+    return { userStore };
+  },
+  async created() {
+  const unReadMsg = await getAllUnreadMsg(this.userId);
+  console.log('unReadMsg:', unReadMsg);
+  const unreadMessageCount = unReadMsg.length;
+  console.log('Unread Message Count:', unreadMessageCount);
+
+  // Set the data property
+  this.unreadMessageCount = unreadMessageCount;
+
+  // Debugging
+  console.log('unreadMessageCount in data:', this.unreadMessageCount);
+},
+};
 </script>
+
 
 <style scoped></style>
