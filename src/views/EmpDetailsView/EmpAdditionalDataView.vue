@@ -40,6 +40,23 @@
       </div>
 
       <div class="row mb-3">
+        <label for="company" class="col-md-4 col-lg-3 col-form-label">Employment Status</label>
+        <div class="col-md-8 col-lg-9">
+          <select
+            v-model="selectedEmpStatus"
+            class="form-select"
+            aria-label="Default select example"
+          >
+            <option selected>Select Status</option>
+            <option v-for="(label, value) in empStatusOptions" :value="value" :key="value">
+              {{ label }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="row mb-3">
         <label for="company" class="col-md-4 col-lg-3 col-form-label">UserRole</label>
         <div class="col-md-8 col-lg-9">
           <select v-model="selectedRole" class="form-select" aria-label="Default select example">
@@ -52,12 +69,11 @@
       </div>
 
       <div class="row mb-3">
-          <label for="Email" class="col-md-4 col-lg-3 col-form-label">Salary</label>
-          <div class="col-md-8 col-lg-9">
-            <input type="number" class="form-control" v-model="salary" />
-          </div>
+        <label for="Email" class="col-md-4 col-lg-3 col-form-label">Salary</label>
+        <div class="col-md-8 col-lg-9">
+          <input type="number" class="form-control" v-model="salary" />
         </div>
-
+      </div>
 
       <div class="text-center">
         <button @click.prevent="updateEmployeeData" type="submit" class="btn btn-secondary">
@@ -187,7 +203,6 @@ export default {
 
 </script> -->
 
-
 <script>
 import { computed, ref, watch } from 'vue'
 import { useEmpStore } from '@/stores/empStore'
@@ -198,7 +213,7 @@ export default {
   data() {
     return {
       empID: null,
-      EmpAdminData:null
+      EmpAdminData: null
 
       // joiningDate: '',
       // selecteddesignation: '',
@@ -215,7 +230,6 @@ export default {
       }
     },
 
-
     designationOptions() {
       return {
         'Junior Developer': 'Junior Developer',
@@ -223,7 +237,7 @@ export default {
         'QA Tester': 'QA Tester',
         'Developer / Programmer': 'Developer / Programmer',
         'Network Engineer': 'Network Engineer',
-        'Database Administrator':'Database Administrator' ,
+        'Database Administrator': 'Database Administrator',
         'IT Support Engineer': 'IT Support Engineer',
         'DevOps Engineer': 'DevOps Engineer',
         'Senior Developer / Senior Programmer': 'Senior Developer / Senior Programmer',
@@ -246,14 +260,22 @@ export default {
       }
     },
 
+    empStatusOptions() {
+      return {
+        'Full Time': 'Full Time',
+        'Part Time': 'Part Time',
+        'Contract': 'Contract',
+        'Internship': 'Internship'
+      }
+    },
+
     userRoleOptions() {
       return {
         'Admin': 'Admin',
         'Team leader': 'Team leader',
         'Employee': 'Employee'
       }
-    
-  },
+    }
 
     // userRoleOptions() {
     //   return {
@@ -263,8 +285,6 @@ export default {
     //   }
     // }
   },
-
-
 
   setup() {
     const empStore = useEmpStore()
@@ -278,6 +298,7 @@ export default {
     const selectedDesignation = ref('')
     const selectedDepartment = ref('')
     const selectedRole = ref('')
+    const selectedEmpStatus = ref('')
     const salary = ref(0)
     const message = ref('')
     const errorMessage = ref('')
@@ -295,7 +316,8 @@ export default {
         designation: selectedDesignation.value,
         department: selectedDepartment.value,
         userRole: selectedRole.value,
-       salary: salary.value,
+        empStatus: selectedEmpStatus.value,
+        salary: salary.value
       }
 
       try {
@@ -315,7 +337,8 @@ export default {
         selectedDesignation.value = newVal.designation
         selectedDepartment.value = newVal.department
         selectedRole.value = newVal.userRole
-        salary.value = newVal.salary;
+        selectedEmpStatus.value = newVal.empStatus
+        salary.value = newVal.salary
       }
     })
 
@@ -324,6 +347,7 @@ export default {
       selectedDesignation,
       selectedDepartment,
       selectedRole,
+      selectedEmpStatus,
       salary,
       updateEmployeeData,
       message,
@@ -331,7 +355,7 @@ export default {
     }
   }
 }
-</script> 
+</script>
 
 <style scoped>
 .message-container {

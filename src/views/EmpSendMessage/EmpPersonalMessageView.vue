@@ -51,7 +51,9 @@
                     >
                       <td>{{ message.sendFromFullName }}</td>
                       <td>{{ message.sendToMsgSubject }}</td>
-                      <td>{{ Date(message.MsgDate) }}</td>
+                      <!-- <td>{{ format(new Date(message.MsgDate),'MM/dd/yyyy') }}</td>
+                   -->
+                      <td>{{  Date(message.MsgDate).toString() }}</td>
                       <td class="text-center" style="width: 40px">
                         <!-- <button
                           @click.prevent="ViewMsg(message)"
@@ -143,6 +145,7 @@
 <script>
 import { useUserStore } from '@/stores/user'
 import { getAllMsg,deleteMsgData,updateReadMsgData } from '@/services/empData'
+import { format, compareAsc } from 'date-fns'
 
 export default {
   name: 'EmpPersonalMessageView',

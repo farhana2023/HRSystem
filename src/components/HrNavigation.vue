@@ -30,7 +30,7 @@
       <li class="nav-item">
         <RouterLink  class="nav-link collapsed" to="/EmpPersonalMessage">
           <i class="bi bi-mailbox"></i>
-          <span>View Message</span>
+          <span>My Inbox Message</span>
         </RouterLink>
       </li> 
       <li v-if="isAdmin" class="nav-item">
@@ -68,12 +68,12 @@
       </li>
       <!-- End Forms Nav -->
 
-      <li v-if="!isLogin" class="nav-item">
+      <!-- <li v-if="!isLogin" class="nav-item">
         <RouterLink class="nav-link collapsed" to="/register">
           <i class="bi bi-card-list"></i>
           <span>Register</span>
         </RouterLink>
-      </li>
+      </li> -->
       <!-- End Register Page Nav -->
 
       <li v-if="!isLogin" class="nav-item">

@@ -35,8 +35,7 @@
                     />
                   </div>
                 </div>
-
-
+<!-- 
                 <div class="row mb-3">
                   <label for="displayName" class="col-md-4 col-lg-3 col-form-label"
                     >Profile Image</label
@@ -44,7 +43,7 @@
                   <div class="col-md-8 col-lg-9">
                     <input type="file" class="form-control" id="customFile" />
                   </div>
-                </div>
+                </div> -->
 
                 <div class="row mb-3">
                   <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
@@ -198,9 +197,26 @@
                     </select>
                   </div>
                 </div>
-
                 <div class="row mb-3">
-                  <label for="company" class="col-md-4 col-lg-3 col-form-label">UserRole</label>
+                  <label for="Country" class="col-md-4 col-lg-3 col-form-label">Employment Status</label>
+                  <div class="col-md-8 col-lg-9">
+                    <select
+                      v-model="selectedEmpStatus"
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option selected>Select Status</option>
+                      <option
+                        v-for="(label, value) in empStatusOptions"
+                        :value="value"
+                        :key="value"
+                      >
+                        {{ label }}
+                      </option>
+                    </select>
+                  </div></div>
+                <div class="row mb-3">
+                  <label for="company" class="col-md-4 col-lg-3 col-form-label">User Role</label>
                   <div class="col-md-8 col-lg-9">
                     <select
                       v-model="selectedRole"
@@ -243,7 +259,7 @@
 
 import db from '../firebase/db'
 
-import { collection, doc, getDoc, setDoc, addDoc,  } from 'firebase/firestore'
+import {  doc,  setDoc,  } from 'firebase/firestore'
 
 export default {
   name: 'EmpCreateProfileView',
@@ -264,6 +280,7 @@ export default {
       selecteddesignation: '',
       selectedDepartment:'',
       selectedRole:'',
+      selectedEmpStatus:'',
       dataSaved:false
     }
   },
@@ -315,6 +332,15 @@ export default {
       }
     },
 
+    empStatusOptions() {
+      return {
+        1: 'Full Time',
+        2: 'Part Time',
+        3: 'Contract',
+        4: 'Internship'
+      }
+    },
+
   },
 
   mounted() {
@@ -339,7 +365,9 @@ export default {
         salary:this.salary,
         designation: this.designationOptions[this.selecteddesignation],
         department: this.departmentOptions[this.selectedDepartment],
-        userRole: this.userRoleOptions[this.selectedRole]
+        userRole: this.userRoleOptions[this.selectedRole],
+        empStatus:this.empStatusOptions[this.selectedEmpStatus]
+
       }
      const getEmpUserID=this.$route.query.id;
       console.log('foruserID:' ,getEmpUserID);

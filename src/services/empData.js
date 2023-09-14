@@ -137,7 +137,9 @@ export async function updateEmpAdditionalData(emp,id)  {
         designation: emp.designation,
         department: emp.department,
         userRole: emp.userRole,
-        salary: emp.salary
+        salary: emp.salary,
+        empStatus:emp.empStatus
+        
        
     });
 }
