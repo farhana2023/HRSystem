@@ -8,7 +8,7 @@
             <img :src="imageUrl" width="120" alt="Profile" class="img-thumbnail">
             <div class="pt-2">
                 <a href="#" class="btn btn-primary btn-sm" title="Upload Hero Image" @click.prevent="uploadClicked()"><i class="bi bi-upload"></i></a>
-                <a href="#" class="btn btn-danger btn-sm" title="Remove Hero Image" @click.prevent="removeClicked()"><i class="bi bi-trash"></i></a>
+                <!-- <a href="#" class="btn btn-danger btn-sm" title="Remove Hero Image" @click.prevent="removeClicked()"><i class="bi bi-trash"></i></a> -->
             </div>
             </div>
         </div></div>
@@ -89,7 +89,7 @@
 <script>
 
 import { useUserStore } from '@/stores/user';
-import { updateEmpPersonalData, getEmpUserData, uploadProfileImage,resetEmpImage } from '@/services/empData'
+import { updateEmpPersonalData, getEmpUserData, uploadProfileImage } from '@/services/empData'
 
 import { useFileDialog } from '@vueuse/core'
 

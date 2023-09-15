@@ -1,6 +1,44 @@
 <template>
   <section>
     <form>
+      <div class="row mb-3" style="display: none">
+        <label for="TLUserID" class="col-md-4 col-lg-3 col-form-label">Assign TL</label>
+        <div class="col-md-8 col-lg-9">
+          <input
+            name="TLUserID"
+            type="text"
+            class="form-control"
+            id="TLUserID"
+            v-model="TLUserID"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="TLfullName" class="col-md-4 col-lg-3 col-form-label">Assign TL</label>
+        <div class="col-md-8 col-lg-9">
+          <span style="display: flex; align-items: center"
+            ><input
+              name="TLfullName"
+              type="text"
+              class="form-control"
+              id="TLfullName"
+              v-model="TLfullName"
+              style="width: 80%" />
+
+          
+            <button
+              style="padding: left:20px;"
+              @click.prevent="AddTLEmp()"
+              data-bs-toggle="modal"
+              data-bs-target="#ExtralargeModal"
+              type="button"
+              class="btn btn-primary btn-sm"
+            >
+              <i class="bi bi-person-plus"></i></button
+          ></span>
+        </div>
+      </div>
       <div class="row mb-3">
         <label for="Email" class="col-md-4 col-lg-3 col-form-label">Joining Date</label>
         <div class="col-md-8 col-lg-9">
@@ -55,7 +93,6 @@
         </div>
       </div>
 
-
       <div class="row mb-3">
         <label for="company" class="col-md-4 col-lg-3 col-form-label">UserRole</label>
         <div class="col-md-8 col-lg-9">
@@ -91,129 +128,125 @@
       </div>
     </form>
   </section>
+
+  <div
+    v-if="isPopupVisible"
+    class="modal fade"
+    id="ExtralargeModal"
+    tabindex="-1"
+    style="display: none"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Team leader</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="datatable-top">
+          
+          <div class="datatable-search">
+            <input
+              v-model="search"
+              class="datatable-input"
+              placeholder="Search..."
+              type="search"
+              title="Search within table"
+            />
+          </div>
+        </div>
+        <div class="datatable-container">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col">Name</th>
+                <th scope="col">Degisnation</th>
+                <th scope="col">Deparment</th>
+                <!-- <th scope="col">Add</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(employee, index) in LstTeamLeader" :key="index">
+                <!-- <th scope="row">{{ employee.id  }}</th> -->
+
+                <!-- <td class="linkEmp"><RouterLink :to="{ name:'emp_AdditionalData', 
+                params: {TLuserID: employee.id,
+                TLfullName:employee.fullName
+                
+                }}">
+                  
+                <span class="blue-text">{{ employee.fullName }}</span>
+                </RouterLink></td> -->
+                <td>{{ employee.fullName }}</td>
+                <td>{{ employee.designation }}</td>
+                <td>{{ employee.department }}</td>
+                
+                 <td class="text-center" style="width: 40px">
+                  <button
+                    @click.prevent="sendTLData(employee)"
+                    type="button"
+                
+                    class="btn btn-primary btn-sm"
+                  >
+                    <i class="bi bi-person-plus"></i>
+                  </button>
+                </td>
+            
+              </tr>
+            </tbody>
+          </table>
+        </div>
+       
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <!-- <button
+            @click.prevent=""
+            type="button"
+            data-bs-dismiss="modal"
+            class="btn btn-primary"
+          >
+            Add
+          </button> -->
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
-
-<!-- 
-<script>
-import { computed, ref, watchEffect } from 'vue'
-import { useEmpStore } from '@/stores/empStore'
-import { updateEmpAdditionalData } from '@/services/empData'
-export default {
-  name: 'EmpAdditionalDataView',
-
-
-  data() {
-    return {
-
-      empID: '',
-      email: '',
-      joiningDate:'',
-      selectedRole: '',
-      selectedDepartment: '',
-      selectedDesignation:'',
-      salary:0,
-      dataSaved: false,
-      message: '',
-      errorMessage: '',
-
-    }
-
-  },
-
-  designationOptions() {
-      return {
-        'Junior Developer': 'Junior Developer',
-        'Technical Support Specialist': 'Technical Support Specialist',
-        'QA Tester': 'QA Tester',
-        'Developer / Programmer': 'Developer / Programmer',
-        'Network Engineer': 'Network Engineer',
-        'Database Administrator':'Database Administrator' ,
-        'IT Support Engineer': 'IT Support Engineer',
-        'DevOps Engineer': 'DevOps Engineer',
-        'Senior Developer / Senior Programmer': 'Senior Developer / Senior Programmer',
-        'Systems Architect': 'Systems Architect'
-      }
-    },
-
-    departmentOptions() {
-      return {
-        'Software Development': 'Software Development',
-        'Quality Assurance (QA)': 'Quality Assurance (QA)',
-        'QA Tester': 'QA Tester',
-        'Product Management': 'Product Management',
-        'Cybersecurity': 'Cybersecurity',
-        'Project Management': 'Project Management',
-        'DevOps': 'DevOps',
-        'Database Administration': 'Database Administration',
-        'Technical Writing / Documentation': 'Technical Writing / Documentation',
-        'Infrastructure Management': 'Infrastructure Management'
-      }
-    },
-
-    userRoleOptions() {
-      return {
-        'Admin': 'Admin',
-        'Team leader': 'Team leader',
-        'Employee': 'Employee'
-      }
-    
-  },
-  computed: {
-    empData() {
-      return useEmpStore;
-
-    
-    }, 
-
-
-  },
-  setup() {
-
-
-  const empStore = useEmpStore();
-
-  console.log('empStore', empStore);
-
-  return  { empStore }  
-
-},
-
-  
-  // setup() {
-  //   const empStore = useEmpStore()
-  //   console.log('empStore',empStore)
-  //   return { empStore };
-
-  // },
-
-  mounted() {
-    // console.log('empIndStoreData:', empPersonalStore);
-    this.joiningDate=this.empData.joiningDate;
-    console.log('joiningDate',  this.joiningDate);
-    // this.joiningDate = this.empStore.joiningDate;
-    // this.salary = this.empStore.salary;
-    // this.selectedDepartment = this.empStore.selectedDepartment;
-    // this.selectedDesignation = this.empStore.selectedDesignation;
-  
-
-  },
-
-
-}
-
-</script> -->
 
 <script>
 import { computed, ref, watch } from 'vue'
 import { useEmpStore } from '@/stores/empStore'
-import { updateEmpAdditionalData } from '@/services/empData'
+import { updateEmpAdditionalData,getAllTeamLeader } from '@/services/empData'
+
+// import HrEmpLstTeamLeader from '@/components/Admin/HrEmpLstTeamLeader.vue'
 
 export default {
   name: 'EmpAdditionalDataView',
+
+  // components: {
+  //   HrEmpLstTeamLeader
+  // },
+
+
   data() {
     return {
       empID: null,
-      EmpAdminData: null
+      EmpAdminData: null,
+      isPopupVisible: false,
+      TLData:[],
+      TLfullName:'',
+      TLUserID:'',
+      LstTeamLeader:[],
 
       // joiningDate: '',
       // selecteddesignation: '',
@@ -271,20 +304,42 @@ export default {
 
     userRoleOptions() {
       return {
-        'Admin': 'Admin',
+        Admin: 'Admin',
         'Team leader': 'Team leader',
-        'Employee': 'Employee'
+        Employee: 'Employee'
       }
     }
 
-    // userRoleOptions() {
-    //   return {
-    //     1: 'Admin',
-    //     2: 'Team leader',
-    //     3: 'Employee'
-    //   }
-    // }
   },
+
+  created(){
+            this.lstAllTeamLeader()
+        },
+
+  methods: {
+
+     AddTLEmp() {
+      this.isPopupVisible = true
+      console.log('isPopupVisible', this.isPopupVisible)
+    },
+
+    sendTLData(employee){
+
+      this.TLfullName=employee.fullName,
+      this.TLUserID=employee.TLUserID
+      console.log('TLUserID',employee);
+
+    },
+
+    async lstAllTeamLeader(){
+            const lstTL = await getAllTeamLeader()
+            console.log('LstTeamLeader', lstTL)
+            this.LstTeamLeader = lstTL ;
+                return this.LstTeamLeader;
+        },
+
+
+      },
 
   setup() {
     const empStore = useEmpStore()

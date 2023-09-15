@@ -17,7 +17,12 @@
         </RouterLink>
       </li> 
 
- 
+      <li class="nav-item">
+        <RouterLink  class="nav-link collapsed" to="/empAssignTeamLeader">
+          <i class="bi bi-mailbox"></i>
+          <span>Team Leader</span>
+        </RouterLink>
+      </li>  
 
       <li class="nav-item">
         <RouterLink  class="nav-link collapsed" to="/empListForSendMessage">

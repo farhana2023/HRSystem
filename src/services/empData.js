@@ -67,6 +67,25 @@ export async function updateReadMsgData(msg,id)  {
 //////////////////////For Message end////////////////////////////////////
 
 
+//---------Team Leader--------------------------//
+
+export async function getAllTeamLeader() {
+  const db = useFirestore();
+  const msgCollection = collection(db, 'EmployeeProfile');
+  const q = query(
+    msgCollection,
+    where('userRole', '==', 'Team leader')
+  );
+  const querySnapshot = await getDocs(q);
+
+  const messages = [];
+  querySnapshot.forEach((doc) => {
+    messages.push({ id: doc.id, ...doc.data() });
+  });
+
+  return messages;
+}
+
 export async function uploadProfileImage(file,id) {
         
     const imageFilePath = `${ id }_${file.name}`;

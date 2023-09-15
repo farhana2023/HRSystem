@@ -36,6 +36,8 @@ import EmpListForSendMessageView from '../views/EmpSendMessage/EmpListForSendMes
 import EmpSendMessageView from '../views/EmpSendMessage/EmpSendMessageView.vue';
 
 import EmpPersonalMessageView from '../views/EmpSendMessage/EmpPersonalMessageView.vue';
+import EmpAssignTeamLeaderView from '../views/EmpPersonalProfileView/EmpAssignTeamLeaderView.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -84,6 +86,16 @@ const router = createRouter({
 
 
     {
+      path: '/empAssignTeamLeader',
+      name: 'emp_AssignTeamLeader',
+      component: EmpAssignTeamLeaderView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
+    {
       path: '/empListForSendMessage',
       name: 'emp_ListForSendMessageView',
       component: EmpListForSendMessageView,
@@ -92,6 +104,7 @@ const router = createRouter({
         frame: true,
       }
     },
+
 
     {
       path: '/EmpPersonalMessage',
