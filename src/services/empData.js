@@ -157,7 +157,9 @@ export async function updateEmpAdditionalData(emp,id)  {
         department: emp.department,
         userRole: emp.userRole,
         salary: emp.salary,
-        empStatus:emp.empStatus
+        empStatus:emp.empStatus,
+        TLfullName:emp.TLfullName,
+        TLUserID:emp.TLUserID
         
        
     });

@@ -175,16 +175,7 @@
             </thead>
             <tbody>
               <tr v-for="(employee, index) in LstTeamLeader" :key="index">
-                <!-- <th scope="row">{{ employee.id  }}</th> -->
 
-                <!-- <td class="linkEmp"><RouterLink :to="{ name:'emp_AdditionalData', 
-                params: {TLuserID: employee.id,
-                TLfullName:employee.fullName
-                
-                }}">
-                  
-                <span class="blue-text">{{ employee.fullName }}</span>
-                </RouterLink></td> -->
                 <td>{{ employee.fullName }}</td>
                 <td>{{ employee.designation }}</td>
                 <td>{{ employee.department }}</td>
@@ -244,8 +235,8 @@ export default {
       EmpAdminData: null,
       isPopupVisible: false,
       TLData:[],
-      TLfullName:'',
-      TLUserID:'',
+       TLfullName:'',
+       TLUserID:'',
       LstTeamLeader:[],
 
       // joiningDate: '',
@@ -326,8 +317,7 @@ export default {
     sendTLData(employee){
 
       this.TLfullName=employee.fullName,
-      this.TLUserID=employee.TLUserID
-      console.log('TLUserID',employee);
+      this.TLUserID=employee.id
 
     },
 
@@ -355,6 +345,8 @@ export default {
     const selectedRole = ref('')
     const selectedEmpStatus = ref('')
     const salary = ref(0)
+    const  TLfullName=ref('')
+    const TLUserID=ref('')
     const message = ref('')
     const errorMessage = ref('')
 
@@ -372,8 +364,12 @@ export default {
         department: selectedDepartment.value,
         userRole: selectedRole.value,
         empStatus: selectedEmpStatus.value,
-        salary: salary.value
+        salary: salary.value,
+        TLfullName:TLfullName.value,
+        TLUserID:TLUserID.value
       }
+
+      console.log ('EmpData',empData);
 
       try {
         await updateEmpAdditionalData(empData, employeeID.value)
@@ -394,6 +390,8 @@ export default {
         selectedRole.value = newVal.userRole
         selectedEmpStatus.value = newVal.empStatus
         salary.value = newVal.salary
+        TLfullName.value=newVal.TLfullName
+        
       }
     })
 

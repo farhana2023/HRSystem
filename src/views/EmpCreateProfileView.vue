@@ -8,20 +8,6 @@
             <h5 class="card-title">Personal Information</h5>
             <section>
               <form>
-                <!-- <div class="row mb-3">
-                  <label for="uid" class="col-md-4 col-lg-3 col-form-label">User ID</label>
-                  <div class="col-md-8 col-lg-9">
-                    <input
-                      readonly
-                      name="uid"
-                      type="text"
-                      class="form-control readonly-input"
-                      id="uid"
-                      v-model="userId"
-                    />
-                  </div>
-                </div> -->
-
                 <div class="row mb-3">
                   <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                   <div class="col-md-8 col-lg-9">
@@ -35,15 +21,6 @@
                     />
                   </div>
                 </div>
-<!-- 
-                <div class="row mb-3">
-                  <label for="displayName" class="col-md-4 col-lg-3 col-form-label"
-                    >Profile Image</label
-                  >
-                  <div class="col-md-8 col-lg-9">
-                    <input type="file" class="form-control" id="customFile" />
-                  </div>
-                </div> -->
 
                 <div class="row mb-3">
                   <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
@@ -215,6 +192,12 @@
                       </option>
                     </select>
                   </div></div>
+
+
+
+
+
+
                 <div class="row mb-3">
                   <label for="company" class="col-md-4 col-lg-3 col-form-label">User Role</label>
                   <div class="col-md-8 col-lg-9">
@@ -230,6 +213,44 @@
                     </select>
                   </div>
                 </div>
+
+                <div class="row mb-3" style="display: none">
+        <label for="TLUserID" class="col-md-4 col-lg-3 col-form-label">Assign TL</label>
+        <div class="col-md-8 col-lg-9">
+          <input
+            name="TLUserID"
+            type="text"
+            class="form-control"
+            id="TLUserID"
+            v-model="TLUserID"
+          />
+        </div>
+      </div>
+                <div class="row mb-3">
+        <label for="TLfullName" class="col-md-4 col-lg-3 col-form-label">Assign TL</label>
+        <div class="col-md-8 col-lg-9">
+          <span style="display: flex; align-items: center"
+            ><input
+              name="TLfullName"
+              type="text"
+              class="form-control readonly-input"
+              id="TLfullName"
+              v-model="TLfullName"
+              style="width: 80%" />
+
+          
+            <button
+              style="padding: left:20px;"
+              @click.prevent="AddTLEmp()"
+              data-bs-toggle="modal"
+              data-bs-target="#ExtralargeModal"
+              type="button"
+              class="btn btn-primary btn-sm"
+            >
+              <i class="bi bi-person-plus"></i></button
+          ></span>
+        </div>
+      </div>
 
                 <div class="text-center">
                   <button
@@ -253,6 +274,90 @@
       </div>
     </div>
   </section>
+
+  <div
+    v-if="isPopupVisible"
+    class="modal fade"
+    id="ExtralargeModal"
+    tabindex="-1"
+    style="display: none"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Team leader</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="datatable-top">
+          
+          <div class="datatable-search">
+            <input
+              v-model="search"
+              class="datatable-input"
+              placeholder="Search..."
+              type="search"
+              title="Search within table"
+            />
+          </div>
+        </div>
+        <div class="datatable-container">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col">Name</th>
+                <th scope="col">Degisnation</th>
+                <th scope="col">Deparment</th>
+                <!-- <th scope="col">Add</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(employee, index) in LstTeamLeader" :key="index">
+
+                <td>{{ employee.fullName }}</td>
+                <td>{{ employee.designation }}</td>
+                <td>{{ employee.department }}</td>
+                
+                 <td class="text-center" style="width: 40px">
+                  <button
+                    @click.prevent="sendTLData(employee)"
+                    type="button"
+                
+                    class="btn btn-primary btn-sm"
+                  >
+                    <i class="bi bi-person-plus"></i>
+                  </button>
+                </td>
+            
+              </tr>
+            </tbody>
+          </table>
+        </div>
+       
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <!-- <button
+            @click.prevent=""
+            type="button"
+            data-bs-dismiss="modal"
+            class="btn btn-primary"
+          >
+            Add
+          </button> -->
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -260,6 +365,7 @@
 import db from '../firebase/db'
 
 import {  doc,  setDoc,  } from 'firebase/firestore'
+import { getAllTeamLeader } from '@/services/empData'
 
 export default {
   name: 'EmpCreateProfileView',
@@ -281,6 +387,12 @@ export default {
       selectedDepartment:'',
       selectedRole:'',
       selectedEmpStatus:'',
+      TLfullName:'',
+      TLUserID:'',
+      isPopupVisible : false,
+      LstTeamLeader:[],
+
+
       dataSaved:false
     }
   },
@@ -348,7 +460,40 @@ export default {
     console.log('getUserID:', getuserID)
     console.log('getemail:', this.$route.query.email)
   },
+
+  // created(){
+  //           this.lstAllTeamLeader()
+  //       },
   methods: {
+
+    
+   async AddTLEmp() {
+      this.isPopupVisible = true
+      console.log('isPopupVisible', this.isPopupVisible)
+
+      const lstTL = await getAllTeamLeader()
+            console.log('LstTeamLeader', lstTL)
+            this.LstTeamLeader = lstTL ;
+                return this.LstTeamLeader;
+
+    },
+
+    sendTLData(employee){
+
+      this.TLfullName=employee.fullName,
+      this.TLUserID=employee.id
+
+    },
+
+    
+    // async lstAllTeamLeader(){
+    //         const lstTL = await getAllTeamLeader()
+    //         console.log('LstTeamLeader', lstTL)
+    //         this.LstTeamLeader = lstTL ;
+    //             return this.LstTeamLeader;
+    //     },
+
+
    async sendEmpPersonalData() {
       const empPersonalData = {
         userId :this.$route.query.id,
@@ -366,7 +511,9 @@ export default {
         designation: this.designationOptions[this.selecteddesignation],
         department: this.departmentOptions[this.selectedDepartment],
         userRole: this.userRoleOptions[this.selectedRole],
-        empStatus:this.empStatusOptions[this.selectedEmpStatus]
+        empStatus:this.empStatusOptions[this.selectedEmpStatus],
+        TLUserID:this.TLUserID,
+        TLfullName:this.TLfullName
 
       }
      const getEmpUserID=this.$route.query.id;
