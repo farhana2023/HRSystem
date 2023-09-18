@@ -34,7 +34,7 @@
                     />
                   </div>
                 </div>
-                
+
                 <div class="row mb-3">
                   <label for="displayName" class="col-md-4 col-lg-3 col-form-label"
                     >User Name</label
@@ -64,7 +64,9 @@
                 </div>
 
                 <div class="row mb-3">
-                  <label for="dateofBirth" class="col-md-4 col-lg-3 col-form-label">Date of Birth</label>
+                  <label for="dateofBirth" class="col-md-4 col-lg-3 col-form-label"
+                    >Date of Birth</label
+                  >
                   <div class="col-md-8 col-lg-9">
                     <input type="date" class="form-control" v-model="dateOfBirth" />
                   </div>
@@ -123,7 +125,9 @@
                 </div>
 
                 <div class="row mb-3">
-                  <label for="joiningDate" class="col-md-4 col-lg-3 col-form-label">Joining Date</label>
+                  <label for="joiningDate" class="col-md-4 col-lg-3 col-form-label"
+                    >Joining Date</label
+                  >
                   <div class="col-md-8 col-lg-9">
                     <input type="date" class="form-control" v-model="joiningDate" />
                   </div>
@@ -132,7 +136,7 @@
                 <div class="row mb-3">
                   <label for="salary" class="col-md-4 col-lg-3 col-form-label">Salary</label>
                   <div class="col-md-8 col-lg-9">
-                  <input type="number" class="form-control" v-model="salary" />
+                    <input type="number" class="form-control" v-model="salary" />
                   </div>
                 </div>
 
@@ -175,7 +179,9 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="Country" class="col-md-4 col-lg-3 col-form-label">Employment Status</label>
+                  <label for="Country" class="col-md-4 col-lg-3 col-form-label"
+                    >Employment Status</label
+                  >
                   <div class="col-md-8 col-lg-9">
                     <select
                       v-model="selectedEmpStatus"
@@ -191,12 +197,8 @@
                         {{ label }}
                       </option>
                     </select>
-                  </div></div>
-
-
-
-
-
+                  </div>
+                </div>
 
                 <div class="row mb-3">
                   <label for="company" class="col-md-4 col-lg-3 col-form-label">User Role</label>
@@ -215,42 +217,41 @@
                 </div>
 
                 <div class="row mb-3" style="display: none">
-        <label for="TLUserID" class="col-md-4 col-lg-3 col-form-label">Assign TL</label>
-        <div class="col-md-8 col-lg-9">
-          <input
-            name="TLUserID"
-            type="text"
-            class="form-control"
-            id="TLUserID"
-            v-model="TLUserID"
-          />
-        </div>
-      </div>
+                  <label for="TLUserID" class="col-md-4 col-lg-3 col-form-label">Assign TL</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input
+                      name="TLUserID"
+                      type="text"
+                      class="form-control"
+                      id="TLUserID"
+                      v-model="TLUserID"
+                    />
+                  </div>
+                </div>
                 <div class="row mb-3">
-        <label for="TLfullName" class="col-md-4 col-lg-3 col-form-label">Assign TL</label>
-        <div class="col-md-8 col-lg-9">
-          <span style="display: flex; align-items: center"
-            ><input
-              name="TLfullName"
-              type="text"
-              class="form-control readonly-input"
-              id="TLfullName"
-              v-model="TLfullName"
-              style="width: 80%" />
+                  <label for="TLfullName" class="col-md-4 col-lg-3 col-form-label">Assign TL</label>
+                  <div class="col-md-8 col-lg-9">
+                    <span style="display: flex; align-items: center"
+                      ><input
+                        name="TLfullName"
+                        type="text"
+                        class="form-control readonly-input"
+                        id="TLfullName"
+                        v-model="TLfullName"
+                        style="width: 80%" />
 
-          
-            <button
-              style="padding: left:20px;"
-              @click.prevent="AddTLEmp()"
-              data-bs-toggle="modal"
-              data-bs-target="#ExtralargeModal"
-              type="button"
-              class="btn btn-primary btn-sm"
-            >
-              <i class="bi bi-person-plus"></i></button
-          ></span>
-        </div>
-      </div>
+                      <button
+                        style="padding: left:20px;"
+                        @click.prevent="AddTLEmp()"
+                        data-bs-toggle="modal"
+                        data-bs-target="#ExtralargeModal"
+                        type="button"
+                        class="btn btn-primary btn-sm"
+                      >
+                        <i class="bi bi-person-plus"></i></button
+                    ></span>
+                  </div>
+                </div>
 
                 <div class="text-center">
                   <button
@@ -297,51 +298,46 @@
 
         <div class="modal-body">
           <div class="datatable-top">
-          
-          <div class="datatable-search">
-            <input
-              v-model="search"
-              class="datatable-input"
-              placeholder="Search..."
-              type="search"
-              title="Search within table"
-            />
+            <div class="datatable-search">
+              <input
+                v-model="search"
+                class="datatable-input"
+                placeholder="Search..."
+                type="search"
+                title="Search within table"
+              />
+            </div>
           </div>
-        </div>
-        <div class="datatable-container">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <!-- <th scope="col">#</th> -->
-                <th scope="col">Name</th>
-                <th scope="col">Degisnation</th>
-                <th scope="col">Deparment</th>
-                <!-- <th scope="col">Add</th> -->
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(employee, index) in LstTeamLeader" :key="index">
+          <div class="datatable-container">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <!-- <th scope="col">#</th> -->
+                  <th scope="col">Name</th>
+                  <th scope="col">Degisnation</th>
+                  <th scope="col">Deparment</th>
+                  <!-- <th scope="col">Add</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(employee, index) in LstTeamLeader" :key="index">
+                  <td>{{ employee.fullName }}</td>
+                  <td>{{ employee.designation }}</td>
+                  <td>{{ employee.department }}</td>
 
-                <td>{{ employee.fullName }}</td>
-                <td>{{ employee.designation }}</td>
-                <td>{{ employee.department }}</td>
-                
-                 <td class="text-center" style="width: 40px">
-                  <button
-                    @click.prevent="sendTLData(employee)"
-                    type="button"
-                
-                    class="btn btn-primary btn-sm"
-                  >
-                    <i class="bi bi-person-plus"></i>
-                  </button>
-                </td>
-            
-              </tr>
-            </tbody>
-          </table>
-        </div>
-       
+                  <td class="text-center" style="width: 40px">
+                    <button
+                      @click.prevent="sendTLData(employee)"
+                      type="button"
+                      class="btn btn-primary btn-sm"
+                    >
+                      <i class="bi bi-person-plus"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div class="modal-footer">
@@ -361,10 +357,9 @@
 </template>
 
 <script>
-
 import db from '../firebase/db'
 
-import {  doc,  setDoc,  } from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore'
 import { getAllTeamLeader } from '@/services/empData'
 
 export default {
@@ -374,26 +369,25 @@ export default {
       userId: this.$route.params.id,
       email: this.$route.query.email,
       fullName: '',
-      displayName:'',
+      displayName: '',
       about: '',
-      dateOfBirth:'',
+      dateOfBirth: '',
       address: '',
       country: '',
       phone: '',
       selectedGender: '',
-      joiningDate:'',
-      salary:0,
+      joiningDate: '',
+      salary: 0,
       selecteddesignation: '',
-      selectedDepartment:'',
-      selectedRole:'',
-      selectedEmpStatus:'',
-      TLfullName:'',
-      TLUserID:'',
-      isPopupVisible : false,
-      LstTeamLeader:[],
+      selectedDepartment: '',
+      selectedRole: '',
+      selectedEmpStatus: '',
+      TLfullName: '',
+      TLUserID: '',
+      isPopupVisible: false,
+      LstTeamLeader: [],
 
-
-      dataSaved:false
+      dataSaved: false
     }
   },
 
@@ -440,7 +434,7 @@ export default {
       return {
         1: 'Admin',
         2: 'Team leader',
-        3: 'Employee',
+        3: 'Employee'
       }
     },
 
@@ -451,12 +445,11 @@ export default {
         3: 'Contract',
         4: 'Internship'
       }
-    },
-
+    }
   },
 
   mounted() {
-    const getuserID=this.$route.query.id;
+    const getuserID = this.$route.query.id
     console.log('getUserID:', getuserID)
     console.log('getemail:', this.$route.query.email)
   },
@@ -465,27 +458,20 @@ export default {
   //           this.lstAllTeamLeader()
   //       },
   methods: {
-
-    
-   async AddTLEmp() {
+    async AddTLEmp() {
       this.isPopupVisible = true
       console.log('isPopupVisible', this.isPopupVisible)
 
       const lstTL = await getAllTeamLeader()
-            console.log('LstTeamLeader', lstTL)
-            this.LstTeamLeader = lstTL ;
-                return this.LstTeamLeader;
-
+      console.log('LstTeamLeader', lstTL)
+      this.LstTeamLeader = lstTL
+      return this.LstTeamLeader
     },
 
-    sendTLData(employee){
-
-      this.TLfullName=employee.fullName,
-      this.TLUserID=employee.id
-
+    sendTLData(employee) {
+      ;(this.TLfullName = employee.fullName), (this.TLUserID = employee.id)
     },
 
-    
     // async lstAllTeamLeader(){
     //         const lstTL = await getAllTeamLeader()
     //         console.log('LstTeamLeader', lstTL)
@@ -493,37 +479,34 @@ export default {
     //             return this.LstTeamLeader;
     //     },
 
-
-   async sendEmpPersonalData() {
+    async sendEmpPersonalData() {
       const empPersonalData = {
-        userId :this.$route.query.id,
+        userId: this.$route.query.id,
         fullName: this.fullName,
         displayName: this.displayName,
         about: this.about,
-        dateOfBirth:this.dateOfBirth,
+        dateOfBirth: this.dateOfBirth,
         address: this.address,
         country: this.country,
         phone: this.phone,
         email: this.$route.query.email,
         gender: this.genderOptions[this.selectedGender],
-        joiningDate:this.joiningDate,
-        salary:this.salary,
+        joiningDate: this.joiningDate,
+        salary: this.salary,
         designation: this.designationOptions[this.selecteddesignation],
         department: this.departmentOptions[this.selectedDepartment],
         userRole: this.userRoleOptions[this.selectedRole],
-        empStatus:this.empStatusOptions[this.selectedEmpStatus],
-        TLUserID:this.TLUserID,
-        TLfullName:this.TLfullName
-
+        empStatus: this.empStatusOptions[this.selectedEmpStatus],
+        TLUserID: this.TLUserID,
+        TLfullName: this.TLfullName
       }
-     const getEmpUserID=this.$route.query.id;
-      console.log('foruserID:' ,getEmpUserID);
-      const  colRef = doc(db, 'EmployeeProfile',getEmpUserID)
+      const getEmpUserID = this.$route.query.id
+      console.log('foruserID:', getEmpUserID)
+      const colRef = doc(db, 'EmployeeProfile', getEmpUserID)
       const dataObj = empPersonalData
 
       try {
-
-   // await setDoc(userRef, user);
+        // await setDoc(userRef, user);
         const docRef = await setDoc(colRef, dataObj)
         console.log('User data saved to Firebase')
 
@@ -534,15 +517,12 @@ export default {
         }, 3000) // Display success message for 3 seconds
 
         // console.log('Document was created with ID', docRef.id)
-        this.$router.push({name: 'employeeList'});
-
+        this.$router.push({ name: 'employeeList' })
       } catch (error) {
         console.error('Error saving user data:', error)
       }
     }
-    },
-
-
+  }
 }
 </script>
 <style scoped>

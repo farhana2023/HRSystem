@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Change password</h2>
+        <h2>Change passwordvbcvbcvbfdgdf</h2>
     </div>
 </template>
 

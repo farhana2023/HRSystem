@@ -25,6 +25,7 @@
                     <tr>
                       <!-- <th scope="col">#</th> -->
                       <th scope="col">Name</th>
+                      <th scope="col">Joining Date</th>
                       <th scope="col">Degisnation</th>
                       <th scope="col">Deparment</th>
                       <!-- <th scope="col">Add</th> -->
@@ -32,23 +33,26 @@
                   </thead>
                   <tbody>
                     <tr v-for="(employee, index) in filteredTLEmployee" :key="index">
-                      <!-- <th scope="row">{{ employee.id  }}</th> -->
-
-                      <td>{{ employee.fullName }}</td>
+                      <td class="linkEmp"><RouterLink :to="{ name:'employeeProfileDetails', params: {empId: employee.id}}">
                         
-                   
+                       
+                        <span class="blue-text">{{ employee.fullName }}</span>
+                      
+                      </RouterLink></td>
+                      <td>{{ employee.joiningDate }}</td>
                       <td>{{ employee.designation }}</td>
                       <td>{{ employee.department }}</td>
                       
-                       <td class="text-center" style="width: 40px">
+                      <td class="text-center" style="width: 40px">
                         <button
-                          @click.prevent="sendTLData(employee)"
+                          @click.prevent="DeleteEmp(index)"
                           type="button"
-                          class="btn btn-primary btn-sm"
+                          class="btn btn-danger btn-sm"
                         >
-                          <i class="bi bi-person-plus"></i>
+                          <i class="bi bi-trash3"></i>
                         </button>
                       </td>
+                  
                   
                     </tr>
                   </tbody>
@@ -65,7 +69,7 @@
 
 <script>
 
-import { getAllTeamLeader } from '@/services/empData';
+import { getAllTeamLeader,deleteEmpData } from '@/services/empData';
 
 export default {
   name: 'HrEmpLstTeamLeader',
@@ -94,8 +98,38 @@ export default {
       async  sendTLData(employee) {
            this.$emit('send-TL-Data', employee);
               
+
+      },
+
+      
+    async DeleteEmp(index) {
+      const TLToDelete = this.LstTeamLeader[index];
+
+      const confirmDelete = window.confirm('Are you sure you want to permanently delete this employee?');
+
+      if (confirmDelete) {
+       // const CurrentUserID = employeeToDelete.data.uid;
+   
+        try {
+
+          //await deleteUser(CurrentUserID);
+
+          // Delete the employee data
+
+          console.log('TLToDelete',TLToDelete);
+          await deleteEmpData(TLToDelete);
+         // TLToDelete.splice(index,1);
+          this.LstTeamLeader.splice(index, 1);
+
           
+        } catch (error) {
+          console.error('Error deleting employee:', error);
+        }
+      } else {
+        // User canceled deletion
+        // No action needed if the user cancels; the employee won't be deleted.
       }
+    },
 
 
   },

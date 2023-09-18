@@ -23,7 +23,7 @@
               </li>
     
 
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <button
                   class="nav-link"
                   data-bs-toggle="tab"
@@ -32,19 +32,19 @@
                 >
                   Edit Additional Particulars
                 </button>
-              </li>
+              </li> -->
 
-<!--       
+      
               <li class="nav-item">
                 <button
                   class="nav-link"
                   data-bs-toggle="tab"
-                  data-bs-target="#profile-change-password"
-                  @click.prevent="passwordClicked()"
+                  data-bs-target="#profile-Additional-Particulars"
+                  @click.prevent="TestAdditionalClicked()"
                 >
-                 Change Password
+                Edit Addititonal Particulars
                 </button>
-              </li> -->
+              </li>
             </ul>
             <div class="tab-content pt-2">
               <div class="tab-pane fade show active profile-overview" id="profile-overview">
@@ -52,7 +52,12 @@
               </div>
 
             
-              <div class="tab-pane fade pt-3" id="profile-additional">
+              <!-- <div class="tab-pane fade pt-3" id="profile-additional">
+                <RouterView />
+              </div> -->
+
+
+              <div class="tab-pane fade pt-3" id="profile-Additional-Particulars">
                 <RouterView />
               </div>
 
@@ -108,12 +113,10 @@ export default {
             this.$router.push({name: 'emp_OverView', params: {id: this.empID}});
           },
     
-          AdditionalClicked() {
-            this.$router.push({name: 'emp_AdditionalData', params: {id: this.empID}});
+      
+          TestAdditionalClicked() {
+            this.$router.push({name: 'emp_EditAddititionalParticular', params: {id: this.empID}});
           }
-          // passwordClicked() {
-          //   this.$router.push({name: 'emp_ChangePasswordView', params: {id: this.empID}});
-          // }
          
         },
   computed: {

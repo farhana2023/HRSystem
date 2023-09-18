@@ -86,6 +86,46 @@ export async function getAllTeamLeader() {
   return messages;
 }
 
+
+export async function getAllLstEmployee() {
+  const db = useFirestore();
+  const msgCollection = collection(db, 'EmployeeProfile');
+  const q = query(
+    msgCollection,
+    where('userRole', '==', 'Employee')
+  );
+  const querySnapshot = await getDocs(q);
+
+  const messages = [];
+  querySnapshot.forEach((doc) => {
+    messages.push({ id: doc.id, ...doc.data() });
+  });
+
+  return messages;
+}
+
+
+export async function getAllMyTeamMembers(id) {
+  const db = useFirestore();
+  const msgCollection = collection(db, 'EmployeeProfile');
+  const q = query(
+    msgCollection,
+    //where('userRole', '==', 'Employee'),
+
+    where('TLUserID', '==', id)
+
+
+  );
+  const querySnapshot = await getDocs(q);
+
+  const messages = [];
+  querySnapshot.forEach((doc) => {
+    messages.push({ id: doc.id, ...doc.data() });
+  });
+
+  return messages;
+}
+
 export async function uploadProfileImage(file,id) {
         
     const imageFilePath = `${ id }_${file.name}`;

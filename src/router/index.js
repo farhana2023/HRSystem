@@ -15,13 +15,13 @@ import EmployeesView from '../views/EmployeesView.vue';
 
 import EditEmployee from '../views/EditEmployee.vue';
 
-import EmployeeListView from '../views/EmpParentListView.vue';
+import EmpAllLstView from '../views/Admin/EmpAllLstView.vue';
 
 import EmpCreateAccountView from '../views/EmpCreateAccountView.vue';
 import EmpCreateProfileView from '../views/EmpCreateProfileView.vue';
 import EmployeeProfileDetailsView    from '../views/EmployeeProfileDetailsView.vue';
 
-import EmpEditPersonalDataView from '../views/EmpDetailsView/EmpEditPersonalDataView.vue';
+import EmpEditAddititionalParticularView from '../views/EmpDetailsView/EmpEditAddititionalParticularView.vue';
 import EmpAdditionalDataView from '../views/EmpDetailsView/EmpAdditionalDataView.vue';
 import EmpChangePasswordView from '../views/EmpDetailsView/EmpChangePasswordView.vue';
 import EmpTeamDataView from '../views/EmpDetailsView/EmpTeamDataView.vue';
@@ -34,9 +34,11 @@ import EmpIndChangePasswordView from '../views/EmpPersonalProfileView/EmpIndChan
 import EmpListForSendMessageView from '../views/EmpSendMessage/EmpListForSendMessageView.vue';
 
 import EmpSendMessageView from '../views/EmpSendMessage/EmpSendMessageView.vue';
-
 import EmpPersonalMessageView from '../views/EmpSendMessage/EmpPersonalMessageView.vue';
-import EmpAssignTeamLeaderView from '../views/EmpPersonalProfileView/EmpAssignTeamLeaderView.vue';
+import EmpAssignTeamLeaderView from '../views/Admin/EmpAssignTeamLeaderView.vue';
+
+import EmpLstMyTeamMembersView from '../views/TeamLeader/EmpLstMyTeamMembersView.vue';
+import EmpViewTeamMemberProfileView from '../views/TeamLeader/EmpViewTeamMemberProfileView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -169,6 +171,26 @@ const router = createRouter({
     },
 
     {
+      path: '/empLstMyTeamMembers',
+      name: 'emp-LstMyTeamMembers',
+      component: EmpLstMyTeamMembersView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
+    {
+      path: '/EmpViewTeamMemberProfile',
+      name: 'emp-ViewTeamMemberProfile',
+      component: EmpViewTeamMemberProfileView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
+    {
       path: '/employeeList/:empId/detail',
       name: 'employeeProfileDetails',
       component: EmployeeProfileDetailsView,
@@ -185,9 +207,9 @@ const router = createRouter({
           component: EmpOverView,
         },
         {
-          path: 'EmpEditPersonalData',
-          name: 'emp_EditPersonalData',
-          component: EmpEditPersonalDataView,
+          path: 'EmpEditAddititionalParticular',
+          name: 'emp_EditAddititionalParticular',
+          component: EmpEditAddititionalParticularView,
         },
         {
           path: 'EmpAdditionalData',
@@ -208,9 +230,9 @@ const router = createRouter({
     },
 
     {
-      path: '/EmployeeList',
-      name: 'employeeList',
-      component: EmployeeListView,
+      path: '/EmployeeAllList',
+      name: 'emp_AllLstView',
+      component: EmpAllLstView,
       meta:{
         auth:true,
         frame: true,

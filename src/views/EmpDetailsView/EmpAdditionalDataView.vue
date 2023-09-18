@@ -295,9 +295,9 @@ export default {
 
     userRoleOptions() {
       return {
-        Admin: 'Admin',
+        'Admin': 'Admin',
         'Team leader': 'Team leader',
-        Employee: 'Employee'
+        'Employee': 'Employee'
       }
     }
 
