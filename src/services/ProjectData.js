@@ -10,6 +10,24 @@ export async function addNewProject(ProjectData)  {
     await addDoc(collection(db, 'EmpProjectsDetails'), ProjectData);
   }
 
+  export async function updateProjectData(ProjectData,id)  {
+    const db = useFirestore();
+    const ProjectRef = doc(db,'EmpProjectsDetails', id);
+    
+    await updateDoc(ProjectRef, {
+      projectTitle: ProjectData.projectTitle,
+      Client: ProjectData.Client,
+      ExStartDate: ProjectData.ExStartDate,
+      ExEndDate: ProjectData.ExEndDate,
+      ProjectDescription: ProjectData.ProjectDescription,
+      ProjectFile:ProjectData.ProjectFile,
+      Status:ProjectData.Status,
+      Priority:ProjectData.Priority,
+      TLfullName:ProjectData.TLfullName,
+      TLUserID:ProjectData.TLUserID   
+       
+    });
+}
 
   
 export async function getAllLstProject() {

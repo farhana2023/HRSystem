@@ -233,9 +233,10 @@
                   <div class="col-md-8 col-lg-9">
                     <span style="display: flex; align-items: center"
                       ><input
+                          readonly
                         name="TLfullName"
                         type="text"
-                        class="form-control readonly-input"
+                        class="form-control "
                         id="TLfullName"
                         v-model="TLfullName"
                         style="width: 80%" />

@@ -67,7 +67,7 @@
         <label for="company" class="col-md-4 col-lg-3 col-form-label">Department</label>
         <div class="col-md-8 col-lg-9">
           <select @change="onderpartmentChange($event)"
-            v-model="selectedDepartment"
+            v-model="selectedEmpDepartment"
             class="form-select"
             aria-label="Default select example"
           >
@@ -83,7 +83,7 @@
         <label for="company" class="col-md-4 col-lg-3 col-form-label">Employment Status</label>
         <div class="col-md-8 col-lg-9">
           <select @change="onempStatusChange($event)"
-            v-model="selectedEmpStatus"
+            v-model="selectedStatus"
             class="form-select"
             aria-label="Default select example"
           >
@@ -100,7 +100,7 @@
         <div class="col-md-8 col-lg-9">
           <select @change="onuserRoleChange($event)"
           
-          v-model="selectedRole" class="form-select" aria-label="Default select example">
+          v-model="selectedUserRole" class="form-select" aria-label="Default select example">
             <option selected>Select Role</option>
             <option v-for="(label, value) in userRoleOptions" :value="value" :key="value">
               {{ label }}
@@ -286,11 +286,11 @@ export default {
             const employeeData = computed(() => empStore.getEmp);
             console.log('emp', employeeData);
         
-            const selectedRole = computed(() => employeeData.value.userRole);
-            const selectedEmpStatus = computed(() => employeeData.value.empStatus);
-            const selectedDepartment = computed(() => employeeData.value.department);
+            const selectedUserRole = computed(() => employeeData.value.userRole);
+            const selectedStatus = computed(() => employeeData.value.empStatus);
+            const selectedEmpDepartment = computed(() => employeeData.value.department);
             const selectedDesignation = computed(() => employeeData.value.designation);
-            return { employeeData, selectedRole,selectedEmpStatus,selectedDepartment,selectedDesignation}; 
+            return { employeeData, selectedUserRole, selectedStatus, selectedEmpDepartment, selectedDesignation}; 
   },
 
   mounted() {
@@ -298,14 +298,19 @@ export default {
      this.TLfullName = this.employeeData.TLfullName;
      this.TLUserID=this.employeeData.TLUserID;
      this.salary=this.employeeData.salary;
-     this.selectedRole = this.employeeData.userRole;
-     this.selectedDepartment = this.employeeData.department;
+     this.selectedUserRole = this.employeeData.userRole;
+     this.selectedEmpDepartment = this.employeeData.department;
      this.selectedDesignation = this.employeeData.designation;
-     this.selectedEmpStatus = this.employeeData.empStatus;
+     this.selectedStatus = this.employeeData.empStatus;
      this.employeeID=this.employeeData.userId;
-     if (  this.selectedRole=='Employee'){
 
-      this.isEmployee=true;
+     if (  this.selectedUserRole ==='Employee'){
+      console.log('selectedRole',this.selectedUserRole);
+      this.isEmployee = this.selectedUserRole === 'Employee';
+      return this.isEmployee;
+     }
+     else{
+      this.isEmployee=false;
       return this.isEmployee;
      }
   },
@@ -336,21 +341,21 @@ export default {
 
     onderpartmentChange(e) 
     {
-      console.log("previous department:",this.selectedDepartment)
+      console.log("previous department:",this.selectedEmpDepartment)
       this.updateDepatment = e.target.value;
       console.log("Current department:",this.updateDepatment)
         
     },
     onuserRoleChange(e) 
     {
-      console.log("previous role:",this.selectedRole)
+      console.log("previous role:",this.selectedUserRole)
       this.updateUserRole = e.target.value;
       console.log("Current designation:",this.updateUserRole)
         
     },
     onempStatusChange(e) 
     {
-      console.log("previous designation:",this.selectedEmpStatus)
+      console.log("previous designation:",this.selectedStatus)
       this.updateEmpStatus = e.target.value;
       console.log("Current designation:",this.updateEmpStatus)
         

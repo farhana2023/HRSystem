@@ -33,7 +33,8 @@
 
     
   
-      <li v-if="isAdmin" class="nav-item">
+       <li v-if="isAdmin" class="nav-item"> 
+        <!-- <li  class="nav-item"> -->
         <a
           class="nav-link collapsed"
           data-bs-target="#forms-nav"
@@ -75,7 +76,12 @@
           <span>Projects</span>
         </RouterLink>
       </li>
-
+      <li class="nav-item">
+        <RouterLink  class="nav-link collapsed" to="/ListProject">
+          <i class="bi bi-envelope"></i>
+          <span>View Projects</span>
+        </RouterLink>
+      </li> 
   
         </ul>
       </li>

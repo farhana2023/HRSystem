@@ -39,25 +39,26 @@
                         <th scope="col">Client</th>
                         <th scope="col">Status</th>
                         <th scope="col">TL Name</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Delete</th>
                 
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="(Projects, index) in lstProjects" :key="index">
+                      <tr v-for="(Projects, index) in filteredProjects" :key="index">
   
-                        <!-- <td class="linkEmp"><RouterLink :to="{ name:'employeeProfileDetails', params: {empId: employee.id}}">
+                         <!-- <td class="linkEmp"><RouterLink :to="{ name:'employeeProfileDetails', params: {ProjectID: Projects.id}}">
                           
-                         
-                          <span class="blue-text">{{ employee.fullName }}</span>
+
+
+                          <span class="blue-text">{{ Projects.projectTitle }}</span>
                         
-                        </RouterLink></td> -->
-                        <td >{{ Projects.email }}</td>
-                        <td>{{ employee.designation }}</td>
-                        <td>{{ employee.joiningDate }}</td>
-                        <td>{{ employee.department }}</td>
-                        <td>{{ employee.TLfullName }}</td> 
-  
+                        </RouterLink></td>  -->
+                        <td >{{ Projects.projectTitle }}</td>
+                        <td>{{ Projects.Client }}</td>
+                        <td>{{ Projects.Status }}</td>
+                        <td>{{ Projects.TLfullName }}</td> 
+                        <td>{{ Projects.id }}</td> 
   
                         <td class="text-center" style="width: 40px">
                           <button
@@ -88,7 +89,7 @@
   
 
 <script>
-import {deleteProjectData,getAllLstProject } from '@/services/empData';
+import {deleteProjectData,getAllLstProject } from '@/services/ProjectData';
 
     export default {
         name:'ListProjectView',
@@ -97,6 +98,7 @@ import {deleteProjectData,getAllLstProject } from '@/services/empData';
         data() {
             return {
                 lstProjects: [],
+                search: '',
 
             }
         },    
@@ -108,29 +110,27 @@ import {deleteProjectData,getAllLstProject } from '@/services/empData';
 // console.log('From Child',this.lstEmployees);
 },
 computed: {
-filteredEmployee: function () {
-  return this.LstAllEmployees.filter((employee) => {
+filteredProjects: function () {
+  return this.lstProjects.filter((Projects) => {
+
     const searchTerm = this.search.toLowerCase()
-    const fullNameMatch = employee.fullName
-      ? employee.fullName.toLowerCase().includes(searchTerm)
+    const TitleMatch = Projects.projectTitle
+      ? Projects.projectTitle.toLowerCase().includes(searchTerm)
       : false
 
-    const emailMatch = employee.email
-      ? employee.email.toLowerCase().includes(searchTerm)
+    const ClientMatch = Projects.Client
+      ? Projects.Client.toLowerCase().includes(searchTerm)
       : false
-    const designationMatch = employee.designation
-      ? employee.designation.toLowerCase().includes(searchTerm)
-      : false
-    const departmentMatch = employee.department
-      ? employee.department.toLowerCase().includes(searchTerm)
+    const statusMatch = Projects.Status
+      ? Projects.Status.toLowerCase().includes(searchTerm)
       : false
 
-    const TlName = employee.TLfullName
-      ? employee.TLfullName.toLowerCase().includes(searchTerm)
+    const TlName = Projects.TLfullName
+      ? Projects.TLfullName.toLowerCase().includes(searchTerm)
       : false
 
     // Combine the conditions using logical OR (||) to find a match in any field
-    return fullNameMatch || emailMatch || designationMatch || departmentMatch || TlName
+    return TitleMatch || ClientMatch || statusMatch || TlName 
   })
 }
 },

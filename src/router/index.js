@@ -20,24 +20,27 @@ import EmpAllLstView from '../views/Admin/EmpAllLstView.vue';
 import EmpCreateAccountView from '../views/EmpCreateAccountView.vue';
 import EmpCreateProfileView from '../views/EmpCreateProfileView.vue';
 import EmployeeProfileDetailsView    from '../views/EmployeeProfileDetailsView.vue';
-
+//EmpDetailsView
 import EmpEditAddititionalParticularView from '../views/EmpDetailsView/EmpEditAddititionalParticularView.vue';
 import EmpAdditionalDataView from '../views/EmpDetailsView/EmpAdditionalDataView.vue';
 import EmpChangePasswordView from '../views/EmpDetailsView/EmpChangePasswordView.vue';
 import EmpTeamDataView from '../views/EmpDetailsView/EmpTeamDataView.vue';
 import EmpOverView from '../views/EmpDetailsView/EmpOverView.vue';
-
+//EmpPersonalProfile
 import EmpIndOverView from '../views/EmpPersonalProfileView/EmpIndOverView.vue';
 import EmpIndEditPersonalView from '../views/EmpPersonalProfileView/EmpIndEditPersonalView.vue';
 import EmpIndChangePasswordView from '../views/EmpPersonalProfileView/EmpIndChangePasswordView.vue';
-
+//SMS
 import EmpListForSendMessageView from '../views/EmpSendMessage/EmpListForSendMessageView.vue';
 
 import EmpSendMessageView from '../views/EmpSendMessage/EmpSendMessageView.vue';
 import EmpPersonalMessageView from '../views/EmpSendMessage/EmpPersonalMessageView.vue';
+//Admin
 import EmpAssignTeamLeaderView from '../views/Admin/EmpAssignTeamLeaderView.vue';
-
+//Project
 import AddProjectView from '../views/Projects/AddProjectView.vue';
+import ListProjectView from '../views/Projects/ListProjectView.vue';
+//Team Leader
 import EmpLstMyTeamMembersView from '../views/TeamLeader/EmpLstMyTeamMembersView.vue';
 import EmpViewTeamMemberProfileView from '../views/TeamLeader/EmpViewTeamMemberProfileView.vue';
 
@@ -198,6 +201,16 @@ const router = createRouter({
       path: '/AddProjectView',
       name: 'add-ProjectView',
       component: AddProjectView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
+    {
+      path: '/ListProject',
+      name: 'list-Project',
+      component: ListProjectView,
       meta:{
         auth:true,
         frame: true,
