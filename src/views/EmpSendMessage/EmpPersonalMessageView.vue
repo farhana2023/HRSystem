@@ -144,7 +144,10 @@
 
 <script>
 import { useUserStore } from '@/stores/user'
-import { getAllMsg,deleteMsgData,updateReadMsgData } from '@/services/empData'
+
+import { getAllMsg,deleteMsgData,updateReadMsgData } from '@/services/MessageData'
+
+//import { getAllMsg,deleteMsgData,updateReadMsgData } from '@/services/empData'
 
 
 export default {

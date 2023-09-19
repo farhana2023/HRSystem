@@ -32,9 +32,6 @@
       </li> 
 
     
-    
-   
-
   
       <li v-if="isAdmin" class="nav-item">
         <a
@@ -44,13 +41,13 @@
           href="#"
         >
           <i class="bi bi-people"></i><span>Admin</span
-          ><i class="bi bi-chevron-down ms-auto"></i>
+          ><i class="bi bi-chevron-down ms-auto-"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
          
           <li>
             <RouterLink  class="nav-link collapsed" to="/empCreateAccount"> 
-            <i class="bi bi-circle"></i>
+            <i class="bi bi-circle-fill"></i>
             <span>Create Employee Account</span>
             </RouterLink>
 
@@ -59,20 +56,25 @@
           <li>
 
             <RouterLink class="nav-link collapsed" to="/EmployeeAllList">
-              <i class="bi bi-circle"></i>
-              <span>View Employees</span>
+              <i class="bi bi-circle-fill"></i>
+              <span>View Employees-</span>
             </RouterLink>
           
           </li>
 
           <li class="nav-item">
         <RouterLink  class="nav-link collapsed" to="/empAssignTeamLeader">
-          <i class="bi bi-mailbox"></i>
+          <i class="bi bi-circle-fill"></i>
           <span>View Team Leader</span>
         </RouterLink>
       </li>  
 
-        
+      <li class="nav-item">
+        <RouterLink  class="nav-link collapsed" to="/AddProjectView">
+          <i class="bi bi-circle-fill"></i>
+          <span>Projects</span>
+        </RouterLink>
+      </li>
 
   
         </ul>

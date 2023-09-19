@@ -87,8 +87,8 @@
 
 <script>
 import { useUserStore } from '@/stores/user';
-import { addSendtoEmp } from '@/services/empData'
-
+//import { addSendtoEmp } from '@/services/empData'
+import { addSendtoEmp } from '@/services/MessageData'
 export default {
   name: 'EmpSendMessageView',
 

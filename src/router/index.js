@@ -37,8 +37,10 @@ import EmpSendMessageView from '../views/EmpSendMessage/EmpSendMessageView.vue';
 import EmpPersonalMessageView from '../views/EmpSendMessage/EmpPersonalMessageView.vue';
 import EmpAssignTeamLeaderView from '../views/Admin/EmpAssignTeamLeaderView.vue';
 
+import AddProjectView from '../views/Projects/AddProjectView.vue';
 import EmpLstMyTeamMembersView from '../views/TeamLeader/EmpLstMyTeamMembersView.vue';
 import EmpViewTeamMemberProfileView from '../views/TeamLeader/EmpViewTeamMemberProfileView.vue';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -184,6 +186,18 @@ const router = createRouter({
       path: '/EmpViewTeamMemberProfile',
       name: 'emp-ViewTeamMemberProfile',
       component: EmpViewTeamMemberProfileView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
+
+    
+    {
+      path: '/AddProjectView',
+      name: 'add-ProjectView',
+      component: AddProjectView,
       meta:{
         auth:true,
         frame: true,
