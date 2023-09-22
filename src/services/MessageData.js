@@ -11,8 +11,14 @@ export async function getAllMsg(empId) {
     const querySnapshot = await getDocs(q);
   
     const messages = [];
+
     querySnapshot.forEach((doc) => {
-      messages.push({ id: doc.id, ...doc.data() });
+//debugger
+       const messageDate = new Date();
+       messageDate.setTime(doc.data().MsgDate.seconds * 1000);
+       messages.push({ id: doc.id, ...doc.data(), MsgDate: messageDate });
+
+
       // messages.push(doc.data());
        //messages.push(doc.id());
     });

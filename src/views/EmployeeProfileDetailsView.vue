@@ -1,6 +1,14 @@
 
 <template>
   <section class="section profile">
+
+    <div class="row" >
+      <div class="col"  >
+        <nav aria-label="breadcrumb" class="rounded-3 p-2 mb-4"   style="background-color: #6082B6 ">
+            <h5 style="color:#ffff">Profile</h5>
+        </nav>
+      </div>
+    </div>
     <div class="row">
       <div class="col-xl-4">
         <HrEmpMainProfileCard />

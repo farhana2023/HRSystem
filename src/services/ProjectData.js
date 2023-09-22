@@ -5,6 +5,42 @@ import { collection, query, where, doc, getDoc, getDocs,  setDoc, addDoc, update
 import { uploadFireProjectFiles } from '../services/fireFileBucket';
 
 
+
+
+export async function getProjectDetails(id) {
+  const db = useFirestore();
+  const projectRef = doc(db,'EmpProjectsDetails', id);
+  const projectSnap = await getDoc(projectRef);
+  
+  if(projectSnap.exists()) {
+      return projectSnap.data();
+  }
+
+  return null;
+}
+
+export async function getAllMyProject(id) {
+  const db = useFirestore();
+  const projectCollection = collection(db, 'EmpProjectsDetails');
+  const q = query(
+    projectCollection,
+    //where('userRole', '==', 'Employee'),
+
+    where('TLUserID', '==', id)
+
+
+  );
+  const querySnapshot = await getDocs(q);
+
+  const Projects = [];
+  querySnapshot.forEach((doc) => {
+    Projects.push({ id: doc.id, ...doc.data() });
+  });
+
+  return Projects;
+}
+
+
 export async function addNewProject(ProjectData)  {
     const db = useFirestore();
     await addDoc(collection(db, 'EmpProjectsDetails'), ProjectData);
@@ -13,7 +49,7 @@ export async function addNewProject(ProjectData)  {
   export async function updateProjectData(ProjectData,id)  {
     const db = useFirestore();
     const ProjectRef = doc(db,'EmpProjectsDetails', id);
-    
+
     await updateDoc(ProjectRef, {
       projectTitle: ProjectData.projectTitle,
       Client: ProjectData.Client,

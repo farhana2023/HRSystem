@@ -40,6 +40,10 @@ import EmpAssignTeamLeaderView from '../views/Admin/EmpAssignTeamLeaderView.vue'
 //Project
 import AddProjectView from '../views/Projects/AddProjectView.vue';
 import ListProjectView from '../views/Projects/ListProjectView.vue';
+import EditProjectView from '../views/Projects/EditProjectView.vue';
+import CreateTasksByProjectView from '../views/Projects/CreateTasksByProjectView.vue';
+
+import LstProjectByTLView from '../views/Projects/LstProjectByTLView.vue';
 //Team Leader
 import EmpLstMyTeamMembersView from '../views/TeamLeader/EmpLstMyTeamMembersView.vue';
 import EmpViewTeamMemberProfileView from '../views/TeamLeader/EmpViewTeamMemberProfileView.vue';
@@ -211,6 +215,39 @@ const router = createRouter({
       path: '/ListProject',
       name: 'list-Project',
       component: ListProjectView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
+    {
+      path: '/LstProjectByTL',
+      name: 'Lst-ProjectByTL',
+      component: LstProjectByTLView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
+
+    
+    {
+      path: '/EditProject',
+      name: 'edit-Project',
+      component: EditProjectView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
+
+    {
+      path: '/CreateTasksByProject',
+      name: 'create-TasksByProject',
+      component: CreateTasksByProjectView,
       meta:{
         auth:true,
         frame: true,

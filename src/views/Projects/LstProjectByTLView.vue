@@ -40,33 +40,36 @@
                         <th scope="col">Status</th>
                         <th scope="col">TL Name</th>
                         <!-- <th scope="col">ID</th> -->
-                        <th scope="col">Delete</th>
+                        <th scope="col">Tasks</th>
+
                 
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="(Projects, index) in filteredProjects" :key="index">
   
-                         <!-- <td class="linkEmp"><RouterLink :to="{ name:'employeeProfileDetails', params: {ProjectID: Projects.id}}">
+                         <td class="linkEmp"><RouterLink :to="{ name:'edit-Project', query: {ProjectID: Projects.id}}">
                           
 
 
                           <span class="blue-text">{{ Projects.projectTitle }}</span>
                         
-                        </RouterLink></td>  -->
-                        <td >{{ Projects.projectTitle }}</td>
+                        </RouterLink></td> 
+                        <!-- <td >{{ Projects.projectTitle }}</td> -->
                         <td>{{ Projects.Client }}</td>
                         <td>{{ Projects.Status }}</td>
                         <td>{{ Projects.TLfullName }}</td> 
                         <!-- <td>{{ Projects.id }}</td>  -->
   
+
+                        
                         <td class="text-center" style="width: 40px">
                           <button
-                            @click.prevent="DeleteEmp(index)"
+                            @click.prevent="ProjectTasks(Projects)"
                             type="button"
-                            class="btn btn-danger btn-sm"
+                            class="btn btn-primary btn-sm"
                           >
-                            <i class="bi bi-trash3"></i> 
+                            <i class="bi bi-card-list"></i>
                           </button>
                         </td>
                     
@@ -87,31 +90,39 @@
     </section>
   </template>
   
-
-<script>
-import {deleteProjectData,getAllLstProject } from '@/services/ProjectData';
-
-    export default {
-        name:'ListProjectView',
-
-            
-        data() {
-            return {
-                lstProjects: [],
-                search: '',
-
-            }
-        },    
-        
- 
-        created (){
-        
-        this.getAllProjectList()
-// console.log('From Child',this.lstEmployees);
-},
-computed: {
+  <script>
+  import { getAllMyProject } from '@/services/ProjectData'
+  
+  import { useUserStore } from '@/stores/user'
+  
+  export default {
+    name: 'ProjectByTLView',
+    // props: ['lstEmployees'],
+  
+    data() {
+      return {
+        search: '',
+        LstAllProject: [],
+        TLUserID: ''
+      }
+    },
+  
+    setup() {
+      const empMyPersonalStore = useUserStore()
+      return { empMyPersonalStore }
+    },
+  
+    mounted() {
+      this.TLUserID = this.empMyPersonalStore.userId
+      console.log('TLuser', this.TLUserID)
+    },
+    created() {
+      this.getAllMyProjectList()
+      // console.log('From Child',this.lstEmployees);
+    },
+    computed: {
 filteredProjects: function () {
-  return this.lstProjects.filter((Projects) => {
+  return this.LstAllProject.filter((Projects) => {
 
     const searchTerm = this.search.toLowerCase()
     const TitleMatch = Projects.projectTitle
@@ -135,50 +146,45 @@ filteredProjects: function () {
 }
 },
 
-methods: {
-async getAllProjectList() {
-
-  try {
-    const lstproject = await getAllLstProject();
-    console.log('lstProjects', lstproject);
-    this.lstProjects = lstproject ;
-      return this.lstProjects;
-
-      } catch (error) {
-        console.error('Error fetching employee data:', error);
-      }
-},
-
-
-async DeleteEmp(index) {
-  const projectToDelete = this.lstProjects[index];
-
-  const confirmDelete = window.confirm('Are you sure you want to permanently delete this Project?');
-
-  if (confirmDelete) {
-
-
-    try {
-
   
-      await deleteProjectData(projectToDelete);
-      //employeeToDelete.splice(index,1);
-     this.lstProjects.splice(index, 1);
+    methods: {
+      async getAllMyProjectList() {
+        try {
+          console.log('tlID', this.empMyPersonalStore.userId)
+          const TLID = this.empMyPersonalStore.userId
+          const lstProject = await getAllMyProject(TLID)
+          console.log('LstAllProject', lstProject)
+          this.LstAllProject = lstProject
+          return this.LstAllProject
+        } catch (error) {
+          console.error('Error fetching project data:', error)
+        }
+      },
 
-      
-    } catch (error) {
-      console.error('Error deleting project:', error);
-    }
-  } else {
-    // User canceled deletion
-    // No action needed if the user cancels; the employee won't be deleted.
+      async ProjectTasks(Projects){
+      console.log('from Projects', Projects)
+      console.log('title', Projects.projectTitle)
+
+      this.$router.push({
+        name: 'create-TasksByProject',
+        query: {
+          id: Projects.id,
+          projectTitle: Projects.projectTitle,
+          Client: Projects.Client,
+          Description: Projects.ProjectDescription,
+        }
+      })
+    },
+    },
+
+
+
   }
-},
-},
-};
-</script>
-
-
-<style  scoped>
-
-</style>
+  </script>
+  
+  <style scoped>
+  .linkEmp .blue-text {
+    color: blue;
+  }
+  </style>
+  

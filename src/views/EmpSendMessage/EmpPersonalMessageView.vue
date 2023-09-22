@@ -53,7 +53,7 @@
                       <td>{{ message.sendToMsgSubject }}</td>
                       <!-- <td>{{ format(new Date(message.MsgDate),'MM/dd/yyyy') }}</td>
                    -->
-                      <td>{{  Date(message.MsgDate).toString() }}</td>
+                      <td>{{ message.MsgDate.toDateString() }}</td>
                       <td class="text-center" style="width: 40px">
                         <!-- <button
                           @click.prevent="ViewMsg(message)"
@@ -196,12 +196,37 @@ export default {
     this.getMsg()
   },
   methods: {
+
+//     async getMsg() {
+//   const userId = this.empPersonalStore.userId // Assuming you have a userId property in your store
+
+//   console.log('getuserId', userId)
+//   try {
+//     const Messages = await getAllMsg(userId);
+    
+//     if (Messages && Messages.MsgDate) {
+//       const seconds = Messages.MsgDate.seconds;
+//       Messages.MsgDate = new Date();
+//       Messages.MsgDate.setTime(seconds);
+//       console.log('Messages', Messages);
+//       this.lstMsg = Messages; // Assuming lstMsg is meant to store the messages
+//     } else {
+//       console.error('Messages or MsgDate is undefined.');
+//     }
+//   } catch (error) {
+//     console.error('Error fetching messages:', error);
+//   }
+// },
+
     async getMsg() {
       const userId = this.empPersonalStore.userId // Assuming you have a userId property in your store
 
       console.log('getuserId', userId)
       const Messages = await getAllMsg(userId)
-      console.log('Messages', Messages)
+     // const seconds=Messages.MsgDate.seconds;
+      Messages.MsgDate=new Date();
+     // Messages.MsgDate.setTime(seconds);
+      console.log('Messages', Messages);
       this.lstMsg = Messages // Assuming lstMsg is meant to store the messages
     },
 

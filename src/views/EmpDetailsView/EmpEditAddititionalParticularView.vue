@@ -257,7 +257,7 @@ export default {
         'QA Tester': 'QA Tester',
         'Product Management': 'Product Management',
         'Cybersecurity': 'Cybersecurity',
-        'Project Management': 'Project Management',
+
         'DevOps': 'DevOps',
         'Database Administration': 'Database Administration',
         'Technical Writing / Documentation': 'Technical Writing / Documentation',
