@@ -42,11 +42,14 @@ import AddProjectView from '../views/Projects/AddProjectView.vue';
 import ListProjectView from '../views/Projects/ListProjectView.vue';
 import EditProjectView from '../views/Projects/EditProjectView.vue';
 import CreateTasksByProjectView from '../views/Projects/CreateTasksByProjectView.vue';
-
 import LstProjectByTLView from '../views/Projects/LstProjectByTLView.vue';
+import EmpMyTasksListView from '../views/Projects/EmpMyTasksListView.vue';
+import TaskStatusView from '../views/Projects/TaskStatusView.vue';
+
 //Team Leader
 import EmpLstMyTeamMembersView from '../views/TeamLeader/EmpLstMyTeamMembersView.vue';
 import EmpViewTeamMemberProfileView from '../views/TeamLeader/EmpViewTeamMemberProfileView.vue';
+
 
 
 const router = createRouter({
@@ -199,7 +202,7 @@ const router = createRouter({
       }
     },
 
-
+//----------------------Project---------------------------//
     
     {
       path: '/AddProjectView',
@@ -254,6 +257,29 @@ const router = createRouter({
       }
     },
 
+
+    
+    {
+      path: '/EmpMyTasksList',
+      name: 'emp-MyTasksListView',
+      component: EmpMyTasksListView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
+
+    {
+      path: '/TaskStatus',
+      name: 'task-Status',
+      component: TaskStatusView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+//------------------------EmpDetails---------------------------//
     {
       path: '/employeeList/:empId/detail',
       name: 'employeeProfileDetails',

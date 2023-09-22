@@ -24,12 +24,23 @@
         </RouterLink>
       </li>
 
+    
+
       <li class="nav-item">
         <RouterLink class="nav-link collapsed" to="/empListForSendMessage">
           <i class="bi bi-envelope"></i>
           <span>Send Message</span>
         </RouterLink>
       </li>
+
+      <li class="nav-item">
+        <RouterLink class="nav-link collapsed" to="/EmpMyTasksList">
+          <i class="bi bi-card-checklist"></i>
+          <span>My Tasks</span>
+        </RouterLink>
+      </li>
+
+      
 
       
       <li v-if="isAdmin" class="nav-item">

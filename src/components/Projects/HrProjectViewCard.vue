@@ -140,9 +140,9 @@
               <div class="card-body">
                 <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
                 </p>
-                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                <p class="mb-1" style="font-size: .77rem;">Web Design Test</p>
                 <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                  <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20"
                     aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
@@ -182,6 +182,7 @@ export default {
   data (){
     return{
         getProjectData:[],
+        testWidth:20
     } 
   },
 
