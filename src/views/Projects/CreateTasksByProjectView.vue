@@ -308,10 +308,12 @@ methods: {
       TMFullName: this.TMFullName,
       TMId: this.TMId,
 
-      TaskName: this.TaskName, // Access without "this"
+      TaskName: this.TaskName, 
       TaskDescription: this.TaskDescription,
       TaskAssignDate:this.TaskAssignDate,
       TaskDeliveryDate:this.TaskDeliveryDate,
+
+    
 
     };
     console.log('TaskList', empProjectTaskData);
@@ -322,7 +324,7 @@ methods: {
          this.dataSaved = true
         setTimeout(() => {
           this.dataSaved = false
-        //  this.$router.push({name: 'emp_ListForSendMessageView'});
+          this.$router.push({name: 'Lst-ProjectByTL'});
         }, 3000) // Display success message for 3 seconds
 
         // console.log('Document was created with ID', docRef.id)

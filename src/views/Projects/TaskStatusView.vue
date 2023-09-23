@@ -87,7 +87,7 @@
           ></textarea>
         </div>
       </div>
-    
+
 
       <div class="text-center">
         <button @click.prevent="UpdateTask()" type="submit" class="btn btn-secondary">
@@ -106,14 +106,16 @@
     </form></div></div>
   </div></div>
   </section>
+
 </template>
 
 
 
 <script>
+import { computed } from 'vue';
 import { useUserStore } from '@/stores/user';
 import { setFireTaskData } from '@/services/ProjectTasksData'
-
+import { useTaskStore } from '@/stores/ProjectTask'
 
 export default {
   name: 'TaskStatusView',
@@ -133,28 +135,67 @@ export default {
   },
 
   setup() {
-  const empSendFromStore = useUserStore();
-  console.log('empSendFromStore', empSendFromStore);
-  console.log('empSendFromEmail', empSendFromStore.email);
-  return {empSendFromStore};
+  const empStore = useUserStore();
+  console.log('empStore1111', empStore);
+
+   const taskStore = useTaskStore();
+   const getTaskData=taskStore.taskData;
+   console.log('taskStore', taskStore.taskData);
+   const taskData = computed(() => taskStore.getTaskData);
+   const TaskName = taskData.value[0]?.TaskName;
+   const TMFullName = taskData.value[0]?.TMFullName;
+   
+   const TMId = taskData.value[0]?.TMId;
+   const projectID = taskData.value[0]?.projectID;
+   const TaskAssignDate = taskData.value[0]?.TaskAssignDate;
+   const TaskDeliveryDate = taskData.value[0]?.TaskDeliveryDate;
+   const projectTitle = taskData.value[0]?.projectTitle;
+
+   console.log('taskData', getTaskData);
+   console.log('TaskName', TaskName); 
+
+  return {
+    empStore,
+    taskData,
+    TaskName,TMFullName,TMId,projectID,TaskAssignDate,projectTitle,TaskDeliveryDate
+  };
 },
+
+
 methods: {
   async UpdateTask() {
-    const TaskData = {
-        id: this.$route.query.id,
+    const updateTaskData = {
+      id: this.$route.query.id,
       TaskName: this.$route.query.TaskName,
       TaskDescription: this.$route.query.TaskDescription, 
-
       TaskStatus: this.TaskStatus,
       TaskUpdateDate: this.TaskUpdateDate,
-
       TaskUpdateSummary: this.TaskUpdateSummary, 
+      projectTitle:this.projectTitle,
+      projectID:this.projectID, 
+      TMFullName:this.TMFullName,
+      TMId: this.TMId,
+      TaskAssignDate:this.TaskAssignDate,
+      TaskDeliveryDate:  this.TaskDeliveryDate
+
+    //  TaskDescription:taskData.TaskDescription,
+    // TaskName:taskData.TaskName,
+    // TaskStatus: taskData.TaskStatus,
+    // TaskUpdateDate: taskData.TaskUpdateDate,
+    // TaskUpdateSummary: taskData.TaskUpdateSummary, 
+
+
+
+
+
+
+
    
     };
-    console.log('TaskData', TaskData);
+    console.log('updateTaskData', updateTaskData);
 
     try {
-        await setFireTaskData(TaskData);
+        await setFireTaskData(updateTaskData);
 
          this.dataSaved = true
         setTimeout(() => {

@@ -81,6 +81,8 @@ import { getMyTaskList } from '@/services/ProjectTasksData'
   
 import { useUserStore } from '@/stores/user'
 
+import { useTaskStore } from '@/stores/ProjectTask'
+
 
   export default {
     name: 'ProjectByTLView',
@@ -123,7 +125,7 @@ filteredTasks: function () {
       ? Tasks.TaskAssignDate.toLowerCase().includes(searchTerm)
       : false
 
-    const TlName = Tasks.TaskDeliveryDate
+    const TaskDeliveryDate = Tasks.TaskDeliveryDate
       ? Tasks.TaskDeliveryDate.toLowerCase().includes(searchTerm)
       : false
 
@@ -140,7 +142,14 @@ filteredTasks: function () {
           console.log('tlID', this.empMyPersonalStore.userId)
           const TMID = this.empMyPersonalStore.userId
           const lstTasks = await getMyTaskList(TMID)
-          console.log('LstAllMyTasks', lstTasks)
+
+          const taskStore = useTaskStore();
+          taskStore.setTaskData(lstTasks);
+          taskStore.setTaskID(lstTasks.id);
+            
+
+          console.log('MyTaskStore', taskStore);
+          console.log('LstAllMyTasks', lstTasks);
           this.LstAllTask = lstTasks
           return this.LstAllTask
         } catch (error) {
