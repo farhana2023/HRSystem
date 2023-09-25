@@ -7,14 +7,14 @@
         <div v-for="task in LstTaskProgressStatus" :key="task.id">
           <p class="mb-1 bold pt-3" style="font-size: .77rem;">{{ task ? task.TMFullName : 'Loading...' }}</p>
           <p class="mb-1" style="font-size: .77rem;">{{ task ? task.TaskName : 'Loading...' }}</p>
-          <div class="progress rounded" style="height: 5px;">
+          <div class="progress rounded" style="height: 15px;">
   
             <div class="progress-bar"
                  :style="{ width: task ? task.TaskStatus + '%' : '0%' }"
                  role="progressbar"
                  :aria-valuenow="task ? task.TaskStatus : 0"
                  aria-valuemin="0"
-                 aria-valuemax="100">
+                 aria-valuemax="100">{{ task ? (task.TaskStatus !== null ? task.TaskStatus + '%' : '0%') : 'Loading...' }}
             </div>
           </div>
         </div>
