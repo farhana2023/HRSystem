@@ -37,6 +37,7 @@ import EmpSendMessageView from '../views/EmpSendMessage/EmpSendMessageView.vue';
 import EmpPersonalMessageView from '../views/EmpSendMessage/EmpPersonalMessageView.vue';
 //Admin
 import EmpAssignTeamLeaderView from '../views/Admin/EmpAssignTeamLeaderView.vue';
+
 //Project
 import AddProjectView from '../views/Projects/AddProjectView.vue';
 import ListProjectView from '../views/Projects/ListProjectView.vue';
@@ -45,6 +46,7 @@ import CreateTasksByProjectView from '../views/Projects/CreateTasksByProjectView
 import LstProjectByTLView from '../views/Projects/LstProjectByTLView.vue';
 import EmpMyTasksListView from '../views/Projects/EmpMyTasksListView.vue';
 import TaskStatusView from '../views/Projects/TaskStatusView.vue';
+import UpdateProjectStatusView from '../views/Projects/UpdateProjectStatusView.vue';
 
 //Team Leader
 import EmpLstMyTeamMembersView from '../views/TeamLeader/EmpLstMyTeamMembersView.vue';
@@ -268,7 +270,15 @@ const router = createRouter({
         frame: true,
       }
     },
-
+    {
+      path: '/UpdateProjectStatus',
+      name: 'update-ProjectStatus',
+      component: UpdateProjectStatusView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
 
     {
       path: '/TaskStatus',

@@ -39,7 +39,7 @@
                         <th scope="col">Client</th>
                         <th scope="col">Status</th>
                         <th scope="col">TL Name</th>
-                        <!-- <th scope="col">ID</th> -->
+                        <th scope="col">Status</th>
                         <th scope="col">Tasks</th>
 
                 
@@ -61,7 +61,16 @@
                         <td>{{ Projects.TLfullName }}</td> 
                         <!-- <td>{{ Projects.id }}</td>  -->
   
-
+                                 
+                        <td class="text-center" style="width: 40px">
+                          <button
+                            @click.prevent="ProjectStatus(Projects)"
+                            type="button"
+                            class="btn btn-primary btn-sm"
+                          >
+                            <i class="bi bi-check2-square"></i>
+                          </button>
+                        </td>
                         
                         <td class="text-center" style="width: 40px">
                           <button
@@ -160,7 +169,22 @@ filteredProjects: function () {
           console.error('Error fetching project data:', error)
         }
       },
+    
 
+
+      async  ProjectStatus(Projects){
+      console.log('from Projects', Projects)
+      console.log('title', Projects.projectTitle)
+
+      this.$router.push({
+        name: 'update-ProjectStatus',
+        query: {
+          id: Projects.id,
+          projectTitle: Projects.projectTitle
+
+        }
+      })
+    },
       async ProjectTasks(Projects){
       console.log('from Projects', Projects)
       console.log('title', Projects.projectTitle)

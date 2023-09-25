@@ -6,6 +6,30 @@ import { uploadFireProjectFiles } from '../services/fireFileBucket';
 
 
 
+//////////ProjectProgress///////////
+
+export async function setProjectProgressData(ProgressData) {
+  const db = useFirestore();
+  const pProgressRef = doc(db, 'EmpProjectProgressStatus', ProgressData.id);
+  return await setDoc(pProgressRef, ProgressData);
+}
+
+
+export async function getProjectProgressData(id) {
+  const db = useFirestore();
+  const pProgressRef = doc(db,'EmpProjectProgressStatus', id);
+  const pPogressSnap = await getDoc(pProgressRef);
+  
+  if(pPogressSnap.exists()) {
+      return pPogressSnap.data();
+  }
+
+  return null;
+}
+
+
+////////////////-------//////////////////
+
 
 export async function getProjectDetails(id) {
   const db = useFirestore();
