@@ -1,6 +1,14 @@
 
 <template>
   <section class="section profile">
+
+    <div class="row" >
+      <div class="col"  >
+        <nav aria-label="breadcrumb" class="rounded-3 p-1 mb-4 header">
+            <h5 style="color:#ffff;font-weight: bold; margin-left: 10px;margin-top: 5px; ">  Personal Profile</h5>
+        </nav>
+      </div>
+    </div>
     <div class="row">
       <div class="col-xl-4">
         <HrEmpIndProfileCard />
@@ -121,4 +129,11 @@ export default {
 
 
 
-<style scoped></style>
+<style scoped>
+
+.header{
+      background-color: #6082B6;
+      font-weight: bold;
+      color:white 
+    }
+</style>

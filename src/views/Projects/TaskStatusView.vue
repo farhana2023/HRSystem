@@ -49,18 +49,15 @@
                 </div>
               </div>
 
-              <div class="row mb-3">
-                <label for="sendtofullName" class="col-md-4 col-lg-3 col-form-label"
+              
+
+
+              <div class="row mb-3 pt-3">
+                <label for="Email" class="col-md-4 col-lg-3 col-form-label"
                   >Task Status</label
                 >
                 <div class="col-md-8 col-lg-9">
-                  <input
-                    name="sendtofullName"
-                    type="text"
-                    id="sendtofullName"
-                    class="form-control"
-                    v-model="TaskStatus"
-                  />
+                  <input type="number" class="form-control"    v-model="TaskStatus" />
                 </div>
               </div>
 

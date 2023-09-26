@@ -1,7 +1,7 @@
 <template>
   <div class="card-body">
     <p class="mb-4 bold">
-      <span class="text-primary font-italic me-1">assigment</span> Project Status
+      <span class="text-primary font-italic me-1">Project Status</span> 
     </p>
 
     <div>
@@ -32,7 +32,7 @@
       <p class="mb-1" style="font-size: 0.99rem">Planning Progress</p>
       <div class="progress rounded" style="height: 15px">
         <div
-          class="progress-bar"
+          class="progress-bar progress-bar-striped progress-bar-animated"
           :style="{ width: PlanningProgress ? PlanningProgress + '%' : '0%' }"
           role="progressbar"
           :aria-valuenow="PlanningProgress ? PlanningProgress : 0"
@@ -54,7 +54,7 @@
       <p class="mb-1" style="font-size: 0.99rem">Analysis Progress</p>
       <div class="progress rounded" style="height: 15px">
         <div
-          class="progress-bar"
+          class="progress-bar progress-bar-striped bg-info progress-bar-animated"
           :style="{ width: AnalysisProgress ? AnalysisProgress + '%' : '0%' }"
           role="progressbar"
           :aria-valuenow="AnalysisProgress ? AnalysisProgress : 0"
@@ -76,7 +76,7 @@
       <p class="mb-1" style="font-size: 0.99rem">Design Progress</p>
       <div class="progress rounded" style="height: 15px">
         <div
-          class="progress-bar"
+          class="progress-bar progress-bar-striped bg-warning progress-bar-animated"
           :style="{ width: DesignProgress ? DesignProgress + '%' : '0%' }"
           role="progressbar"
           :aria-valuenow="DesignProgress ? DesignProgress : 0"
@@ -94,7 +94,7 @@
       <p class="mb-1" style="font-size: 0.99rem">Implementation Progress</p>
       <div class="progress rounded" style="height: 15px">
         <div
-          class="progress-bar"
+          class="progress-bar progress-bar-striped bg-danger progress-bar-animated"
           :style="{ width: ImplementationProgress ? ImplementationProgress + '%' : '0%' }"
           role="progressbar"
           :aria-valuenow="ImplementationProgress ? ImplementationProgress : 0"
@@ -115,7 +115,7 @@
       <p class="mb-1" style="font-size: 0.99rem">Testing Progress</p>
       <div class="progress rounded" style="height: 15px">
         <div
-          class="progress-bar"
+        class="progress-bar progress-bar-striped bg-info progress-bar-animated"
           :style="{ width: TestingProgress ? TestingProgress + '%' : '0%' }"
           role="progressbar"
           :aria-valuenow="TestingProgress ? TestingProgress : 0"
@@ -137,7 +137,7 @@
       <p class="mb-1" style="font-size: 0.99rem">Deployment Progress</p>
       <div class="progress rounded" style="height: 15px">
         <div
-          class="progress-bar"
+        class="progress-bar progress-bar-striped progress-bar-animated"
           :style="{ width: DeploymentProgress ? DeploymentProgress + '%' : '0%' }"
           role="progressbar"
           :aria-valuenow="DeploymentProgress ? DeploymentProgress : 0"
@@ -158,7 +158,7 @@
       <p class="mb-1" style="font-size: 0.99rem">MaintenanceProgress</p>
       <div class="progress rounded" style="height: 15px">
         <div
-          class="progress-bar"
+        class="progress-bar progress-bar-striped bg-success progress-bar-animated"
           :style="{ width: MaintenanceProgress ? MaintenanceProgress + '%' : '0%' }"
           role="progressbar"
           :aria-valuenow="MaintenanceProgress ? MaintenanceProgress : 0"

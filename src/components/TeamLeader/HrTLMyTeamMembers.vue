@@ -44,7 +44,7 @@
                         <th scope="col">TL Name</th>
               
                         
-                        <th scope="col">Assign Tasks</th>
+                        <!-- <th scope="col">Assign Tasks</th> -->
                       </tr>
                     </thead>
                     <tbody>
@@ -65,7 +65,7 @@
                      
   
   
-                        <td class="text-center" style="width: 40px">
+                        <!-- <td class="text-center" style="width: 40px">
                           <button
                             @click.prevent="AssinedEmp(index)"
                             type="button"
@@ -74,7 +74,7 @@
                             <i class="bi bi-card-list"></i>
                           </button>
                         </td>
-                    
+                     -->
                       </tr>
                     </tbody>
                   </table>

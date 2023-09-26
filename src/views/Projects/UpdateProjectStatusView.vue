@@ -200,6 +200,6 @@ export default {
 
 <style scoped>
 .Color {
-  background-color: rgb(236, 237, 239);
+  background-color: rgb(237, 239, 241);
 }
 </style>

@@ -3,17 +3,17 @@
   <div class="container py-2">
     <div class="row" >
       <div class="col"  >
-        <nav aria-label="breadcrumb" class="rounded-3 p-2 mb-4 bold"   style="background-color: #6082B6 ">
+        <nav aria-label="breadcrumb" class="rounded-3 p-2 mb-4 header">
             <h5 style="color:#fff">Project Summary</h5>
         </nav>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-lg-5 rounded-3" >
+      <div class="col-lg-5 rounded-3 " >
      
-        <div class="card mb- 4 ">
-          <div class="card-body m-4  rounded-3" >
+        <div class="card mb- 4 header">
+          <div class="card-body m-4  rounded-3 header" >
             <div class="row">
               <div class="col-sm-4 bold" >
              
@@ -172,14 +172,20 @@ export default {
 
 <style  scoped>
 
-.header {
+/* .header {
 
  background-color :#DBE2E9 ;
  font-weight:bold;
 
 
 
-}
+} */
+
+.header{
+      background-color: #6082B6;
+      font-weight: bold;
+      color:white 
+    }
 .bold {
     font-weight:bold
 }

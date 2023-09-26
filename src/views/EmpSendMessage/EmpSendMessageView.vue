@@ -95,7 +95,7 @@ export default {
   data() {
     return {
       sendFrom:[],
-      userId: this.$route.params.id,
+      userId: this.$route.query.id,
       sendtoEmail: this.$route.query.email,
       sendtofullName: this.$route.query.fullname, 
       sendtoMsgSubject: '',
@@ -126,7 +126,7 @@ methods: {
       sendToMsgSubject: this.sendtoMsgSubject,
       sendToMsgDetails: this.sendtoMsgDetails,
 
-      sendFromEmail: this.empSendFromStore.email, // Access without "this"
+      sendFromEmail: this.empSendFromStore.email, 
       sendFromUserID: this.empSendFromStore.userId,
       sendFromFullName:this.empSendFromStore.fullName,
 

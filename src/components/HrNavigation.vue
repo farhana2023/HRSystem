@@ -24,8 +24,6 @@
         </RouterLink>
       </li>
 
-    
-
       <li class="nav-item">
         <RouterLink class="nav-link collapsed" to="/empListForSendMessage">
           <i class="bi bi-envelope"></i>
@@ -33,18 +31,29 @@
         </RouterLink>
       </li>
 
-      <li class="nav-item">
+      <li v-if="isEmployee" class="nav-item">
         <RouterLink class="nav-link collapsed" to="/EmpMyTasksList">
           <i class="bi bi-card-checklist"></i>
           <span>My Tasks</span>
         </RouterLink>
       </li>
 
-      
+      <li v-if="isTeamLeader" class="nav-item">
+        <RouterLink class="nav-link collapsed" to="/empLstMyTeamMembers">
+          <i class="bi bi-people"></i>
+          <span>My Team Members</span>
+        </RouterLink>
+      </li>
+      <li v-if="isTeamLeader" class="nav-item">
+        <RouterLink class="nav-link collapsed" to="/LstProjectByTL">
+          <i class="bi bi-list-check"></i>
+          <span>My Projects</span>
+        </RouterLink>
+      </li>
 
-      
+
       <li v-if="isAdmin" class="nav-item">
-        <!-- <li  class="nav-item"> -->
+      
         <a
           class="nav-link collapsed"
           data-bs-target="#forms-nav"
@@ -75,14 +84,11 @@
               <span>View Team Leader</span>
             </RouterLink>
           </li>
-
-    
         </ul>
       </li>
 
-
       <li v-if="isAdmin" class="nav-item">
-        <!-- <li  class="nav-item"> -->
+
         <a
           class="nav-link collapsed"
           data-bs-target="#forms-nav"
@@ -93,7 +99,6 @@
           ><i class="bi bi-chevron-down ms-auto-"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-      
           <li class="nav-item">
             <RouterLink class="nav-link collapsed" to="/AddProjectView">
               <i class="bi bi-circle-fill"></i>
@@ -109,7 +114,7 @@
         </ul>
       </li>
 
-      <li v-if="isTeamLeader" class="nav-item">
+      <!-- <li v-if="isTeamLeader" class="nav-item">
         <a
           class="nav-link collapsed"
           data-bs-target="#forms-nav"
@@ -139,9 +144,9 @@
               <i class="bi bi-circle"></i>
               <span>Create Tasks</span>
             </RouterLink>
-          </li>
+          </li> 
         </ul>
-      </li>
+      </li> -->
 
       <!-- <li v-if="!isLogin" class="nav-item">
         <RouterLink class="nav-link collapsed" to="/register">

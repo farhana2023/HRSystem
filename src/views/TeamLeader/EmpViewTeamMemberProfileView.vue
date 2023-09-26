@@ -6,32 +6,34 @@
     <div class="row" >
       <div class="col"  >
         <nav aria-label="breadcrumb" class="rounded-3 p-2 mb-4"   style="background-color: #6082B6 ">
-            <h5 style="color:#fff">Employee Profile</h5>
+            <h5 style="color:#fff;font-weight: bold;">Employee Profile</h5>
         </nav>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
+    <div class="row" >
+      <div class="col-lg-4" >
+        <!-- <div class="card mb-4 pt-3">
+          <div class="card-body text-center"> -->
+            <div class="card Color">
+      <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
             <img
             :src="employeeData ? employeeData.imageUrl : ''"
             width="120"
             alt="Profile"
-            class="rounded-circle"
+            class="img-thumbnail"
           />
-            <h5 class="my-3">{{ employeeData ? employeeData.fullName : 'Loading...' }}</h5>
-            <p class="text-muted mb-1">{{ employeeData ? employeeData.designation : 'Loading...' }}</p>
-            <p class="text-muted mb-4">{{ employeeData ? employeeData.department : 'Loading...' }}</p>
+            <h5 class="my-3 bold">{{ employeeData ? employeeData.fullName : 'Loading...' }}</h5>
+            <p  style="font-weight: bold; color:white">{{ employeeData ? employeeData.designation : 'Loading...' }}</p>
+            <p class="bold" >{{ employeeData ? employeeData.department : 'Loading...' }}</p>
             <div class="d-flex justify-content-center mb-2">
-              <button  @click.prevent="SendMessage(employeeData)" type="button" class="btn btn-outline-primary ms-1">Message</button>
+              <button  @click.prevent="SendMessage(employeeData)" type="button" class="btn btn-outline-info ms-1">Message</button>
             </div>
           </div>
         </div>
     
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-8 ">
         <div class="card mb-4">
           <div class="card-body">
             
@@ -237,7 +239,7 @@ methods:
       this.$router.push({
         name: 'emp_SendMessage',
         query: {
-          id: employee.id,
+          id:  this.empID,
           email: employee.email,
           fullname: employee.fullName
         }
@@ -252,6 +254,16 @@ methods:
     
 
     
-    <style lang="scss" scoped>
-    
+    <style scoped>
+
+    .bold{
+ 
+      font-weight: bold;
+      color:white 
+    }
+    .Color {
+  background-color:  #6082B6;
+  color: white;
+  font-weight: bold;
+}
     </style>
