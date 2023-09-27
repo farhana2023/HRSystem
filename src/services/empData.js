@@ -105,6 +105,24 @@ export async function getAllLstEmployee() {
 }
 
 
+
+export async function getAllAdmin() {
+  const db = useFirestore();
+  const msgCollection = collection(db, 'EmployeeProfile');
+  const q = query(
+    msgCollection,
+    where('userRole', '==', 'Admin')
+  );
+  const querySnapshot = await getDocs(q);
+
+  const messages = [];
+  querySnapshot.forEach((doc) => {
+    messages.push({ id: doc.id, ...doc.data() });
+  });
+
+  return messages;
+}
+
 export async function getAllMyTeamMembers(id) {
   const db = useFirestore();
   const msgCollection = collection(db, 'EmployeeProfile');

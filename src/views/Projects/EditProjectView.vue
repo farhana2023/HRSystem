@@ -118,6 +118,8 @@
 
 
 
+  
+
         <!-- <div class="col-lg-7">
         <div class="card mb-4  ">
           <div class="card-body m-3">
@@ -141,6 +143,8 @@
 <script>
 import HrProjectTaskStatusCard from '@/components/Projects/HrProjectTaskStatusCard.vue'
 import HrProjectProgressCard from '@/components/Projects/HrProjectProgressCard.vue'
+
+
 import { getProjectDetails } from '@/services/ProjectData'
 
 import { useProjectStore } from '@/stores/Project'
@@ -150,6 +154,7 @@ export default {
   components: {
     HrProjectTaskStatusCard,
     HrProjectProgressCard
+
   },
   data() {
     return {

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="card">
-          <div class="card-header">Create New Employee Account</div>
+          <div class="card-header Color">Create New Employee Account</div>
           <div class="card-body pt-4">
             <form>
               <div class="row mb-3">
@@ -32,20 +32,22 @@
                 </div>
               </div>
 
-              <div class="text-center">
-                <button
-                  @click.prevent="registerUserClicked"
-                  type="submit"
-                  class="btn btn-secondary"
-                >
-                  create Account
-                </button>
-              </div>
+       
             </form>
           </div>
 
           <div class="card-footer">
-            <div v-if="dataSaved" class="alert alert-success mt-3">
+
+            <div class="text-center">
+                <button
+                  @click.prevent="registerUserClicked"
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  create Account
+                </button>
+              </div>
+            <div v-if="dataSaved" class="alert alert-success mt-3  pt-4">
               <Strong>Data saved successfully!</Strong>
             </div>
 
@@ -116,4 +118,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.Color {
+  background-color:  #6082B6;
+  color: white;
+  font-weight: bold;
+}
+</style>

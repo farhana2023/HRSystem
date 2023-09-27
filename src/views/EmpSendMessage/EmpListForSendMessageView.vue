@@ -1,13 +1,18 @@
 <template>
     <div>
-
-        <HrEmpListForMessage :lstEmployees="lstEmployees"></HrEmpListForMessage>
+        
+        <HrAllEmpLstForMessage :lstEmployees="lstEmployees"></HrAllEmpLstForMessage>
+        <!-- <HrEmpListForMessage :lstEmployees="lstEmployees"></HrEmpListForMessage> -->
 
     </div>
 </template>
 
 <script>
-import HrEmpListForMessage from '@/components/HrEmpListForMessage.vue'
+// import HrEmpListForMessage from '@/components/HrEmpListForMessage.vue'
+
+import HrAllEmpLstForMessage from '@/components/Message/HrAllEmpLstForMessage.vue'
+
+
 import db from '@/firebase/db'
 import {query,collection,getDocs } from 'firebase/firestore'
     export default {
@@ -15,7 +20,8 @@ import {query,collection,getDocs } from 'firebase/firestore'
 
         components:{
 
-            HrEmpListForMessage,
+            // HrEmpListForMessage,
+            HrAllEmpLstForMessage
         },
 
         data() {

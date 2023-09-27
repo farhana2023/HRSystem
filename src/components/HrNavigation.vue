@@ -11,6 +11,14 @@
 
       <!-- End Dashboard Nav -->
       <li class="nav-item">
+        <RouterLink class="nav-link collapsed" to="/EmpAdminDashboard">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </RouterLink>
+      </li>
+
+
+      <li class="nav-item">
         <RouterLink class="nav-link collapsed" to="/profile">
           <i class="bi bi-person"></i>
           <span>Profile</span>
