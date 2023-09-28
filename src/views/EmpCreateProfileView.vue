@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-8">
         <div class="card">
-          <div class="card-header">Create Employee Profile</div>
+          <div class="card-header Color">Create Employee Profile</div>
           <div class="card-body">
             <h5 class="card-title">Personal Information</h5>
             <section>
@@ -254,20 +254,22 @@
                   </div>
                 </div>
 
-                <div class="text-center">
-                  <button
-                    @click.prevent="sendEmpPersonalData"
-                    type="submit"
-                    class="btn btn-secondary"
-                  >
-                    Create Profile
-                  </button>
-                </div>
               </form>
             </section>
           </div>
 
           <div class="card-footer">
+
+            
+            <div class="text-center">
+                  <button
+                    @click.prevent="sendEmpPersonalData"
+                    type="submit"
+                    class="btn btn-primary"
+                  >
+                    Create Profile
+                  </button>
+                </div>
             <div v-if="dataSaved" class="alert alert-success mt-3">
               <Strong>Data saved successfully!</Strong>
             </div>
@@ -530,5 +532,12 @@ export default {
 .readonly-input {
   background-color: #e7e8e9; /* Set your desired background color */
   color: blue;
+}
+
+
+.Color {
+  background-color:  #6082B6;
+  color: white;
+  font-weight: bold;
 }
 </style>

@@ -39,6 +39,8 @@ import EmpPersonalMessageView from '../views/EmpSendMessage/EmpPersonalMessageVi
 import EmpAssignTeamLeaderView from '../views/Admin/EmpAssignTeamLeaderView.vue';
 
 import EmpAdminDashboardView from '../views/Admin/EmpAdminDashboardView.vue';
+import EmpAdminView from '../views/Admin/EmpAdminView.vue';
+
 
 //Project
 import AddProjectView from '../views/Projects/AddProjectView.vue';
@@ -216,6 +218,18 @@ const router = createRouter({
         frame: true,
       }
     },
+
+
+    {
+      path: '/EmpAdmin',
+      name: 'emp-AdminView',
+      component: EmpAdminView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
 
 //----------------------Project---------------------------//
     

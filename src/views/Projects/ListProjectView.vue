@@ -47,14 +47,14 @@
                     <tbody>
                       <tr v-for="(Projects, index) in filteredProjects" :key="index">
   
-                         <!-- <td class="linkEmp"><RouterLink :to="{ name:'employeeProfileDetails', params: {ProjectID: Projects.id}}">
+                        <td class="linkEmp"><RouterLink :to="{ name:'edit-Project', query: {ProjectID: Projects.id}}">
                           
 
 
                           <span class="blue-text">{{ Projects.projectTitle }}</span>
                         
-                        </RouterLink></td>  -->
-                        <td >{{ Projects.projectTitle }}</td>
+                        </RouterLink></td> 
+
                         <td>{{ Projects.Client }}</td>
                         <td>{{ Projects.Status }}</td>
                         <td>{{ Projects.TLfullName }}</td> 
@@ -180,5 +180,7 @@ async DeleteEmp(index) {
 
 
 <style  scoped>
-
+  .linkEmp .blue-text {
+    color: blue;
+  }
 </style>

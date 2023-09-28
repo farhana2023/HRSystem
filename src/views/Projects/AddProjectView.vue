@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-8">
         <div class="card">
-          <div class="card-header">New Project</div>
+          <div class="card-header Color">New Project</div>
           <div class="card-body pt-3">
             <form>
               <div class="row mb-3">
@@ -152,13 +152,15 @@
                 </div>
               </div>
 
-              <div class="text-center">
-                <button @click.prevent="AddProject()" type="submit" class="btn btn-secondary">
+         
+
+              <div class="card-footer">
+
+                <div class="text-center">
+                <button @click.prevent="AddProject()" type="submit" class="btn btn-primary">
                   Add Project
                 </button>
               </div>
-
-              <div class="card-footer">
                 <div v-if="dataSaved" class="alert alert-success mt-3">
                   <Strong>Project added successfully!</Strong>
                 </div>
@@ -362,4 +364,11 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.Color {
+  background-color:  #6082B6;
+  color: white;
+  font-weight: bold;
+}
+
+</style>

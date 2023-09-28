@@ -1,6 +1,6 @@
 <template>
     <div class="card-body">
-      <p class="mb-4 bold "><span class="text-primary font-italic me-1">assigment</span> Tasks Status
+      <p class="mb-4 bold "><span class="text-primary font-italic me-1">Project</span> Tasks Status
                   </p>
   
               <hr>

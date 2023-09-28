@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-lg-8">
         <div class="card">
-          <div class="card-header">Create Tasks</div>
+          <div class="card-header Color">Create Tasks</div>
           <div class="card-body pt-3">
     <form>
 
@@ -146,15 +146,17 @@
           </span>
         </div>
       </div>
-      <div class="text-center">
-        <button @click.prevent="CreateTask()" type="submit" class="btn btn-secondary">
-   Create Task
-        </button>
-      </div>
+  
 
   
       <div class="card-footer">
-            <div v-if="dataSaved" class="alert alert-success mt-3">
+
+        <div class="text-center">
+        <button @click.prevent="CreateTask()" type="submit" class="btn btn-primary">
+   Create Task
+        </button>
+      </div>
+            <div v-if="dataSaved" class="alert alert-success mt-3 pt-2">
               <Strong>Task created successfully!</Strong>
             </div>
           </div>
@@ -312,6 +314,7 @@ methods: {
       TaskDescription: this.TaskDescription,
       TaskAssignDate:this.TaskAssignDate,
       TaskDeliveryDate:this.TaskDeliveryDate,
+      TaskStatus:0
 
     
 
@@ -348,5 +351,9 @@ methods: {
 
 
 <style  scoped>
-
+.Color {
+  background-color:  #6082B6;
+  color: white;
+  font-weight: bold;
+}
 </style>

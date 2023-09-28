@@ -149,7 +149,7 @@
 
 <script>
 
-// import HrProjectTaskStatusCard from '@/components/Projects/HrProjectTaskStatusCard.vue'
+
 export default {
   name: 'HrProjectViewCard',
 

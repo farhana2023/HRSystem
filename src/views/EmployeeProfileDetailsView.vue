@@ -31,18 +31,6 @@
               </li>
     
 
-              <!-- <li class="nav-item">
-                <button
-                  class="nav-link"
-                  data-bs-toggle="tab"
-                  data-bs-target="#profile-additional"
-                  @click.prevent="AdditionalClicked()"
-                >
-                  Edit Additional Particulars
-                </button>
-              </li> -->
-
-      
               <li class="nav-item">
                 <button
                   class="nav-link"
@@ -85,8 +73,8 @@
 // import { ref, computed } from 'vue';
 import { doc, getDoc } from 'firebase/firestore'
 import db from '../firebase/db'
-import HrEmpMainProfileCard from '../components/HrEmpMainProfileCard.vue'
-import { useEmpStore } from '../stores/empStore'
+import HrEmpMainProfileCard from '@/components/EmpProfile/HrEmpMainProfileCard.vue'
+import { useEmpStore } from '@/stores/empStore'
 
 export default {
   name: 'EmployeeProfileDetailsView',

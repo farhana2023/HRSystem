@@ -105,7 +105,7 @@
   import { useUserStore } from '@/stores/user'
   
   export default {
-    name: 'ProjectByTLView',
+    name: 'LstProjectByTLView',
     // props: ['lstEmployees'],
   
     data() {

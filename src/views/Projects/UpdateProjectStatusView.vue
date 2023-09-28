@@ -2,11 +2,12 @@
   <section class="section">
     <div class="col-lg-8">
       <div class="card">
+        <div class="card-header Color">Project Progress</div>
         <div class="card-body">
-          <h5 class="card-title">Project Progress</h5>
+       
 
-          <ul class="list-group">
-            <li class="list-group-item Color">
+          <ul class="list-group pt-4">
+            <li class="list-group-item SDLC pt-2">
  
               <div class="row mb-3 pt-1">
                 <label for="Planning" class="col-md-4 col-lg-3 col-form-label">Planning</label>
@@ -91,14 +92,16 @@
         
         </div>
 
-        <div class="text-center">
-          <button @click.prevent="UpdateTask()" type="submit" class="btn btn-secondary">
+
+        <div class="card-footer">
+
+          <div class="text-center">
+          <button @click.prevent="UpdateTask()" type="submit" class="btn btn-primary">
             Update Status
           </button>
         </div>
 
-        <div class="card-footer">
-          <div v-if="dataSaved" class="alert alert-success mt-3">
+          <div v-if="dataSaved" class="alert alert-success mt-3 pt-2">
             <Strong>Progress Data updated successfully!</Strong>
           </div>
         </div>
@@ -116,6 +119,8 @@ export default {
   data() {
     return {
       ProjectID: this.$route.query.id,
+      projectTitle: this.$route.query.projectTitle,
+  
       PlanningProgress: '',
       AnalysisProgress: '',
       DesignProgress: '',
@@ -164,6 +169,7 @@ export default {
     async UpdateTask() {
       const ProjectProgressData = {
         id: this.ProjectID, // Use ProjectID directly from data
+        projectTitle:this.projectTitle,
         ProjectUpdateSummary: this.ProjectUpdateSummary,
         ProjectStatusUpdateDate: this.ProjectStatusUpdateDate,
 
@@ -187,7 +193,7 @@ export default {
         this.dataSaved = true
         setTimeout(() => {
           this.dataSaved = false
-          //  this.$router.push({ name: 'emp-MyTasksListView' });
+            this.$router.push({ name: 'Lst-ProjectByTL' });
         }, 3000) // Display success message for 3 seconds
       } catch (error) {
         console.error('Error updating  data:', error)
@@ -199,7 +205,13 @@ export default {
 </script>
 
 <style scoped>
+
 .Color {
+  background-color:  #6082B6;
+  color: white;
+  font-weight: bold;
+}
+.SDLC {
   background-color: rgb(237, 239, 241);
 }
 </style>

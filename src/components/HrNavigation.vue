@@ -79,10 +79,10 @@
             </RouterLink>
           </li>
 
-          <li>
-            <RouterLink class="nav-link collapsed" to="/EmployeeAllList">
+          <li class="nav-item">
+            <RouterLink class="nav-link collapsed" to="/EmpAdmin">
               <i class="bi bi-circle-fill"></i>
-              <span>View Employees-</span>
+              <span>View Admin</span>
             </RouterLink>
           </li>
 
@@ -92,6 +92,15 @@
               <span>View Team Leader</span>
             </RouterLink>
           </li>
+
+          <li>
+            <RouterLink class="nav-link collapsed" to="/EmployeeAllList">
+              <i class="bi bi-circle-fill"></i>
+              <span>View Employees-</span>
+            </RouterLink>
+          </li>
+
+     
         </ul>
       </li>
 

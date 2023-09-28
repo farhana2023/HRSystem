@@ -8,6 +8,24 @@ import { uploadFireProjectFiles } from '../services/fireFileBucket';
 
 //////////ProjectProgress///////////
 
+
+export async function getAllProjectProgress() {
+  const db = useFirestore();
+  const msgCollection = collection(db, 'EmpProjectProgressStatus');
+  const q = query(
+    msgCollection,
+   
+  );
+  const querySnapshot = await getDocs(q);
+
+  const projects = [];
+  querySnapshot.forEach((doc) => {
+      projects.push({ id: doc.id, ...doc.data() });
+  });
+
+  return projects;
+}
+
 export async function setProjectProgressData(ProgressData) {
   const db = useFirestore();
   const pProgressRef = doc(db, 'EmpProjectProgressStatus', ProgressData.id);

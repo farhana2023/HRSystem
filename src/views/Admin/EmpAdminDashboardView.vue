@@ -7,7 +7,7 @@
           <div class="col-xxl-4 col-xl-12 rounded success">
             <div class="card info-card customers-card">
               <div class="card-body">
-                <RouterLink :to="{ name: 'emp_AssignTeamLeader' }">
+                <RouterLink :to="{ name: 'emp-AdminView' }">
                   <h5 class="card-title" style="color: blue">Admins<span></span></h5>
                 </RouterLink>
 
@@ -85,13 +85,12 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Reports <span>/Today</span></h5>
+                  <RouterLink :to="{ name: 'list-Project' }">
+                  <h5 class="card-title" style="color: blue">Projects<span></span></h5>
+                </RouterLink>
 
-                  <!-- Line Chart -->
-                  
-           
-                  <!-- End Line Chart -->
 
+                <HrLstProjectStatusCard></HrLstProjectStatusCard>
                 </div>
 
               </div>
@@ -106,8 +105,14 @@
 <script>
 import { getAllTeamLeader, getAllLstEmployee, getAllAdmin } from '@/services/empData'
 
+import HrLstProjectStatusCard from '@/components/Projects/HrLstProjectStatusCard.vue'
+
+
 export default {
   name: 'EmpAdminDashboardView',
+  components:{
+    HrLstProjectStatusCard,
+  },
 
   data() {
     return {
