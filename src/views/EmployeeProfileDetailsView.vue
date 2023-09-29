@@ -19,7 +19,12 @@
             <!-- Bordered Tabs -->
             <ul class="nav nav-tabs nav-tabs-bordered">
 
+
               <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview" @click.prevent="overviewClicked()">Profile OverView</button>
+                </li>
+
+              <!-- <li class="nav-item">
                 <button
                   class="nav-link active"
                   data-bs-toggle="tab"
@@ -28,7 +33,7 @@
                 >
                   OverView 
                 </button>
-              </li>
+              </li> -->
     
 
               <li class="nav-item">
@@ -43,9 +48,11 @@
               </li>
             </ul>
             <div class="tab-content pt-2">
+             
+              
               <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                <RouterView />
-              </div>
+                  <RouterView />
+                </div>
 
             
               <!-- <div class="tab-pane fade pt-3" id="profile-additional">

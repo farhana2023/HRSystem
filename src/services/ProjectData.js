@@ -1,5 +1,5 @@
-import { useFirestore, useCollection, useDocument } from 'vuefire';
-
+import { useFirestore   } from 'vuefire';
+//import { useFirestore, useCollection, useDocument } from 'vuefire';
 import { collection, query, where, doc, getDoc, getDocs,  setDoc, addDoc, updateDoc, deleteDoc } from 'firebase/firestore'
 
 import { uploadFireProjectFiles } from '../services/fireFileBucket';

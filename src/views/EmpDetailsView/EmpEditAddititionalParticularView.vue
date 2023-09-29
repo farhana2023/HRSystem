@@ -83,7 +83,7 @@
         <label for="company" class="col-md-4 col-lg-3 col-form-label">Employment Status</label>
         <div class="col-md-8 col-lg-9">
           <select @change="onempStatusChange($event)"
-            v-model="selectedStatus"
+            v-model="selectedEmpStatus"
             class="form-select"
             aria-label="Default select example"
           >
@@ -116,13 +116,16 @@
         </div>
       </div>
 
-      <div class="text-center">
-        <button @click.prevent="updateEmployeeData" type="submit" class="btn btn-secondary">
+  
+
+      <div class="card-footer">
+
+
+        <div class="text-center">
+        <button @click.prevent="updateEmployeeData" type="submit" class="btn btn-primary">
           update Data
         </button>
       </div>
-
-      <div class="card-footer">
             <div v-if="dataSaved" class="alert alert-success mt-3">
               <Strong>Data saved successfully!</Strong>
             </div>
@@ -214,9 +217,9 @@ export default {
       department: '',
       salary: '',
       empStatus: '',
-      selectedRole: '',
+      selectedUserRole: '',
       dataSaved: false,
-      selecteddesignation: '',
+      selectedDesignation: '',
       selectedDepartment: '',
       isPopupVisible: false,
       selectedEmpStatus: '',
@@ -287,10 +290,10 @@ export default {
             console.log('emp', employeeData);
         
             const selectedUserRole = computed(() => employeeData.value.userRole);
-            const selectedStatus = computed(() => employeeData.value.empStatus);
+            const selectedEmpStatus = computed(() => employeeData.value.empStatus);
             const selectedEmpDepartment = computed(() => employeeData.value.department);
             const selectedDesignation = computed(() => employeeData.value.designation);
-            return { employeeData, selectedUserRole, selectedStatus, selectedEmpDepartment, selectedDesignation}; 
+            return { employeeData, selectedUserRole, selectedEmpStatus, selectedEmpDepartment, selectedDesignation}; 
   },
 
   mounted() {
@@ -299,9 +302,9 @@ export default {
      this.TLUserID=this.employeeData.TLUserID;
      this.salary=this.employeeData.salary;
      this.selectedUserRole = this.employeeData.userRole;
-     this.selectedEmpDepartment = this.employeeData.department;
+     this.selectedDepartment = this.employeeData.department;
      this.selectedDesignation = this.employeeData.designation;
-     this.selectedStatus = this.employeeData.empStatus;
+     this.selectedEmpStatus = this.employeeData.empStatus;
      this.employeeID=this.employeeData.userId;
 
      if (  this.selectedUserRole ==='Employee'){
@@ -376,14 +379,14 @@ export default {
           }
 
           if (this.updateDepatment === "") {
-            empData.department = this.selectedDepartment; // Use '=' to assign values
+            empData.department = this.selectedEmpDepartment; // Use '=' to assign values
           } else {
             empData.department = this.updateDepatment;
           }
 
           
           if (this.updateUserRole === "") {
-            empData.userRole = this.selectedRole; // Use '=' to assign values
+            empData.userRole = this.selectedUserRole; // Use '=' to assign values
           } else {
             empData.userRole = this.updateUserRole;
           }
@@ -405,9 +408,6 @@ export default {
 
 
 
-
-
-
       console.log('EmpData', empData);
 
       try {
@@ -417,7 +417,23 @@ export default {
         this.dataSaved = true
         setTimeout(() => {
           this.dataSaved = false
+
+          
+        if (empData.userRole==='Employee'){
+          this.$router.push({name: 'emp_AllLstView'});
+
+        }
+        if (empData.userRole==='Team leader'){
+          this.$router.push({name: 'emp_AssignTeamLeader'});
+
+        }
+
+        if (empData.userRole==='Admin'){
+          this.$router.push({name: 'emp-AdminView'});
+
+        }
         }, 3000) 
+
       
       } catch (error) {
          console.error('Error:', error);
@@ -427,168 +443,7 @@ export default {
 };
 </script>
 
-<!-- 
-<script>
-import { computed } from 'vue';
-import { useEmpStore } from '@/stores/empStore';
-import { updateEmpAdditionalData,getAllTeamLeader } from '@/services/empData'
 
-    export default {
-       name:'EmpEditAddititionalParticularView' ,
-
-    data() {
-    return {
-
-      TLfullName: '',
-      TLUserID: '',
-      joiningDate: '',
-      designation: '',
-      department: '',
-      salary: '',
-      empStatus: '',
-      selectedRole:'',
-      dataSaved: false,       
-      selecteddesignation: '',
-      selectedDepartment: '',
-      isPopupVisible:false,
-      selectedEmpStatus: '' ,
-      LstTeamLeader:[]
-     
-    }
-  },
-
-  computed: {
-  userRoleOptions() {
-    return {
-      'Admin': 'Admin',
-      'Team leader': 'Team leader',
-      'Employee': 'Employee'
-    }
-  },
-
-  empStatusOptions() {
-      return {
-        'Full Time': 'Full Time',
-        'Part Time': 'Part Time',
-        'Contract': 'Contract',
-        'Internship': 'Internship'
-      }
-    },
-
-    departmentOptions() {
-      return {
-        'Software Development': 'Software Development',
-        'Quality Assurance (QA)': 'Quality Assurance (QA)',
-        'QA Tester': 'QA Tester',
-        'Product Management': 'Product Management',
-        'Cybersecurity': 'Cybersecurity',
-        'Project Management': 'Project Management',
-        'DevOps': 'DevOps',
-        'Database Administration': 'Database Administration',
-        'Technical Writing / Documentation': 'Technical Writing / Documentation',
-        'Infrastructure Management': 'Infrastructure Management'
-      }
-    },
-
-    designationOptions() {
-      return {
-        'Junior Developer': 'Junior Developer',
-        'Technical Support Specialist': 'Technical Support Specialist',
-        'QA Tester': 'QA Tester',
-        'Developer / Programmer': 'Developer / Programmer',
-        'Network Engineer': 'Network Engineer',
-        'Database Administrator': 'Database Administrator',
-        'IT Support Engineer': 'IT Support Engineer',
-        'DevOps Engineer': 'DevOps Engineer',
-        'Senior Developer / Senior Programmer': 'Senior Developer / Senior Programmer',
-        'Systems Architect': 'Systems Architect'
-      }
-    },
-},
-
-  setup() {
-            const empStore = useEmpStore();
-            const employeeData = computed(() => empStore.getEmp);
-
-            const employeeID = computed(() => empStore.empId);
-            console.log('emp', employeeData);
-            console.log('empID', employeeID);
-            const selectedRole = computed(() => employeeData.value.userRole);
-            const selectedEmpStatus = computed(() => employeeData.value.empStatus);
-            const selectedDepartment = computed(() => employeeData.value.department);
-            const selectedDesignation = computed(() => employeeData.value.designation);
-            return { employeeData, selectedRole,selectedEmpStatus,selectedDepartment,selectedDesignation,employeeID};
-
-  },
-
-  // computed: {
-  //   empData() {
-  //     return empStore.user;
-  //   }
-    
- // },
-
-
-  mounted() {
-    
-    //  console.log('empAdditionalStore:', this.employeeData);
-     this.joiningDate = this.employeeData.joiningDate;
-     this.TLfullName = this.employeeData.TLfullName;
-     this.TLUserID=this.employeeData.TLUserID;
-     this.salary=this.employeeData.salary;
-     this.selectedRole = this.employeeData.userRole;
-     this.selectedDepartment = this.employeeData.department;
-     this.selectedDesignation = this.employeeData.designation;
-     this.selectedEmpStatus = this.employeeData.empStatus;
-  
-  },
-  methods:{
-
-    async AddTLEmp() {
-      this.isPopupVisible = true
-      console.log('isPopupVisible', this.isPopupVisible)
-
-      const lstTL = await getAllTeamLeader()
-      console.log('LstTeamLeader', lstTL)
-      this.LstTeamLeader = lstTL
-      return this.LstTeamLeader
-    },
-
-    sendTLData(employee) {
-      ;(this.TLfullName = employee.fullName), (this.TLUserID = employee.id)
-    },
-
-
-    const updateEmployeeData = async () => {
-      const empData = {
-        joiningDate: this.joiningDate,
-
-        designation: this.selectedDesignation,
-        department: this.selectedDepartment.value,
-        userRole: this.selectedRole.value,
-        empStatus: this.selectedEmpStatus.value,
-        salary: this.salary.value,
-        TLfullName:this.TLfullName.value,
-        TLUserID:this.TLUserID.value
-      }
-
-      console.log ('EmpData',empData);
-
-      try {
-        await updateEmpAdditionalData(empData, employeeID)
-        message.value = 'Employee data updated successfully'
-        errorMessage.value = ''
-      } catch (error) {
-        console.error('Error updating employee data:', error)
-        message.value = ''
-        errorMessage.value = 'Error updating employee data. Please try again.' // Set the error message
-      }
-    }
-  }
-
-  };
-    
-</script> -->
 
 <style  scoped>
 

@@ -56,7 +56,7 @@
                         <td>{{ employee.designation }}</td>
                         <td>{{ employee.department }}</td>
   
-                        <td class="text-center" style="width: 40px">
+                        <!-- <td class="text-center" style="width: 40px">
                           <button
                             @click.prevent="DeleteEmp(index)"
                             type="button"
@@ -64,7 +64,7 @@
                           >
                             <i class="bi bi-trash3"></i>
                           </button>
-                        </td>
+                        </td> -->
                       </tr>
                     </tbody>
                   </table>
