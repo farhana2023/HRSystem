@@ -97,6 +97,7 @@ export default {
   async mounted() {
     this.empID = this.$route.params.empId
     console.log('Employee ID:', this.empID)
+    this.$router.push({name: 'emp_OverView', params: {id: this.empID}});
 
     const docSnap = await getDoc(doc(db, 'EmployeeProfile', this.empID))
     if (docSnap.exists()) {

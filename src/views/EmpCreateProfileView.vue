@@ -517,6 +517,21 @@ export default {
         this.dataSaved = true
         setTimeout(() => {
           this.dataSaved = false
+
+
+          if (empPersonalData.userRole==='Employee'){
+          this.$router.push({name: 'emp_AllLstView'});
+
+        }
+        if (empPersonalData.userRole==='Team leader'){
+          this.$router.push({name: 'emp_AssignTeamLeader'});
+
+        }
+
+        if (empPersonalData.userRole==='Admin'){
+          this.$router.push({name: 'emp-AdminView'});
+
+        }
         }, 3000) // Display success message for 3 seconds
 
         // console.log('Document was created with ID', docRef.id)

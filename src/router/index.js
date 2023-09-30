@@ -55,6 +55,7 @@ import UpdateProjectStatusView from '../views/Projects/UpdateProjectStatusView.v
 //Team Leader
 import EmpLstMyTeamMembersView from '../views/TeamLeader/EmpLstMyTeamMembersView.vue';
 import EmpViewTeamMemberProfileView from '../views/TeamLeader/EmpViewTeamMemberProfileView.vue';
+import EmpLstTeamColleagueView from '../views/TeamLeader/EmpLstTeamColleagueView.vue';
 
 
 
@@ -213,6 +214,16 @@ const router = createRouter({
       path: '/EmpViewTeamMemberProfile',
       name: 'emp-ViewTeamMemberProfile',
       component: EmpViewTeamMemberProfileView,
+      meta:{
+        auth:true,
+        frame: true,
+      }
+    },
+
+    {
+      path: '/EmpLstTeamColleague',
+      name: 'emp-LstTeamColleague',
+      component: EmpLstTeamColleagueView,
       meta:{
         auth:true,
         frame: true,

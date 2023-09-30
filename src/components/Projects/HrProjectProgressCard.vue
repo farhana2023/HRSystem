@@ -154,7 +154,7 @@
         </div>
       </div>
     </div>
-    <div class="pt-2">
+    <!-- <div class="pt-2">
       <p class="mb-1" style="font-size: 0.99rem">MaintenanceProgress</p>
       <div class="progress rounded" style="height: 15px">
         <div
@@ -174,7 +174,7 @@
           }}
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -194,7 +194,7 @@ export default {
       ImplementationProgress: '',
       TestingProgress: '',
       DeploymentProgress: '',
-      MaintenanceProgress: '',
+      // MaintenanceProgress: '',
       ProjectUpdateDate: '',
       ProjectUpdateSummary: '',
       ProjectStatusUpdateDate: '',
@@ -225,7 +225,7 @@ export default {
           this.DeploymentProgress = pProgressData.DeploymentProgress
 
           this.TestingProgress = pProgressData.TestingProgress
-          this.MaintenanceProgress = pProgressData.MaintenanceProgress
+          // this.MaintenanceProgress = pProgressData.MaintenanceProgress
           this.ProjectStatusUpdateDate = pProgressData.ProjectStatusUpdateDate
           this.ProjectUpdateSummary = pProgressData.ProjectUpdateSummary
           this.OverAllProgress = pProgressData.OverAllProgress

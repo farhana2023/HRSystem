@@ -45,14 +45,14 @@
                 </div>
               </div>
 
-
+<!-- 
               <div class="row mb-3 pt-1">
                 <label for="Planning" class="col-md-4 col-lg-3 col-form-label">Maintenance</label>
                 <div class="col-md-4 col-lg-3">
                   <input type="number" class="form-control" v-model="MaintenanceProgress" />
                 </div>
                
-              </div>
+              </div> -->
 
             </li>
           </ul>
@@ -127,7 +127,7 @@ export default {
       ImplementationProgress: '',
       TestingProgress: '',
       DeploymentProgress: '',
-      MaintenanceProgress: '',
+      // MaintenanceProgress: '',
       ProjectUpdateDate: '',
       ProjectUpdateSummary: '',
       ProjectStatusUpdateDate: '',
@@ -157,7 +157,7 @@ export default {
           this.DeploymentProgress = pProgressData.DeploymentProgress
 
           this.TestingProgress = pProgressData.TestingProgress
-          this.MaintenanceProgress = pProgressData.MaintenanceProgress
+          // this.MaintenanceProgress = pProgressData.MaintenanceProgress
           this.ProjectStatusUpdateDate = pProgressData.ProjectStatusUpdateDate
           this.ProjectUpdateSummary = pProgressData.ProjectUpdateSummary
           this.OverAllProgress = pProgressData.OverAllProgress
@@ -182,7 +182,7 @@ export default {
         TestingProgress: this.TestingProgress === '' ? 0 : this.TestingProgress,
 
         DeploymentProgress: this.DeploymentProgress === '' ? 0 : this.DeploymentProgress,
-        MaintenanceProgress: this.MaintenanceProgress === '' ? 0 : this.MaintenanceProgress,
+        // MaintenanceProgress: this.MaintenanceProgress === '' ? 0 : this.MaintenanceProgress,
         OverAllProgress: this.OverAllProgress === '' ? 0 : this.OverAllProgress
       }
 

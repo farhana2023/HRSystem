@@ -10,7 +10,7 @@
       <!-- End Home Nav -->
 
       <!-- End Dashboard Nav -->
-      <li class="nav-item">
+      <li v-if="isAdmin"  class="nav-item">
         <RouterLink class="nav-link collapsed" to="/EmpAdminDashboard">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
@@ -38,6 +38,13 @@
           <span>Send Message</span>
         </RouterLink>
       </li>
+      <li v-if="isEmployee" class="nav-item">
+        <RouterLink class="nav-link collapsed" to="/EmpLstTeamColleague">
+          <i class="bi bi-people"></i>
+          <span>My Team Members</span>
+        </RouterLink>
+      </li>
+
 
       <li v-if="isEmployee" class="nav-item">
         <RouterLink class="nav-link collapsed" to="/EmpMyTasksList">
@@ -45,6 +52,7 @@
           <span>My Tasks</span>
         </RouterLink>
       </li>
+
 
       <li v-if="isTeamLeader" class="nav-item">
         <RouterLink class="nav-link collapsed" to="/empLstMyTeamMembers">

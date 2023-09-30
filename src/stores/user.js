@@ -177,6 +177,14 @@ export const useUserStore = defineStore('user', {
         return '';
       }
     },
+
+    TLUserID() {
+      if(this.user) {
+        return `${this.user.TLUserID}`;
+      } else {
+        return '';
+      }
+    },
     dateOfBirth() {
       if(this.user) {
         return `${this.user.dateOfBirth}`;

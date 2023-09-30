@@ -20,16 +20,16 @@
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="sendtoEmail" class="col-md-4 col-lg-3 col-form-label"
+                <label for="TaskName" class="col-md-4 col-lg-3 col-form-label"
                   >Task Tiltle</label
                 >
                 <div class="col-md-8 col-lg-9">
                   <input
                     readonly
-                    name="sendtoEmail"
+                    name="TaskName"
                     type="email"
                     class="form-control"
-                    id="sendtoEmail"
+                    id="TaskName"
                     v-model="TaskName"
                   />
                 </div>
@@ -40,9 +40,9 @@
                 <div class="col-md-8 col-lg-9">
                   <textarea
                     readonly
-                    name="about"
+                    name="TaskDescription"
                     class="form-control"
-                    id="about"
+                    id="TaskDescription"
                     style="height: 100px"
                     v-model="TaskDescription"
                   ></textarea>
@@ -56,7 +56,7 @@
                 <div class="col-md-8 col-lg-9">
                   <input
                     name="sendtofullName"
-                    type="text"
+                    type="number"
                     id="sendtofullName"
                     class="form-control"
                     v-model="TaskStatus"
@@ -93,7 +93,7 @@
               <div class="card-footer">
 
                 <div class="text-center">
-                <button @click.prevent="UpdateTask()" type="submit" class="btn btn-secondary">
+                <button @click.prevent="UpdateTask()" type="submit" class="btn btn-primary">
                   Update Status
                 </button>
               </div>
@@ -138,7 +138,7 @@ export default {
     const getTaskData = taskStore.taskData
     console.log('taskStore', taskStore.taskData)
     const taskData = computed(() => taskStore.getTaskData)
-    const TaskName = taskData.value[0]?.TaskName
+    // const TaskName = taskData.value[0]?.TaskName
     const TMFullName = taskData.value[0]?.TMFullName
 
     const TMId = taskData.value[0]?.TMId
@@ -148,12 +148,12 @@ export default {
     const projectTitle = taskData.value[0]?.projectTitle
 
     console.log('taskData', getTaskData)
-    console.log('TaskName', TaskName)
+    // console.log('TaskName', TaskName)
 
     return {
       empStore,
       taskData,
-      TaskName,
+      // TaskName,
       TMFullName,
       TMId,
       projectID,

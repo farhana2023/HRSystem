@@ -8,7 +8,9 @@
       <h2>{{ employeeData ? employeeData.fullName : 'Loading...' }}</h2>
       <h3>{{ employeeData ? employeeData.designation : 'Loading...' }}</h3>
       <h3>{{ employeeData ? employeeData.id : 'Loading...' }}</h3>
-
+      <div class="d-flex justify-content-center mb-2">
+              <button  @click.prevent="SendMessage(employeeData)" type="button" class="btn btn-outline-info ms-1">Message</button>
+            </div>
     </div>
   </div>
 </template>
@@ -26,6 +28,21 @@ export default {
     console.log('emstore', employeeData)
     return {
       employeeData
+    }
+  },
+
+  methods:{
+    SendMessage(employee) {
+      console.log('employee', employee)
+
+      this.$router.push({
+        name: 'emp_SendMessage',
+        query: {
+          id:  this.empID,
+          email: employee.email,
+          fullname: employee.fullName
+        }
+      })
     }
   }
 }

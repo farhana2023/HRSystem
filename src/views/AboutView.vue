@@ -107,7 +107,7 @@ export default {
         },
 
         mounted(){
-
+          this.$router.push({name: 'emp_IndOverView'});
         }, 
 
 

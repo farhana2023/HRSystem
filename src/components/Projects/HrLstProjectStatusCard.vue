@@ -14,7 +14,7 @@
         <p class="mb-1" style="font-size: 0.99rem">Project Progress</p>
         <div class="progress rounded" style="height: 20px">
           <div
-            class="progress-bar progress-bar-striped bg-success progress-bar-animated"
+            class="progress-bar progress-bar-striped bg-primary progress-bar-animated"
             :style="{ width: pProgress.OverAllProgress ? pProgress.OverAllProgress + '%' : '0%' }"
             role="progressbar"
             :aria-valuenow="pProgress.OverAllProgress ? pProgress.OverAllProgress : 0"
@@ -177,7 +177,7 @@ export default {
       ImplementationProgress: '',
       TestingProgress: '',
       DeploymentProgress: '',
-      MaintenanceProgress: '',
+      // MaintenanceProgress: '',
       ProjectUpdateDate: '',
       ProjectUpdateSummary: '',
       ProjectStatusUpdateDate: '',
@@ -204,19 +204,19 @@ export default {
         this.pProgressData = ProgressData
 
         console.log('this.pProgressData', this.pProgressData)
-        if (pProgressData) {
-          this.PlanningProgress = pProgressData.PlanningProgress
-          this.AnalysisProgress = pProgressData.AnalysisProgress
+        if (ProgressData) {
+          this.PlanningProgress = ProgressData.PlanningProgress
+          this.AnalysisProgress = ProgressData.AnalysisProgress
 
-          this.DesignProgress = pProgressData.DesignProgress
-          this.ImplementationProgress = pProgressData.ImplementationProgress
-          this.DeploymentProgress = pProgressData.DeploymentProgress
+          this.DesignProgress = ProgressData.DesignProgress
+          this.ImplementationProgress = ProgressData.ImplementationProgress
+          this.DeploymentProgress = ProgressData.DeploymentProgress
 
-          this.TestingProgress = pProgressData.TestingProgress
-          this.MaintenanceProgress = pProgressData.MaintenanceProgress
-          this.ProjectStatusUpdateDate = pProgressData.ProjectStatusUpdateDate
-          this.ProjectUpdateSummary = pProgressData.ProjectUpdateSummary
-          this.OverAllProgress = pProgressData.OverAllProgress
+          this.TestingProgress = ProgressData.TestingProgress
+          // this.MaintenanceProgress = pProgressData.MaintenanceProgress
+          this.ProjectStatusUpdateDate = ProgressData.ProjectStatusUpdateDate
+          this.ProjectUpdateSummary = ProgressData.ProjectUpdateSummary
+          this.OverAllProgress = ProgressData.OverAllProgress
         }
       } catch (error) {
         console.error('Error fetching project data:', error)

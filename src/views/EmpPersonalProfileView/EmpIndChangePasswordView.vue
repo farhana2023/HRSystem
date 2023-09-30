@@ -26,11 +26,13 @@
   </div>
 </div>
 
-<div class="text-center">
-  <button type="submit" class="btn btn-primary" @click.prevent="UpdateUserPassword()">Change Password</button>
-</div>
+
 
 <div class="card-footer">
+
+  <div class="text-center">
+  <button type="submit" class="btn btn-primary" @click.prevent="UpdateUserPassword()">Change Password</button>
+</div>
   <div v-if="dataSaved" class="alert alert-success mt-3">
     <strong>Password  changed successfully!</strong>
   </div>

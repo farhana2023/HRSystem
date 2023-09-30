@@ -36,14 +36,14 @@
                     <tbody>
                       <tr v-for="(Tasks, index) in filteredTasks" :key="index">
   
-                         <!-- <td class="linkEmp"><RouterLink :to="{ name:'edit-Project', query: {ProjectID: Projects.id}}">
+                         <td class="linkEmp"><RouterLink :to="{ name:'edit-Project', query: {ProjectID:Tasks.projectID }}">
                           
 
 
-                          <span class="blue-text">{{ Projects.projectTitle }}</span>
+                          <span class="blue-text">{{ Tasks.projectTitle }}</span>
                         
-                        </RouterLink></td>  -->
-                        <td >{{ Tasks.projectTitle }}</td>
+                        </RouterLink></td> 
+                        <!-- <td >{{ Tasks.projectTitle }}</td> -->
                         <td>{{ Tasks.TaskName }}</td>
                         <td>{{ Tasks.TaskAssignDate }}</td>
                         <td>{{ Tasks.TaskDeliveryDate }}</td> 
