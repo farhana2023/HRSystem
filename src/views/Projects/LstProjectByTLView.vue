@@ -4,7 +4,7 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">List of the Project</h5>
+              <h5 class="card-title">My Projects</h5>
               <div
                 class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns search-results"
               >

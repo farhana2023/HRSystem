@@ -21,6 +21,22 @@
               </div>
               <div class="row mb-3">
                 <label for="TaskName" class="col-md-4 col-lg-3 col-form-label"
+                  >Project Tiltle</label
+                >
+                <div class="col-md-8 col-lg-9">
+                  <input
+                    readonly
+                    name="TaskName"
+                    type="email"
+                    class="form-control"
+                    id="TaskName"
+                    v-model="projectTitle"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="TaskName" class="col-md-4 col-lg-3 col-form-label"
                   >Task Tiltle</label
                 >
                 <div class="col-md-8 col-lg-9">
@@ -160,6 +176,7 @@ export default {
       TaskAssignDate,
       projectTitle,
       TaskDeliveryDate
+     
     }
   },
 
@@ -179,11 +196,7 @@ export default {
         TaskAssignDate: this.TaskAssignDate,
         TaskDeliveryDate: this.TaskDeliveryDate
 
-        //  TaskDescription:taskData.TaskDescription,
-        // TaskName:taskData.TaskName,
-        // TaskStatus: taskData.TaskStatus,
-        // TaskUpdateDate: taskData.TaskUpdateDate,
-        // TaskUpdateSummary: taskData.TaskUpdateSummary,
+  
       }
       console.log('updateTaskData', updateTaskData)
 

@@ -128,7 +128,7 @@
           <li class="nav-item">
             <RouterLink class="nav-link collapsed" to="/AddProjectView">
               <i class="bi bi-circle-fill"></i>
-              <span>Projects</span>
+              <span>Create New Project</span>
             </RouterLink>
           </li>
           <li class="nav-item">

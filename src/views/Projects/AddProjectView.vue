@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-8">
         <div class="card">
-          <div class="card-header Color">New Project</div>
+          <div class="card-header Color">Create New Project</div>
           <div class="card-body pt-3">
             <form>
               <div class="row mb-3">

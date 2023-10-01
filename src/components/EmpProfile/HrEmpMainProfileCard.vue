@@ -38,7 +38,7 @@ export default {
       this.$router.push({
         name: 'emp_SendMessage',
         query: {
-          id:  this.empID,
+          id:  employee.userId,
           email: employee.email,
           fullname: employee.fullName
         }

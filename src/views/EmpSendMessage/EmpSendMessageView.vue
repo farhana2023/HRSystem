@@ -9,7 +9,7 @@
           <div class="card-body pt-3">
     <form>
         <div class="row mb-3" >
-                  <label for="sendtoEmail" class="col-md-4 col-lg-3 col-form-label">Send to Email</label>
+                  <label for="sendtoEmail" class="col-md-4 col-lg-3 col-form-label">Email</label>
                   <div class="col-md-8 col-lg-9">
                     <input
                       readonly
@@ -23,7 +23,7 @@
                 </div>
 
       <div class="row mb-3">
-        <label for="sendtofullName" class="col-md-4 col-lg-3 col-form-label">Send To</label>
+        <label for="sendtofullName" class="col-md-4 col-lg-3 col-form-label">Recipient</label>
         <div class="col-md-8 col-lg-9">
           <input
           readonly
